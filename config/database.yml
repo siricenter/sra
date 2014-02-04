@@ -14,8 +14,8 @@ development:
   reconnect: false
   database: sra_development
   pool: 5
-  username:
-  password: password
+  username: root
+  password: 
   socket: /var/run/mysqld/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
