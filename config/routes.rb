@@ -1,4 +1,18 @@
 Sra::Application.routes.draw do
+  get "people/new"
+
+  get "people/create"
+
+  get "people/edit"
+
+  get "people/update"
+
+  get "people/index"
+
+  get "people/show"
+
+  get "people/destroy"
+
   get "static/landing"
 
   # The priority is based upon order of creation:
