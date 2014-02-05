@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
 	end
 
 	def update
-		@person = Person.new(params[:person])
+		@person = Person.find(params[:id])
 		
 		respond_to do |format|
 			if @person.update_attributes(params[:thing])
