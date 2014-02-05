@@ -1,2 +1,39 @@
 <h1>People#new</h1>
 <p>Find me in app/views/people/new.html.erb</p>
+
+<%= form_for(@person) do |form| %>
+	<%= form.label :given_name %>:
+	<%= form.text_field :given_name %><br/>
+
+	<%= form.label :family_name %>:
+	<%= form.text_field :family_name %><br/>
+	
+	<% if false %>
+	<%= form.label :birthday %>:
+	<%= form.date_select Date.today, prefix: :birthday %><br/>
+
+	<% options = @edu_options.map do |option| %>
+		<% [option, option] %>
+	<% end %>
+
+	<%= options %>
+	
+	<%= form.label :education_level %>:
+	<%= form.text_field :family_name %><br/>
+	
+	<%= form.label :gender %>:
+	<%= form.text_field :family_name %><br/>
+	
+	<%= form.label :in_school %>:
+	<%= form.text_field :family_name %><br/>
+	
+	<%= form.label :arm_circumference %>:
+	<%= form.text_field :family_name %><br/>
+	
+	<%= form.label :alive %>
+	<%= form.check_box_tag :alive %>
+	<%= form.check :deceased %>
+	<%= form.check_box_tag :deceased %>
+<% end %>
+	
+<% end %>

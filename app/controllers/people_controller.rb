@@ -1,6 +1,7 @@
 class PeopleController < ApplicationController
   def new
 	  @person = Person.new
+	  @edu_options = ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College']
   end
 
   def create
