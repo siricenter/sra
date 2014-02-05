@@ -1,0 +1,118 @@
+
+<article>
+
+<ul>
+
+	<li>
+			//the ID Number
+			<%= hidden_field_tag(:parent_id, "5") %>
+	</li>
+
+	<li>
+			//persons first name
+			<%= text_field(:person, :fname) %>
+	</li>
+
+	<li>
+			//persons last name
+			<%= text_field(:person, :lname) %>
+	</li>
+
+	<li>
+			//persons age
+			<%= number_field(:person, :age %>
+	</li>
+
+	<li>
+			//Location
+			<%= fields_for 'person[address][primary]', address, :index => address do |address_form| %>
+			  <%= address_form.text_field :city %>
+			<% end %>
+	</li>
+
+	<li>
+			//gender
+			<%= check_box_tag(:pet_dog) %>
+			<%= label_tag(:pet_dog, "I own a dog") %>
+			<%= check_box_tag(:pet_cat) %>
+			<%= label_tag(:pet_cat, "I own a cat") %>
+	</li>
+
+	<li>
+			//send you to and edit form of the current peoples information 
+			form_tag(:controller => "people", :action => "search", :method => "get", :class => "nifty_form")
+			# => '<form accept-charset="UTF-8" action="/people/search?method=get&class=nifty_form" method="post">'
+
+			<%= radio_button_tag(:age, "child") %>
+			<%= label_tag(:age_child, "I am younger than 21") %>
+			<%= radio_button_tag(:age, "adult") %>
+			<%= label_tag(:age_adult, "I'm over 21") %>
+	</li>
+
+</ul>
+
+
+
+
+
+
+<ul>
+
+	<li>
+			//new form 
+			<%= form_for @person, :url => { :action => "create" } do |person_form| %>
+			  <%= person_form.text_field :name %>
+			  <%= fields_for @person.contact_detail do |contact_details_form| %>
+			    <%= contact_details_form.text_field :phone_number %>
+			  <% end %>
+			<% end %>
+	</li>
+
+	<li>
+			//new form Nutrition
+			<%= form_for @person, :url => { :action => "create" } do |person_form| %>
+			  <%= person_form.text_field :name %>
+			  <%= fields_for @person.contact_detail do |contact_details_form| %>
+			    <%= contact_details_form.text_field :phone_number %>
+			  <% end %>
+			<% end %>
+
+			<%= check_box_tag(:pet_dog) %>
+			<%= label_tag(:pet_dog, "I own a dog") %>
+			<%= check_box_tag(:pet_cat) %>
+			<%= label_tag(:pet_cat, "I own a cat") %>
+	</li>
+
+	<li>
+			//new form plant
+			<%= form_for @person, :url => { :action => "create" } do |person_form| %>
+			  <%= person_form.text_field :name %>
+			  <%= fields_for @person.contact_detail do |contact_details_form| %>
+			    <%= contact_details_form.text_field :phone_number %>
+			  <% end %>
+			<% end %>
+
+			<%= check_box_tag(:pet_dog) %>
+			<%= label_tag(:pet_dog, "I own a dog") %>
+			<%= check_box_tag(:pet_cat) %>
+			<%= label_tag(:pet_cat, "I own a cat") %>
+	</li>
+
+	<li>
+			//new form animal
+			<%= form_for @person, :url => { :action => "create" } do |person_form| %>
+			  <%= person_form.text_field :name %>
+			  <%= fields_for @person.contact_detail do |contact_details_form| %>
+			    <%= contact_details_form.text_field :phone_number %>
+			  <% end %>
+			<% end %>
+
+			<%= check_box_tag(:pet_dog) %>
+			<%= label_tag(:pet_dog, "I own a dog") %>
+			<%= check_box_tag(:pet_cat) %>
+			<%= label_tag(:pet_cat, "I own a cat") %>
+	</li>
+
+</ul>
+
+</article>
