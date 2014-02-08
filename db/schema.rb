@@ -11,6 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20140205234324) do
+
+  create_table "households", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "people", :force => true do |t|
+    t.string   "given_name"
+    t.string   "family_name"
+    t.date     "birthday"
+    t.string   "education_level"
+    t.string   "gender"
+    t.boolean  "in_school"
+    t.boolean  "is_alive"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "household_id"
+  end
 
 end

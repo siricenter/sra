@@ -1,31 +1,24 @@
-<%= form_for(@person) do |form| %>
-	<%= form.label :given_name %>:
+<%= form_for([@household, @person]) do |form| %>
+	<%= form.label :given_name %>
 	<%= form.text_field :given_name %><br/>
 
-	<%= form.label :family_name %>:
+	<%= form.label :family_name %>
 	<%= form.text_field :family_name %><br/>
-	
-	<%= form.label :birthday %>:
+
+	<%= form.label :birthday %>
 	<%= form.date_select :birthday %><br/>
 
-	<% edu_options = ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College'] %>
+	<%= form.label :education_level %>
+	<%= form.select :education_level, ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College'] %> <br/>
 
-	<%= form.label :education_level %>:
-	<%= select :person, :education_level, edu_options %><br/>
-	
-	<% gender_options = ['Male', 'Female', 'Other'] %>
+	<%= form.label :gender %>
+	<%= form.select :gender, ['Male', 'Female', 'Other'] %> <br/>
 
-	<%= form.label :gender %>:
-	<%= select :person, :gender, gender_options %><br/>
-	
-	<%= form.label :arm_circumference %>:
-	<%= form.number_field :arm_circumference %><br/>
-	
-	<%= form.check_box :in_school %>
-	<%= form.label :in_school %><br/>
-	
-	<%= form.check_box :is_alive %>
-	<%= form.label :is_alive %> <br/>
+	<%= form.label :in_school %>
+	<%= form.check_box :in_school %> <br/>
+
+	<%= form.label :is_alive %>
+	<%= form.check_box :is_alive, checked: true %><br/>
 
 	<%= form.submit :submit %>
 <% end %>

@@ -1,8 +1,9 @@
 Sra::Application.routes.draw do
-	resources :things
 
+	resources :households do 
+		resources :people
+	end
 
-	resources :people
 
 	root to: 'static#landing'
 

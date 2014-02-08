@@ -1,21 +1,7 @@
 <br/>
 <br/>
-<br/>
-<article>
-	<%= link_to 'Index', people_path %>
-	<h1>
-		<%= @person.given_name %> <%=@person.family_name %>
-	</h1>
+<h1><%= "#{@person.given_name} #{@person.family_name}" %></h1>
 
-	<ul>
-		<li><%= label_tag :birthday %> <%= @person.birthday %></li>
-		<li><%= label_tag :education_level %> <%= @person.education_level %></li>
-		<li><%= label_tag :gender %> <%= @person.gender %></li>
-		<li><%= label_tag :in_school %> <%= @person.in_school %></li>
-		<li><%= label_tag :arm_circumference %> <%= @person.arm_circumference %></li>
-		<li><%= label_tag :is_alive %> <%= @person.is_alive %></li>
-	</ul>
-
-	<%= link_to 'Edit', edit_person_path(@person) %> 
-	<%= link_to 'Delete', person_path(@person), method: :delete, data: { confirm: 'Are you sure?'} %>
-</article>
+<ul>
+	<li>Birthday: <%= "#{@person.birthday}" %></li>
+	<li>gender: <%= "#{@person.gender}" %></li>
