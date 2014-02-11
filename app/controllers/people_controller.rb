@@ -1,5 +1,3 @@
-
-<article>
 class PeopleController < ApplicationController
 	def new
 		@household = Household.find(params[:household_id])
@@ -36,4 +34,3 @@ class PeopleController < ApplicationController
 		redirect_to household_people_path(@household)
 	end
 end
-</article>
