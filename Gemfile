@@ -24,7 +24,7 @@ end
 
 group :test, :development do 
 	gem 'rspec-rails'
-	gem 'cucumber'
+	gem 'cucumber-rails', require: false
 end
 
 group :development do 
