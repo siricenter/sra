@@ -7,6 +7,7 @@ gem 'rails', '3.2.16'
 
 gem 'mysql2'
 gem 'therubyracer'
+gem 'devise'
 gem 'haml'
 
 
