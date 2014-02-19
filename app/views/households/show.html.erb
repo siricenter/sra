@@ -1,3 +1,4 @@
+<h1><%= @household.name %></h1>
 <article>
 <p id="notice"><%= notice %></p>
 
@@ -6,7 +7,7 @@
 <%= @household.name %>
 </p>
 
-
-<%= link_to 'Edit', edit_household_path(@household) %> |
-<%= link_to 'Back', households_path %>
+<%= button_to 'Edit', edit_household_path(@household), class: "button", method: :get %>
+<%= button_to 'Back', households_path, class: :button, method: :get %>
+<%= button_to 'Destroy', @household, method: :delete, data: { confirm: 'Are you sure?' }, class: :button %>
 </article>
