@@ -1,23 +1,14 @@
 <h1>Listing households</h1>
 <article>
+<%= button_to 'New Household', new_household_path, class: :button, method: :get %>
+<ul>
+	<% @households.each do |household| %>
+		<li>
+		<%= link_to 'X', household, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
+		<%= link_to household.name, household %>
+		</li>
+	<% end %>
+</ul>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @households.each do |household| %>
-  <tr>
-    <td><%= link_to household.name, household %></td>
-    <td><%= link_to 'Destroy', household, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Household', new_household_path %>
+<%= button_to 'New Household', new_household_path, class: :button, method: :get %>
 </article>
