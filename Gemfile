@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'therubyracer'
 gem 'devise'
 gem 'haml'
+gem 'bootstrap-sass'
 
 
 # Gems used only for assets and not required
