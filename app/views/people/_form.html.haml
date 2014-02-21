@@ -1,0 +1,30 @@
+= form_for([@household, @person]) do |form| 
+  = form.label :given_name 
+  = form.text_field :given_name , class: :textfield, size: 15
+  %br
+  
+  = form.label :family_name 
+  = form.text_field :family_name , class: :textfield, size: 15
+  %br
+  
+  = form.label :birthday 
+  = form.date_select :birthday 
+  %br
+  
+  = form.label :education_level 
+  = form.select :education_level, ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College']  
+  %br
+  
+  = form.label :gender 
+  = form.select :gender, ['Male', 'Female', 'Other']  
+  %br
+  
+  = form.label :in_school 
+  = form.check_box :in_school  
+  %br
+  
+  = form.label :is_alive 
+  = form.check_box :is_alive, checked: true 
+  %br
+  
+  = form.submit :submit 

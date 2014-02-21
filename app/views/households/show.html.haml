@@ -10,3 +10,11 @@
     = @household.name
   = button_to 'Edit', edit_household_path(@household), class: "button", method: :get
   = button_to 'Destroy', @household, method: :delete, data: { confirm: 'Are you sure?' }, class: :button
+
+
+  = button_to('New Person', new_household_person_path(@household), class: :button, method: :get)
+  %ul
+    - @household.people.each do |person| 
+      %li
+        = link_to "#{person.given_name} #{person.family_name}", household_person_path(@household, person)
+        = link_to('Destroy', [@household, person], method: :delete, data: { confirm: 'Are you sure?' }, method: :get)
