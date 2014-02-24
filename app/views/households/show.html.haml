@@ -1,20 +1,16 @@
 = link_to 'Back', households_path, class: :button, id: :back, method: :get
-%h1= @household.name
-%article
-  %p{id: "message"}
-    = notice
+%h1= @household.name + " Household"
 
-  %p
-    %b
-      Name:
-    = @household.name
-  = button_to 'Edit', edit_household_path(@household), class: "button", method: :get
-  = button_to 'Destroy', @household, method: :delete, data: { confirm: 'Are you sure?' }, class: :button
+.row
+  .col-sm-12
+    = link_to 'Edit', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", :right]
+%br
 
+.row
+  = household_panel @household, 4 do 
+    - "lorum ipsom"
 
-  = button_to('New Person', new_household_person_path(@household), class: :button, method: :get)
-  %ul
-    - @household.people.each do |person| 
-      %li
-        = link_to "#{person.given_name} #{person.family_name}", household_person_path(@household, person)
-        = link_to('Destroy', [@household, person], method: :delete, data: { confirm: 'Are you sure?' }, method: :get)
+.row
+  .col-sm-12
+    = link_to 'Edit', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", :right]
+

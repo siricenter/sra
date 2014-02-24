@@ -9,7 +9,7 @@ module HouseholdsHelper
 				s << %{<div class="row">}
 			end
 
-			s << %{#{household_panel household}}
+			s << %{#{household_panel household, 4}}
 
 			if column == 3
 				s << %{</div>}
@@ -22,9 +22,9 @@ module HouseholdsHelper
 		s.html_safe
 	end
 
-	def household_panel household
+	def household_panel household, size
 		s = <<-EOS
-			<div class="col-sm-4">
+			<div class="col-sm-#{size}">
 				<div class="panel panel-primary">
 					<div class="panel-heading">
 						<h3 class="panel-title">#{household.name}</h3>
@@ -35,10 +35,59 @@ module HouseholdsHelper
 						</p>
 		#{link_to 'Show', household, class: [:btn, "btn-success", "btn-lg"]}
 		#{link_to 'Edit', edit_household_path(household), class: [:btn, "btn-success", "btn-lg"]}
-					</div>
-				</div>
+			</div>
+			</div>
 			</div>
 		EOS
 		s.html_safe
+	end
+
+	def grid columns, &block
+		grid = Grid.new columns
+		body = capture(grid, &block)
+		body << "</div>".html_safe unless grid.current_column == columns
+		body.html_safe
+	end
+
+	class Grid
+		include ActionView::Helpers::TagHelper
+		attr_reader :current_column
+		def initialize columns = 3
+			@column_count = columns
+			@current_column = columns
+		end
+
+		def panel_head heading
+			@current_column += 1
+			if @current_column > @column_count
+				@current_column = 1
+			end
+			head = %{
+				<div class="col-sm-4">
+				<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+			#{heading}
+			 </h3>
+				</div>
+			}
+			head = %{<div class="row">} << head if @current_column == 1
+			#debugger
+			head.html_safe
+		end
+
+		def panel_body output #&block2
+			#raise "Needs a block" unless block_given?
+			#debugger
+			#output = capture(self, &block2)
+			content = content_tag(:div, content_tag(:p, output), class: "panel-body")
+			content << "</div> </div>".html_safe
+			content << "</div>".html_safe if @current_column == @column_count
+			content.html_safe
+		end
+
+		def panel_clean
+
+		end
 	end
 end
