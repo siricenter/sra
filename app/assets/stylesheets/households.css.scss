@@ -125,6 +125,11 @@ nav li a.active, nav li a.active:hover{
 	color: #6b7770;
 }
 
+.panel-primary > .full-panel
+{
+	border-radius: 8px;
+}
+
 .panel-body .btn
 {
 	padding: 6% 10%;
@@ -165,5 +170,14 @@ nav li a.active, nav li a.active:hover{
 .btn-success-alt:hover
 {
 	background: #ccd5d0;
+}
 
+@media only screen and (min-width: 1250px)
+{
+
+	.panel-body .btn
+	{
+		padding: 2% 9%;
+		margin-right: 3%;
+	}
 }
