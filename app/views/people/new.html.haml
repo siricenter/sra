@@ -1,3 +1,7 @@
-%h1 New Person
-%article
-  = render 'form'
+= link_to 'See Family', household_path(@household), class: :button, id: :back, method: :get
+%h1 
+  New Person
+.col-sm-12
+  .panel.panel-pimary
+    .panel-body
+      = render 'form'

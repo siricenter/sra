@@ -1,9 +1,28 @@
-%article
-  %h1= "#{@person.given_name} #{@person.family_name}"
-  %ul
-    %li 
-      Birthday: 
-      = "#{@person.birthday}"
-    %li
-      Gender: 
-      = "#{@person.gender}" 
+%h1= @person.given_name + " " + @person.family_name
+%br
+.row
+  .col-sm-12
+    = link_to 'Edit', edit_household_person_path(@household, @person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+
+.col-sm-12
+  .panel.panel-pimary
+    .panel-body
+      %ul
+        %li
+          Name:
+          = @person.given_name + " " + @person.family_name
+        %li 
+          Birthday: 
+          = @person.birthday
+        %li
+          Gender: 
+          = @person.gender
+        %li
+          In School: 
+          = @person.in_school
+        %li
+          Living:
+          = @person.is_alive
+.row
+  .col-sm-12
+    = link_to 'Edit', edit_household_person_path(@household, @person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]

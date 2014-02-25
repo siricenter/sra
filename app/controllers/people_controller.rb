@@ -14,6 +14,8 @@ class PeopleController < ApplicationController
 	end
 
 	def edit
+		@household = Household.find(params[:household_id])
+		@person = @household.people.find(params[:id])
 	end
 
 	def show
@@ -23,7 +25,19 @@ class PeopleController < ApplicationController
 
 	def index
 		@household = Household.find(params[:household_id])
-		@people = @household.people
+		redirect_to @household
+	end
+
+	def update
+		@household = Household.find(params[:household_id])
+		@person = @household.people.find(params[:id])
+
+		if @person.update_attributes(params[:person])
+			redirect_to household_person_path(@household, @person), notice: "#{@person.given_name} #{@person.family_name} was successfully updated"
+			#format.html {redirect_to household_person_path(@household, @person), notice: "OK"}
+		else
+			format.html {render action: "edit"}
+		end
 	end
 
 	def destroy

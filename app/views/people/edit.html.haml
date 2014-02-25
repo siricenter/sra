@@ -1,2 +1,7 @@
-<h1>People#edit</h1>
-<p>Find me in app/views/people/edit.html.erb</p>
+%h1 
+  Edit
+  = "#{@person.given_name} #{@person.family_name}"
+.col-sm-12
+  .panel.panel-pimary
+    .panel-body
+      = render 'form'

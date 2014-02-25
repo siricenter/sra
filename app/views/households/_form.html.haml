@@ -1,16 +1,8 @@
 = form_for(@household) do |f|
-  - if @household.errors.any?
-    %div#error_explanation
-      %h2
-        = pluralize(@household.errors.count, "error") 
-        prohibited this household from being saved:
-      %ul
-        - @household.errors.full_messages.each do |msg|
-          %li= msg 
-  %ul
-    %li
-      = f.label :name
-      = f.text_field :name, class: :textfield, size: 20
-    %li
-      = f.submit class: [:btn, "btn-success"]
+  .container
+    .row
+      = f.label :name, class: "col-sm-2"
+      = f.text_field :name, class: [:textfield, "col-sm-8", "col-md-9"]
+    .row
+      = f.submit class: [:btn, "btn-success", "btn-large", "col-sm-2"], value: "Create"
 

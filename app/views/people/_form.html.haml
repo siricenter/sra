@@ -1,30 +1,31 @@
 = form_for([@household, @person]) do |form| 
-  = form.label :given_name 
-  = form.text_field :given_name , class: :textfield, size: 15
-  %br
+  .row
+    = form.label :given_name, class: ["col-sm-4", "col-md-3"]
+    = form.text_field :given_name, class: [:textfield, "col-sm-8", "col-md-9"]
   
-  = form.label :family_name 
-  = form.text_field :family_name , class: :textfield, size: 15
-  %br
+  .row
+    = form.label :family_name, class: ["col-sm-4", "col-md-3"]
+    = form.text_field :family_name, class: [:textfield, "col-sm-8", "col-md-9"]
   
-  = form.label :birthday 
-  = form.date_select :birthday 
-  %br
+  .row
+    = form.label :birthday, class: ["col-sm-4" , "col-md-3"]
+    = form.date_select :birthday, start_year: 1900, end_year: Time.now.year, class: "Hello"
   
-  = form.label :education_level 
-  = form.select :education_level, ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College']  
-  %br
+  .row
+    = form.label :education_level, class: ["col-sm-4" , "col-md-3"]
+    = form.select :education_level, ['None', 'Some Elementary', 'Elementary', 'Some Secondary', 'Secondary', 'Some College', 'College']  
   
-  = form.label :gender 
-  = form.select :gender, ['Male', 'Female', 'Other']  
-  %br
+  .row
+    = form.label :gender, class: ["col-sm-4" , "col-md-3"]
+    = form.select :gender, ['Male', 'Female', 'Other']  
   
-  = form.label :in_school 
-  = form.check_box :in_school  
-  %br
+  .row
+    = form.label :in_school, class: ["col-sm-4" , "col-md-3"]
+    = form.check_box :in_school  
   
-  = form.label :is_alive 
-  = form.check_box :is_alive, checked: true 
-  %br
+  .row
+    = form.label :is_alive, class: ["col-sm-4" , "col-md-3"]
+    = form.check_box :is_alive, checked: true 
   
-  = form.submit :submit 
+  .row
+    = form.submit :submit, class: [:btn, "btn-success", "btn-large", "col-sm-3"], value: "Submit"
