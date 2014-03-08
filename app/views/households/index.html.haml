@@ -1,8 +1,7 @@
 %h1 
   Households
-.row
-  .col-sm-12
-    = link_to 'New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right]
+.row.main
+  = link_to 'New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right]
 %br
 
 .row
@@ -19,7 +18,6 @@
           = link_to 'Show', household, class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
           = link_to 'Edit', edit_household_path(household), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"]
 
-.row
-  .col-sm-12
-    = link_to('New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right], method: :get)
+.row.main
+  = link_to('New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right], method: :get)
 

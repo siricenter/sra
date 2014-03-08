@@ -1,11 +1,11 @@
-= link_to 'Back', households_path, class: [:btn, "btn-large", "btn-success"], id: :back, method: :get
-%h1= @household.name + " Household"
-
-%br
 .row
-  .col-sm-12
-    = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
-%br
+  = link_to 'Back', households_path, class: [:btn, "btn-large", "btn-success", "col-sm-2"], id: :back
+
+.row
+  %h1= @household.name + " Household"
+
+.row.main
+  = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
 
 .row
   - @household.people.each do |person|
@@ -22,6 +22,5 @@
           = link_to 'Show', household_person_path(@household, person), class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
           = link_to 'Edit', edit_household_person_path(@household, person), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"]
 
-.row
-  .col-sm-12
-    = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+.row.main
+  = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]

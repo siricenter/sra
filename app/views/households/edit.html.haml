@@ -1,6 +1,8 @@
-= link_to 'Back', households_path, class: :button, id: :back, method: :get
-%h1
-  = @household.name
+.row
+  = link_to 'Back', households_path, class: [:btn, "btn-large", "btn-success", "col-sm-2", "col-md-2", :row], id: :back, method: :get
+.row
+  %h1
+    = @household.name
 
 .col-sm-12
   .panel.panel-pimary
