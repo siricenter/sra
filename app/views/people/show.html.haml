@@ -1,5 +1,10 @@
 %h1= @person.given_name + " " + @person.family_name
 %br
+.row-fluid
+  .banner
+    %h2
+      Hello world
+
 .row
   .col-sm-12
     = link_to 'Edit', edit_household_person_path(@household, @person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
@@ -7,21 +12,30 @@
 .col-sm-12
   .panel.panel-pimary
     .panel-body
-      %ul
-        %li
+      .row
+        %label{class: "col-sm-3"}
           Name:
+        %label
           = @person.given_name + " " + @person.family_name
-        %li 
+      .row
+        %label{class: "col-sm-3"}
           Birthday: 
+        %label
           = @person.birthday
-        %li
+      .row
+        %label{class: "col-sm-3"}
           Gender: 
+        %label
           = @person.gender
-        %li
+      .row
+        %label{class: "col-sm-3"}
           In School: 
+        %label
           = @person.in_school
-        %li
+      .row
+        %label{class: "col-sm-3"}
           Living:
+        %label
           = @person.is_alive
 .row
   .col-sm-12

@@ -1,0 +1,45 @@
+%h1
+  = @user.email
+  %h2
+    Roles:
+%br
+.row
+  .col-sm-12
+    = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+
+
+.col-sm-12
+  .panel.panel-pimary
+    .panel-body
+      - @user.roles.each do |role|
+        .row
+          %label{class: "col-sm-3"}
+            = role.name
+      .row
+        %label{class: "col-sm-3"}
+          Name:
+        %label
+          -#= @person.given_name + " " + @person.family_name
+      .row
+        %label{class: "col-sm-3"}
+          Birthday: 
+        %label
+          -#= @person.birthday
+      .row
+        %label{class: "col-sm-3"}
+          Gender: 
+        %label
+          -#= @person.gender
+      .row
+        %label{class: "col-sm-3"}
+          In School: 
+        %label
+          -#= @person.in_school
+      .row
+        %label{class: "col-sm-3"}
+          Living:
+        %label
+          -#= @person.is_alive
+.row
+  .col-sm-12
+    = link_to 'Edit', edit_household_person_path([@household, @person]),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]

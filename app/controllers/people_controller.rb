@@ -1,4 +1,5 @@
 class PeopleController < ApplicationController
+	before_filter :authenticate_user!
 	def new
 		@household = Household.find(params[:household_id])
 		@person = Person.new

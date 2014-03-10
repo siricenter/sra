@@ -1,9 +1,16 @@
 Sra::Application.routes.draw do
 
+	scope "/admin" do
+		resources :users do
+			resources :roles
+		end
+	end
+
+	devise_for :users
+
 	resources :households do 
 		resources :people
 	end
-
 
 	root to: 'static#landing'
 

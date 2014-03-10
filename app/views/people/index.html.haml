@@ -1,10 +1,7 @@
-%h1 
-  People index
-%article
-  = button_to 'New Person', new_household_person_path, class: :button
-  %ul
-    - @people.each do |person| 
-      %li
-        = link_to "#{person.given_name} #{person.family_name}", household_person_path(@household, person)
-        = link_to('Destroy', [@household, person], method: :delete, data: { confirm: 'Are you sure?' })
-  = button_to('New Person', new_household_person_path(), class: :button)
+= button_to 'New Person', new_household_person_path, class: :button
+%ul
+  - @people.each do |person| 
+    %li
+      = link_to "#{person.given_name} #{person.family_name}", household_person_path(@household, person)
+      = link_to('Destroy', [@household, person], method: :delete, data: { confirm: 'Are you sure?' })
+= button_to('New Person', new_household_person_path(), class: :button)

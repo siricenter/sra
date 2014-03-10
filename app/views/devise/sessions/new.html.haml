@@ -1,0 +1,24 @@
+.row
+  .col-sm-12
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          Sign in
+      .panel-body
+        = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+          .row
+            = f.label :email, class: ["col-sm-4", "col-md-3"]
+            = f.email_field :email, :autofocus => true, class: [:textfield, "col-sm-8", "col-md-8"]
+          .row
+            = f.label :password, class: ["col-sm-4", "col-md-3"]
+            = f.password_field :password, class: [:textfield, "col-sm-8", "col-md-8"]
+
+          - if devise_mapping.rememberable?
+            .row
+              = f.label :remember_me, class: ["col-sm-5", "col-md-3"]
+              = f.check_box :remember_me
+
+          .row
+            = f.submit "Sign in", class: [:btn, "btn-success", "btn-large", "col-sm-4", "col-md-2"]
+
+          = render "devise/shared/links"

@@ -4,6 +4,17 @@
 @import "bootstrap";
 @import "bootstrap-theme";
 
+.container
+{
+	margin-top: 10%;
+}
+
+.banner
+{
+	background-color: #000;
+	min-height: 100px;
+}
+
 h1, h2, h3, h4, h5, h6, h7 {
 	font-family: Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 700;
@@ -37,9 +48,24 @@ body
 	background:#f2f5f3;
 }
 
-a:visited
+.panel-heading a:visited
 {
 	color: #fff;
+}
+
+.panel-body .btn:visited
+{
+	color: #fff;
+}
+
+.panel-body a:visited
+{
+	color: #555454;
+}
+
+.panel-body .biglink
+{
+	font-size: large;
 }
 
 nav
@@ -195,7 +221,6 @@ nav li a.active, nav li a.active:hover{
 	font-size: 2.25em;
 	background:#f2f5f3;
 	color: #8b9790;
-
 }
 
 .panel-body form li
@@ -205,6 +230,7 @@ nav li a.active, nav li a.active:hover{
 
 label
 {
+	text-decoration:none;
 	color: #6b7770;
 	font-size:2.25em;
 }

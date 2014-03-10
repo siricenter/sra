@@ -1,0 +1,21 @@
+.row
+  .col-sm-12
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          Register
+      .panel-body
+        = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+          = devise_error_messages!
+          .row
+            = f.label :email , class: ["col-sm-4", "col-md-2"]
+            = f.email_field :email, :autofocus => true, class: [:textfield, "col-md-offset-1", "col-sm-offset-1", "col-sm-8", "col-md-8"]
+          .row
+            = f.label :password, class: ["col-sm-4", "col-md-2"]
+            = f.password_field :password, class: [:textfield, "col-md-offset-1", "col-sm-offset-1", "col-sm-8", "col-md-8"]
+          .row
+            = f.label :confirm, class: ["col-sm-4", "col-md-2"]
+            = f.password_field :password_confirmation, class: [:textfield, "col-md-offset-1", "col-sm-offset-1", "col-sm-8", "col-md-8"]
+          .row
+            = f.submit "Sign Up", class: [:btn, "btn-success", "btn-large", "col-sm-4", "col-md-2"]
+          = render "devise/shared/links"
