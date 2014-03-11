@@ -1,9 +1,5 @@
 %h1
   Users
-.row
-  .col-sm-12
-    = link_to 'New User', new_user_path, class: [:btn, "btn-large", "btn-success", :right]
-%br
 
 .row
   - @users.each do |user|
@@ -16,10 +12,5 @@
         .panel-body.index
           %p
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali qua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu i officia deserunt mollit anim id est laborum.
-          = link_to 'Show', user, class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
-          = link_to 'Edit', edit_user_path(user), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"]
-
-.row
-  .col-sm-12
-    = link_to('New User', new_user_path, class: [:btn, "btn-large", "btn-success", :right], method: :get)
+          = link_to 'Show', user, class: [:btn, "btn-success", "btn-lg", "col-md-12", "col-sm-12"]
 

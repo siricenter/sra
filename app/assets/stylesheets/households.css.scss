@@ -101,7 +101,7 @@ nav li
 	display: inline;
 }
 
-nav li a
+nav a
 {
 	float: left;
 	padding: 2% 2% 3% 2%;
@@ -114,7 +114,7 @@ nav li a
 	outline: none;
 }
 
-nav li a:hover{
+nav a:hover{
 	color: #FFFFFF !important;
 	background-color: #B4B4B4;
 	-moz-transition: border-color .2s ease-in-out, color .2s
@@ -130,7 +130,7 @@ nav li a:hover{
 	text-decoration: none;
 }
 
-nav li a.active, nav li a.active:hover{
+nav a.active, nav a.active:hover{
 	line-height: 63px;
 	color: #fff;
 

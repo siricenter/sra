@@ -1,20 +1,11 @@
-%h1
-  = @user.email
-  %h2
-    Roles:
-%br
 .row
-  .col-sm-12
-    = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+  %h1
+    = @user.email
 
 
 .col-sm-12
   .panel.panel-pimary
     .panel-body
-      - @user.roles.each do |role|
-        .row
-          %label{class: "col-sm-3"}
-            = role.name
       .row
         %label{class: "col-sm-3"}
           Name:
@@ -40,6 +31,14 @@
           Living:
         %label
           -#= @person.is_alive
-.row
-  .col-sm-12
-    = link_to 'Edit', edit_household_person_path([@household, @person]),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+.row.btn-toolbar.main
+  = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+.row.main
+  %h2
+    Roles:
+  - @user.roles.each do |role|
+    %label{class: "col-sm-2"}
+      = role.name
+
+.row.btn-toolbar.main
+  = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
