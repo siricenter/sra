@@ -3,36 +3,8 @@
     = @user.email
 
 
-.col-sm-12
-  .panel.panel-pimary
-    .panel-body
-      .row
-        %label{class: "col-sm-3"}
-          Name:
-        %label
-          -#= @person.given_name + " " + @person.family_name
-      .row
-        %label{class: "col-sm-3"}
-          Birthday: 
-        %label
-          -#= @person.birthday
-      .row
-        %label{class: "col-sm-3"}
-          Gender: 
-        %label
-          -#= @person.gender
-      .row
-        %label{class: "col-sm-3"}
-          In School: 
-        %label
-          -#= @person.in_school
-      .row
-        %label{class: "col-sm-3"}
-          Living:
-        %label
-          -#= @person.is_alive
 .row.btn-toolbar.main
-  = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  = link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
 .row.main
   %h2
     Roles:
@@ -41,4 +13,4 @@
       = role.name
 
 .row.btn-toolbar.main
-  = link_to 'Assign Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  = link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]

@@ -1,5 +1,5 @@
 class HouseholdsController < ApplicationController
-	before_filter :authenticate_user!
+	#before_filter :authenticate_user!
 
 	# GET /households
 	# GET /households.json

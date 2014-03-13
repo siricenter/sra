@@ -8,11 +8,11 @@
 	</head>
 	<body>
 
-		<div class="page">
+		<div>
+		<%= render :partial => '/layouts/navbar' %>
 			<% if alert %>
 				<div class="alert"><%= alert %></div>
 			<% end %>
-		<%= render :partial => '/layouts/navbar' %>
 			<%= yield %>
 		</div>
 
