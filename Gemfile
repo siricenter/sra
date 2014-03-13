@@ -24,9 +24,9 @@ group :assets do
 	gem 'uglifier', '>= 1.0.3'
 end
 
-group :test, :development do 
+group :test do 
 	gem 'rspec-rails'
-	gem 'cucumber-rails', require: false
+	gem 'cucumber-rails'
 	gem 'database_cleaner'
 	gem 'capybara'
 end
