@@ -4,7 +4,7 @@ Given(/^I have created a family$/) do
 end
 
 Given(/^I am on the family's personal page$/) do
-	visit "households/2"
+	visit household_path(@household)
 end
 
 Then(/^I should be on the family's edit page$/) do
