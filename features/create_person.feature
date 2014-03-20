@@ -14,11 +14,5 @@ Feature: Field worker adds person to household
 		Given I am logged in
 		And I have created a family
 		And I am on the create person page
-		When I set the given name to "Mariana"
-		And I set the family name to "Rodriguez"
-		And I set the birthday to "May" "22" "1987"
-		And I set the education level to "Secondary"
-		And I set the gender to "Female"
-		And I set in school to "false"
-		And I press "submit"
+		When I fill out the person form
 		Then I should be on the household's personal page
