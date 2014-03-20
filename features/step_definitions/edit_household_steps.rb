@@ -23,10 +23,10 @@ Given(/^I am on the family's edit page$/) do
 	visit edit_household_path(@household)
 end
 
-When(/^I press submit$/) do
-	pending # express the regexp above with the code you wish you had
-end
-
 Then(/^I should be on the Rodriguez personal page$/) do
 	current_path.should == household_path(@household)
+end
+
+When(/^I fill out the household edit form$/) do
+	  pending # express the regexp above with the code you wish you had
 end

@@ -22,7 +22,6 @@ Feature: Field worker edits household
 		Given I am logged in 
 		And I have created a family
 		And I am on the family's edit page 
-		When I enter the name "Rodriguez" 
-		And I press "Submit"
+		When I fill out the household edit form
 		Then I should be on the Rodriguez personal page 
 
