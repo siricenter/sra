@@ -1,14 +1,14 @@
 %h1
-  User's roles
+  Roles
 
 .row
   .col-sm-12
-    = link_to 'New Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", :right]
+    = link_to 'New Role', new_role_path, class: [:btn, "btn-large", "btn-success", :right]
 
-- @user.roles.each do |role|
+- @roles.each do |role|
   .row
     = role.name
 
 .row
   .col-sm-12
-    = link_to 'New Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", :right]
+    = link_to 'New Role', new_role_path, class: [:btn, "btn-large", "btn-success", :right]

@@ -5,7 +5,7 @@ Sra::Application.routes.draw do
 		resources :roles
 	end
 
-	devise_for :users
+	devise_for :users, controllers: { registrations: "registrations" }
 
 	resources :households do 
 		resources :people
