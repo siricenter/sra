@@ -4,7 +4,9 @@
 
 
 .row.btn-toolbar.main
-  = link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  %p
+    Filler
+  - #= link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
 .row.main
   %h2
     Roles:
@@ -13,4 +15,6 @@
       = role.name
 
 .row.btn-toolbar.main
-  = link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  %p
+    Filler
+  - #= link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
