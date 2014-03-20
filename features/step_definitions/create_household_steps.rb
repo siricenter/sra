@@ -13,8 +13,9 @@ When(/^I press id "(.*?)"$/) do |name|
 	click_on name.to_sym
 end
 
-When(/^I enter the name "(.*?)"$/) do |name|
-	fill_in 'household_name', with: name
+When(/^I fill out the household form$/) do 
+	fill_in 'household_name', with: "gonzales"
+	click_on "Submit"
 end
 
 Then(/^I should be on the "(.*?)" page$/) do |page|

@@ -1,9 +1,8 @@
 Sra::Application.routes.draw do
 
 	scope "/admin" do
-		resources :users do
-			resources :roles
-		end
+		resources :users
+		resources :roles
 	end
 
 	devise_for :users

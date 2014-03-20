@@ -12,6 +12,5 @@ Feature: Field worker creates household
 	Scenario: Fill out form
 		Given I am logged in
 		When I go to the "households/new" page
-		And I enter the name "Gonzalez"
-		And I press "Submit"
+		And I fill out the household form
 		Then I should be on the "/households/1" page
