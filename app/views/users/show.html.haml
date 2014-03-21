@@ -2,19 +2,21 @@
   %h1
     = @user.email
 
+%p
+  = alert
 
-.row.btn-toolbar.main
-  %p
-    Filler
-  - #= link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
-.row.main
-  %h2
-    Roles:
+%h2
+  Assigned
+
+#assigned.row
   - @user.roles.each do |role|
-    %label{class: "col-sm-2"}
-      = role.name
+    = role_panel role, false
 
-.row.btn-toolbar.main
-  %p
-    Filler
-  - #= link_to 'Add Role', new_user_role_path(@user), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+%h2
+  Assignable
+
+#unassigned.row
+  - @roles.each do |role|
+    - unless @user.roles.include? role
+      = role_panel role
+  

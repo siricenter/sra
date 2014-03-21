@@ -28,5 +28,6 @@ Then(/^I should be on the Rodriguez personal page$/) do
 end
 
 When(/^I fill out the household edit form$/) do
-	  pending # express the regexp above with the code you wish you had
+	fill_in 'household_name', with: "Rodriguez"
+	click_on "Submit"
 end

@@ -1,8 +1,11 @@
 Sra::Application.routes.draw do
 
+
+
 	scope "/admin" do
 		resources :users
 		resources :roles
+		resources :permissions
 	end
 
 	devise_for :users, controllers: { registrations: "registrations" }
@@ -12,6 +15,9 @@ Sra::Application.routes.draw do
 	end
 
 	root to: 'static#landing'
+
+	post '/users/:user_id/roles/:role_id', to: 'UserRole#new', as: :new_user_role
+	delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

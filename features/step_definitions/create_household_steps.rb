@@ -14,7 +14,7 @@ When(/^I press id "(.*?)"$/) do |name|
 end
 
 When(/^I fill out the household form$/) do 
-	fill_in 'household_name', with: "gonzales"
+	fill_in 'household_name', with: "Gonzales"
 	click_on "Submit"
 end
 
