@@ -11,6 +11,7 @@ gem 'devise'
 gem 'haml'
 gem 'bootstrap-sass'
 
+	gem 'rspec-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -25,7 +26,6 @@ group :assets do
 end
 
 group :test do 
-	gem 'rspec-rails'
 	gem 'cucumber-rails'
 	gem 'database_cleaner'
 	gem 'capybara'

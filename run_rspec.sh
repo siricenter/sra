@@ -22,5 +22,5 @@ set -o nounset                              # Treat unset variables as an error
 pushd .
 cd ..
 
-sshpass -p 'vagrant' ssh vagrant@33.33.33.10 "cd /vagrant/sra && rake spec && rake cucumber"
+sshpass -p 'vagrant' ssh vagrant@33.33.33.10 "cd /vagrant/sra && rake spec"
 popd

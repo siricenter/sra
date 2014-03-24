@@ -1,30 +1,32 @@
 require 'spec_helper'
 
 describe Role do
-	before :each do 
+	before :each do
 		@role = Role.new
 	end
+	it "should know when it contains a given permission" do
+		permissions = Permission.create([
+			{name: "Create Household"},
+			{name: "Edit Household"}
+		])
 
-	it "should set a new name"  do
-		@role.name = "public"
-		@role.name.should == "public"
+		permissions.each do |permission|
+			@role.permissions << permission
+		end
+
+		@role.has_permission("Edit Household").should == true
 	end
 
-	it "should not save without a name" do
-		@role.save.should == false
-	end
+	it "should know when it doesn't contain a given permission" do
+		permissions = Permission.create([
+			{name: "Create Household"},
+			{name: "Edit Household"}
+		])
 
-	it "should have users" do
-		@role.users.should == []
-	end
+		permissions.each do |permission|
+			@role.permissions << permission
+		end
 
-	it "should save with user association" do 
-		@user = User.new(email: "potato02@email.com", password: "potatoesrgr3at", password_confirmation: "potatoesrgr3at")
-		@user.roles << @role 
-		@role.name = "public"
-		@user.save.should == true
-		
-		# The role should also be saved
-		Role.where(name: "public").nil?.should == false
+		@role.has_permission("Delete Household").should == false
 	end
 end
