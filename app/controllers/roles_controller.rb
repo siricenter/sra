@@ -5,6 +5,7 @@ class RolesController < ApplicationController
 
 	def show
 		@role = Role.find(params[:id])
+		@permissions = Permission.all
 	end
 
 	def edit
@@ -19,7 +20,7 @@ class RolesController < ApplicationController
 
 		if @role.save
 			respond_to do |format|
-				format.html {redirect_to role_path(@role), notice: "Role successfully created"}
+				format.html {redirect_to roles_path, notice: "Role successfully created"}
 				format.json {render json: @role, status: :created, location: role_path(@role)}
 			end
 		else
