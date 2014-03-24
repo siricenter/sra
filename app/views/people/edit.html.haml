@@ -1,7 +1,8 @@
-%h1 
-  Edit
-  = "#{@person.given_name} #{@person.family_name}"
 .col-sm-12
   .panel.panel-pimary
     .panel-body
+      %h1 
+        Edit
+        = "#{@person.given_name} #{@person.family_name}"
+        %br
       = render 'form'

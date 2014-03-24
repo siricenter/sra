@@ -10,10 +10,10 @@
 
 		<div>
 		<%= render :partial => '/layouts/navbar' %>
+			<%= yield %>
 			<% if alert %>
 				<div class="alert"><%= alert %></div>
 			<% end %>
-			<%= yield %>
 		</div>
 
 

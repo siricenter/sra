@@ -1,5 +1,3 @@
-%h1= @person.given_name + " " + @person.family_name
-%br
 .row-fluid
   .banner
     %h2
@@ -13,6 +11,8 @@
   .panel.panel-pimary
     .panel-body
       .row
+        %h1= @person.given_name + " " + @person.family_name
+        %br
         %label{class: "col-sm-3"}
           Name:
         %label
