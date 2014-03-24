@@ -6,14 +6,14 @@ Feature: Admin assigns role to user
 	Scenario: Assign role 
 		Given I am an Admin
 		And a user has been created 
-		And the "field_worker" role has been created 
-		When I assign the "field_worker" to the user 
-		Then the "field_worker" role should be assigned to the user 
+		And the "Field Worker" role has been created 
+		When I assign the "Field Worker" to the user 
+		Then the "Field Worker" role should be assigned to the user 
 
 	Scenario: Unassign role
 		Given I am an Admin
 		And a user has been created
-		And the "field_worker" role has been created
-		And I have assigned the "field_worker" role to the user
-		When I unassign the "field_worker" from the user
-		Then the "field_worker" role should be unassigned
+		And the "Field Worker" role has been created
+		And I have assigned the "Field Worker" role to the user
+		When I unassign the "Field Worker" from the user
+		Then the "Field Worker" role should be unassigned
