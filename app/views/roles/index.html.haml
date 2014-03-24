@@ -6,8 +6,18 @@
     = link_to 'New Role', new_role_path, class: [:btn, "btn-large", "btn-success", :right]
 
 - @roles.each do |role|
-  .row
-    = role.name
+  .col-sm-6.col-md-4
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          = link_to role.name, role
+      .panel-body.index
+        %ul
+        - role.permissions.each do |permission|
+          %li
+            = link_to permission.name, permission
+        = link_to 'Show', role, class: [:btn, "btn-success", "btn-lg", "col-md-12", "col-sm-12"]
+
 
 .row
   .col-sm-12

@@ -1,2 +1,22 @@
 %h1
   = @role.name
+
+%p
+  = alert
+
+.row
+  %h2
+    Assigned
+
+.row#assigned
+  - @role.permissions.each do |permission|
+    = permission_panel permission, false
+
+.row
+  %h2
+    Unassigned
+
+#unassigned.row
+  - @permissions.each do |permission|
+    - unless @role.permissions.include? permission
+      = permission_panel permission
