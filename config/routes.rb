@@ -1,7 +1,5 @@
 Sra::Application.routes.draw do
 
-
-
 	scope "/admin" do
 		resources :users
 		resources :roles
@@ -16,8 +14,11 @@ Sra::Application.routes.draw do
 
 	root to: 'static#landing'
 
-	post '/users/:user_id/roles/:role_id', to: 'UserRole#new', as: :new_user_role
+	post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
 	delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
+
+	post '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#create', as: :new_role_permission
+	delete '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#destroy', as: :destroy_role_permission
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
