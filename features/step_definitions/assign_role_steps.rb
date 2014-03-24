@@ -12,15 +12,16 @@ Given(/^the "(.*?)" role has been created$/) do |name|
 	@role.save
 end
 
-When(/^I assign the "(.*?)" to the user$/) do |role|
+When(/^I assign the "(.*?)" to the user$/) do |role_name|
+	role = Role.find_by_name(role_name)
 	visit user_path(@user)
-	click_on "#{role}_assign"
+	click_on "#{role.id}_assign"
 end
 
 Then(/^the "(.*?)" role should be assigned to the user$/) do |role|
 	current_path.should == user_path(@user)
-	page.has_selector?("#unassigned ##{@role.name}_assign").should == false
-	page.has_selector?("#assigned ##{@role.name}_unassign").should == true
+	page.has_selector?("#unassigned ##{@role.id}_assign").should == false
+	page.has_selector?("#assigned ##{@role.id}_unassign").should == true
 end
 
 Given(/^I have assigned the "(.*?)" role to the user$/) do |role|
@@ -28,13 +29,14 @@ Given(/^I have assigned the "(.*?)" role to the user$/) do |role|
 	@user.save!
 end
 
-When(/^I unassign the "(.*?)" from the user$/) do |role|
+When(/^I unassign the "(.*?)" from the user$/) do |role_name|
+	role = Role.find_by_name(role_name)
 	visit user_path(@user)
-	click_on "#{role}_unassign"
+	click_on "#{role.id}_unassign"
 end
 
 Then(/^the "(.*?)" role should be unassigned$/) do |arg1|
 	current_path.should == user_path(@user)
-	page.has_selector?("#assigned ##{@role.name}_unassign").should == false
-	page.has_selector?("#unassigned ##{@role.name}_assign").should == true
+	page.has_selector?("#assigned ##{@role.id}_unassign").should == false
+	page.has_selector?("#unassigned ##{@role.id}_assign").should == true
 end
