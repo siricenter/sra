@@ -1,5 +1,5 @@
 class UserRoleController < ApplicationController
-	def new
+	def create
 		@user = User.find(params[:user_id])
 		@role = Role.find(params[:role_id])
 
