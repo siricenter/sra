@@ -14,9 +14,11 @@ Sra::Application.routes.draw do
 
 	root to: 'static#landing'
 
+	# Create or destroy association between users and roles
 	post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
 	delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
 
+	# Create or destroy association between roles and permissions
 	post '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#create', as: :new_role_permission
 	delete '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#destroy', as: :destroy_role_permission
 
