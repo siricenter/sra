@@ -22,6 +22,8 @@ Sra::Application.routes.draw do
 	post '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#create', as: :new_role_permission
 	delete '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#destroy', as: :destroy_role_permission
 
+	match 'households/:id/interview', to: 'Households#interview', as: :interview_household
+
 	# The priority is based upon order of creation:
 	# first created -> highest priority.
 
