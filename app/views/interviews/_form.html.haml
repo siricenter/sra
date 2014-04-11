@@ -1,0 +1,91 @@
+= form_for(@interview) do |f|
+  .row
+    = f.label :roof, class: "col-sm-2"
+    = f.select :roof, ['tin', 'cement', 'tile', 'thatch', 'timber'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :wall, class: "col-sm-2"
+    = f.select :wall, ['brick', 'adobe', 'timber', 'thatch'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :floor, class: "col-sm-2"
+    = f.select :floor, ['cement', 'tile', 'timber', 'dirt'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :fuel_type, class: "col-sm-2"
+    = f.select :fuel_type, ['gas', 'wood', 'combined', 'other'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :water_source, class: "col-sm-2"
+    = f.select :water_source, ['piped', 'river or canal', 'well'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :bathroom, class: "col-sm-2"
+    = f.select :bathroom, ['outhouse', 'open field', 'toilet', 'bathroom with well'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :sewage, class: "col-sm-2"
+    = f.select :sewage, ['outhouse', 'open field', 'bog'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :separate_kitchen, class: "col-sm-2"
+    = f.check_box :separate_kitchen, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :water_chlorinated, class: "col-sm-2"
+    = f.check_box :water_chlorinated, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :light, class: "col-sm-2"
+    = f.check_box :light, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :radio, class: "col-sm-2"
+    = f.check_box :radio, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :tv, class: "col-sm-2"
+    = f.check_box :tv, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :refrigerator, class: "col-sm-2"
+    = f.check_box :refrigerator, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :bedroom_count, class: "col-sm-2"
+    = f.number_field :bedroom_count, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :person_count, class: "col-sm-2"
+    = f.number_field :person_count, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :total_income, class: "col-sm-2"
+    = f.number_field :total_income, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :shoe_cost, class: "col-sm-2"
+    = f.number_field :shoe_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :medicine_cost, class: "col-sm-2"
+    = f.number_field :medicine_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :school_cost, class: "col-sm-2"
+    = f.number_field :school_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :college_cost, class: "col-sm-2"
+    = f.number_field :college_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :water_electric_cost, class: "col-sm-2"
+    = f.number_field :water_electric_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.label :misc_cost, class: "col-sm-2"
+    = f.number_field :misc_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+
+  .row
+    = f.submit

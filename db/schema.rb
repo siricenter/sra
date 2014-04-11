@@ -11,12 +11,39 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140324182438) do
+ActiveRecord::Schema.define(:version => 20140411171333) do
 
   create_table "households", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "interviews", :force => true do |t|
+    t.string   "roof"
+    t.string   "wall"
+    t.string   "floor"
+    t.string   "bedroom_count"
+    t.string   "separate_kitchen"
+    t.string   "light"
+    t.string   "fuel_type"
+    t.string   "water_source"
+    t.string   "water_chlorinated"
+    t.string   "bathroom"
+    t.string   "sewage"
+    t.string   "person_count"
+    t.string   "total_income"
+    t.string   "shoe_cost"
+    t.string   "medicine_cost"
+    t.string   "school_cost"
+    t.string   "college_cost"
+    t.string   "water_electric_cost"
+    t.string   "misc_cost"
+    t.string   "radio"
+    t.string   "tv"
+    t.string   "refrigerator"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "people", :force => true do |t|

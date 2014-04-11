@@ -1,5 +1,8 @@
 Sra::Application.routes.draw do
 
+  resources :interviews
+
+
 	scope "/admin" do
 		resources :users
 		resources :roles

@@ -82,8 +82,4 @@ class HouseholdsController < ApplicationController
 			format.json { head :no_content }
 		end
 	end
-
-	def interiew
-		@household = Household.find(params[:id])
-	end
 end

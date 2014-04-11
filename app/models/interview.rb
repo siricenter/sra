@@ -1,0 +1,26 @@
+class Interview < ActiveRecord::Base
+	# attr_accessible :title, :body
+	attr_accessible :owner,
+		:roof,
+		:wall,
+		:floor,
+		:bedroom_count,
+		:separate_kitchen,
+		:light,
+		:fuel_type,
+		:water_source,
+		:water_chlorinated,
+		:bathroom,
+		:sewage,
+		:person_count,
+		:total_income,
+		:shoe_cost,
+		:medicine_cost,
+		:school_cost,
+		:college_cost,
+		:water_electric_cost,
+		:misc_cost,
+		:radio,
+		:tv,
+		:refrigerator
+end
