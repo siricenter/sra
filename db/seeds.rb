@@ -22,3 +22,22 @@ Role.create([
 field_worker = Role.find_by_name("Field Worker")
 field_worker.permissions << Permission.find_by_name("Create Household")
 field_worker.permissions << Permission.find_by_name("Edit Household")
+
+relationships = [
+	{name: "Grandfather"},
+	{name: 	"Grandmother"},
+	{name: 	"Father"},
+	{name: 	"Mother"},
+	{name: 	"Daughter"},
+	{name: 	"Son"},
+	{name: 	"Niece"},
+	{name: 	"Nephew"},
+	{name: 	"Aunt"},
+	{name: 	"Uncle"},
+	{name: 	"Cousin"},
+	{name: 	"Friend"},
+	{name: 	"Roommate"},
+	{name: "Other"}
+]
+
+FamilyRelationship.create(relationships)
