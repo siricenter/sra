@@ -4,6 +4,8 @@
 - @interviews.each do |interview|
   %tr
     %td
+      = interview.created_at
+    %td
       = link_to 'Show', interview
     %td
       = link_to 'Edit', edit_interview_path(interview)

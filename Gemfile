@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'therubyracer'
 gem 'devise'
 gem 'haml'
+gem 'mongoid'
 gem 'bootstrap-sass'
 
 	gem 'rspec-rails'
