@@ -61,31 +61,52 @@
 
   .row
     = f.label :total_income, class: "col-sm-2"
-    = f.number_field :total_income, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :total_income, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :income_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :shoe_cost, class: "col-sm-2"
-    = f.number_field :shoe_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :shoe_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :shoe_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :medicine_cost, class: "col-sm-2"
-    = f.number_field :medicine_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :medicine_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :medicine_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :school_cost, class: "col-sm-2"
-    = f.number_field :school_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :school_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :school_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :college_cost, class: "col-sm-2"
-    = f.number_field :college_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :college_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :college_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :water_electric_cost, class: "col-sm-2"
-    = f.number_field :water_electric_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :water_electric_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :water_electric_unit, ["day", "week", "month", "year"]
 
   .row
     = f.label :misc_cost, class: "col-sm-2"
-    = f.number_field :misc_cost, class: [:textfield, "col-sm-8", "col-md-9"]
+    = f.number_field :misc_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    = f.label :per, class: "col-sm-1"
+    = f.select :misc_unit, ["day", "week", "month", "year"]
 
   .row
     = f.submit
