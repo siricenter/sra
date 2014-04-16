@@ -62,14 +62,14 @@ ActiveRecord::Schema.define(:version => 20140415210520) do
   create_table "people", :force => true do |t|
     t.string   "given_name"
     t.string   "family_name"
-    t.string   "relationship"
+    t.integer  "family_relationship_id"
     t.date     "birthday"
     t.string   "education_level"
     t.string   "gender"
     t.boolean  "in_school"
     t.boolean  "is_alive"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
     t.integer  "household_id"
   end
 

@@ -19,6 +19,11 @@
           = @person.given_name + " " + @person.family_name
       .row
         %label{class: "col-sm-3"}
+          Relationship: 
+        %label
+          = @person.family_relationship.name
+      .row
+        %label{class: "col-sm-3"}
           Birthday: 
         %label
           = @person.birthday

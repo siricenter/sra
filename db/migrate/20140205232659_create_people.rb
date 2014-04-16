@@ -3,7 +3,7 @@ class CreatePeople < ActiveRecord::Migration
     create_table :people do |t|
       t.string :given_name
       t.string :family_name
-	  t.string  :relationship
+	  t.references  :family_relationship
       t.date :birthday
       t.string :education_level
       t.string :gender

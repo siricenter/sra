@@ -3,13 +3,20 @@ class PeopleController < ApplicationController
 	def new
 		@household = Household.find(params[:household_id])
 		@person = Person.new
+
+		@relationships = FamilyRelationship.all.map do |relationship|
+			relationship.name
+		end
 	end
 
 	def create
 		@household = Household.find(params[:household_id])
-		@person = Person.new(params[:person])
+		relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
+		@person = Person.new(params[:person].except("family_relationship"))
+		@person.family_relationship = relationship
 
 		@household.people << @person
+		@person.family_relationship.save
 
 		redirect_to household_people_path(@household)
 	end
@@ -22,6 +29,7 @@ class PeopleController < ApplicationController
 	def show
 		@household = Household.find(params[:household_id])
 		@person = @household.people.find(params[:id])
+		@relationship = @person.family_relationship
 	end
 
 	def index
