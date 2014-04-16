@@ -12,7 +12,7 @@ gem 'haml'
 gem 'mongoid'
 gem 'bootstrap-sass'
 
-	gem 'rspec-rails'
+gem 'rspec-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
