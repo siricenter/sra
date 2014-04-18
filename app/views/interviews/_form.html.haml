@@ -1,4 +1,4 @@
-= form_for(@interview) do |f|
+= form_for(@path) do |f|
   .row
     = f.label :roof, class: "col-sm-2"
     = f.select :roof, ['tin', 'cement', 'tile', 'thatch', 'timber'], class: [:textfield, "col-sm-8", "col-md-9"]
@@ -15,25 +15,26 @@
     = f.label :fuel_type, class: "col-sm-2"
     = f.select :fuel_type, ['gas', 'wood', 'combined', 'other'], class: [:textfield, "col-sm-8", "col-md-9"]
 
-  .row
-    = f.label :water_source, class: "col-sm-2"
-    = f.select :water_source, ['piped', 'river or canal', 'well'], class: [:textfield, "col-sm-8", "col-md-9"]
+  = fields_for @interview.health do |health_form|
+    .row
+      = health_form.label :water_source, class: "col-sm-2"
+      = health_form.select :water_source, ['piped', 'river or canal', 'well'], class: [:textfield, "col-sm-8", "col-md-9"]
 
-  .row
-    = f.label :bathroom, class: "col-sm-2"
-    = f.select :bathroom, ['outhouse', 'open field', 'toilet', 'bathroom with well'], class: [:textfield, "col-sm-8", "col-md-9"]
+    .row
+      = health_form.label :bathroom_type, class: "col-sm-2"
+      = health_form.select :bathroom_type, ['outhouse', 'open field', 'toilet', 'bathroom with well'], class: [:textfield, "col-sm-8", "col-md-9"]
 
-  .row
-    = f.label :sewage, class: "col-sm-2"
-    = f.select :sewage, ['outhouse', 'open field', 'bog'], class: [:textfield, "col-sm-8", "col-md-9"]
+    .row
+      = health_form.label :sewage_disposal, class: "col-sm-2"
+      = health_form.select :sewage_disposal, ['outhouse', 'open field', 'bog', 'septic tank', 'sewer'], class: [:textfield, "col-sm-8", "col-md-9"]
 
-  .row
-    = f.label :separate_kitchen, class: "col-sm-2"
-    = f.check_box :separate_kitchen, class: [:textfield, "col-sm-8", "col-md-9"]
+    .row
+      = health_form.label :separate_kitchen, class: "col-sm-2"
+      = health_form.check_box :separate_kitchen, class: [:textfield, "col-sm-8", "col-md-9"]
 
-  .row
-    = f.label :water_chlorinated, class: "col-sm-2"
-    = f.check_box :water_chlorinated, class: [:textfield, "col-sm-8", "col-md-9"]
+    .row
+      = health_form.label :water_chlorinated, class: "col-sm-2"
+      = health_form.check_box :water_chlorinated, class: [:textfield, "col-sm-8", "col-md-9"]
 
   .row
     = f.label :light, class: "col-sm-2"
@@ -56,57 +57,92 @@
     = f.number_field :bedroom_count, class: [:textfield, "col-sm-8", "col-md-9"]
 
   .row
-    = f.label :person_count, class: "col-sm-2"
-    = f.number_field :person_count, class: [:textfield, "col-sm-8", "col-md-9"]
-
-  .row
     = f.label :total_income, class: "col-sm-2"
     = f.number_field :total_income, class: [:textfield, "col-sm-5", "col-md-6"]
 
     = f.label :per, class: "col-sm-1"
     = f.select :income_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :shoe_cost, class: "col-sm-2"
-    = f.number_field :shoe_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+  = fields_for @interview.expense do |expense_form|
+    .row
+      = expense_form.label :shoe_cost, class: "col-sm-2"
+      = expense_form.number_field :shoe_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :shoe_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :shoe_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :medicine_cost, class: "col-sm-2"
-    = f.number_field :medicine_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+    .row
+      = expense_form.label :clothing_cost, class: "col-sm-2"
+      = expense_form.number_field :clothing_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :medicine_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :clothing_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :school_cost, class: "col-sm-2"
-    = f.number_field :school_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+    .row
+      = expense_form.label :medical_cost, class: "col-sm-2"
+      = expense_form.number_field :medical_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :school_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :medical_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :college_cost, class: "col-sm-2"
-    = f.number_field :college_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+    .row
+      = expense_form.label :school_cost, class: "col-sm-2"
+      = expense_form.number_field :school_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :college_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :school_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :water_electric_cost, class: "col-sm-2"
-    = f.number_field :water_electric_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+    .row
+      = expense_form.label :college_cost, class: "col-sm-2"
+      = expense_form.number_field :college_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :water_electric_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :college_unit, ["day", "week", "month", "year"]
 
-  .row
-    = f.label :misc_cost, class: "col-sm-2"
-    = f.number_field :misc_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+    .row
+      = expense_form.label :utilities_cost, class: "col-sm-2"
+      = expense_form.number_field :utilities_cost, class: [:textfield, "col-sm-5", "col-md-6"]
 
-    = f.label :per, class: "col-sm-1"
-    = f.select :misc_unit, ["day", "week", "month", "year"]
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :utilities_unit, ["day", "week", "month", "year"]
+
+    .row
+      = expense_form.label :misc_cost, class: "col-sm-2"
+      = expense_form.number_field :misc_cost, class: [:textfield, "col-sm-5", "col-md-6"]
+
+      = expense_form.label :per, class: "col-sm-1"
+      = expense_form.select :misc_unit, ["day", "week", "month", "year"]
+
+  = fields_for @interview.morbidity do |morbidity_form|
+    .row
+      = morbidity_form.label :adult_sickness_frequency, class: "col-sm-2"
+      = morbidity_form.number_field :adult_sickness_frequency, class: [:textfield, "col-sm-5", "col-md-6"]
+
+      = morbidity_form.label :per, class: "col-sm-1"
+      = morbidity_form.select :adult_sickness_time, ["week", "month", "year"]
+
+    .row
+      = morbidity_form.label :adult_aid_when_sick, class: "col-sm-2"
+      = morbidity_form.text_field :adult_aid, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    .row
+      = morbidity_form.label :adult_common_ailment, class: "col-sm-2"
+      = morbidity_form.text_field :adult_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    .row
+      = morbidity_form.label :adult_sickness_frequency, class: "col-sm-2"
+      = morbidity_form.number_field :adult_sickness_frequency, class: [:textfield, "col-sm-5", "col-md-6"]
+
+      = morbidity_form.label :per, class: "col-sm-1"
+      = morbidity_form.select :adult_sickness_time, ["week", "month", "year"]
+
+    .row
+      = morbidity_form.label :adult_aid_when_sick, class: "col-sm-2"
+      = morbidity_form.text_field :adult_aid, class: [:textfield, "col-sm-5", "col-md-6"]
+
+    .row
+      = morbidity_form.label :adult_common_ailment, class: "col-sm-2"
+      = morbidity_form.text_field :adult_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
 
   .row
     = f.submit

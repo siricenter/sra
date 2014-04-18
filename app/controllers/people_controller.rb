@@ -3,6 +3,7 @@ class PeopleController < ApplicationController
 	def new
 		@household = Household.find(params[:household_id])
 		@person = Person.new
+		@path = [@household, @person]
 
 		@relationships = FamilyRelationship.all.map do |relationship|
 			relationship.name
@@ -22,13 +23,16 @@ class PeopleController < ApplicationController
 	end
 
 	def edit
-		@household = Household.find(params[:household_id])
-		@person = @household.people.find(params[:id])
+		@person = Person.find(params[:id])
+		@household = @person.household
+		@relationships = FamilyRelationship.all.map do |relationship|
+			relationship.name
+		end
+		@path = @person
 	end
 
 	def show
-		@household = Household.find(params[:household_id])
-		@person = @household.people.find(params[:id])
+		@person = Person.find(params[:id])
 		@relationship = @person.family_relationship
 	end
 
@@ -38,11 +42,13 @@ class PeopleController < ApplicationController
 	end
 
 	def update
-		@household = Household.find(params[:household_id])
-		@person = @household.people.find(params[:id])
+		@person = Person.find(params[:id])
+		@person.attributes = params[:person].except("family_relationship")
+		relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
+		@person.family_relationship = relationship
 
-		if @person.update_attributes(params[:person])
-			redirect_to household_person_path(@household, @person), notice: "#{@person.given_name} #{@person.family_name} was successfully updated"
+		if @person.save
+			redirect_to person_path(@person), notice: "#{@person.given_name} #{@person.family_name} was successfully updated"
 			#format.html {redirect_to household_person_path(@household, @person), notice: "OK"}
 		else
 			format.html {render action: "edit"}
@@ -50,10 +56,10 @@ class PeopleController < ApplicationController
 	end
 
 	def destroy
-		@household = Household.find(params[:household_id])
-		@person = @household.people.find(params[:id])
+		@person = Person.find(params[:id])
+		@household = @person.household
 		@person.destroy
 
-		redirect_to household_people_path(@household)
+		redirect_to household_path(@household)
 	end
 end

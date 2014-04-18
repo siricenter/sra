@@ -3,12 +3,12 @@
     %h2
       Hello world
 
-.row
-  .col-sm-12
-    = link_to 'Edit', edit_household_person_path(@household, @person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+.row.btn-toolbar
+  = link_to 'Edit Person', edit_person_path(@person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  = link_to 'Add Job', new_person_job_path(@person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
 
 .col-sm-12
-  .panel.panel-pimary
+  .panel.panel-primary
     .panel-body
       .row
         %h1= @person.given_name + " " + @person.family_name
@@ -42,6 +42,21 @@
           Living:
         %label
           = @person.is_alive
-.row
-  .col-sm-12
-    = link_to 'Edit', edit_household_person_path(@household, @person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2"]
+%h2
+  Jobs
+
+- @person.jobs.each do |job|
+  .col-sm-6.col-md-4
+    .panel.panel-primary
+      .panel-heading
+        %h3.panel-title
+          = link_to "#{job.title} #{"(temporary)" if job.seasonal}", job_path(job)
+          = link_to 'X', job, method: :delete 
+      .panel-body
+        = job.description
+        = link_to 'Show', job_path(job), class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
+        = link_to 'Edit', edit_job_path(job), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"]
+
+.row.btn-toolbar
+  = link_to 'Edit Person', edit_person_path(@person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]
+  = link_to 'Add Job', new_person_job_path(@person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right]

@@ -1,17 +1,18 @@
 %h1
   Interviews
 
-- @interviews.each do |interview|
-  %tr
-    %td
-      = interview.created_at
-    %td
-      = link_to 'Show', interview
-    %td
-      = link_to 'Edit', edit_interview_path(interview)
-    %td
-      = link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' }
+%table
+  - @interviews.each do |interview|
+    %tr
+      %td
+        = interview.created_at
+      %td
+        = link_to 'Show', interview
+      %td
+        = link_to 'Edit', edit_interview_path(interview)
+      %td
+        = link_to 'Destroy', interview, method: :delete, data: { confirm: 'Are you sure?' }
 
 <br />
 
-= link_to 'New Interview', new_interview_path
+= link_to 'New Interview', new_household_interview_path(@household)

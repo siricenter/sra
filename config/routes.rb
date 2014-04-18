@@ -1,7 +1,5 @@
 Sra::Application.routes.draw do
 
-  resources :interviews
-
 
 	scope "/admin" do
 		resources :users
@@ -12,7 +10,10 @@ Sra::Application.routes.draw do
 	devise_for :users, controllers: { registrations: "registrations" }
 
 	resources :households do 
-		resources :people
+		resources :interviews, shallow: true
+		resources :people, shallow: true do
+			resources :jobs, shallow: true
+		end
 	end
 
 	root to: 'static#landing'
@@ -25,7 +26,6 @@ Sra::Application.routes.draw do
 	post '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#create', as: :new_role_permission
 	delete '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#destroy', as: :destroy_role_permission
 
-	match 'households/:id/interview', to: 'Households#interview', as: :interview_household
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

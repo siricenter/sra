@@ -41,3 +41,14 @@ relationships = [
 ]
 
 FamilyRelationship.create(relationships)
+
+occupations = [
+	{name: "Farmer"},
+	{name: "Construction Worker"},
+	{name: "Craftsman"},
+	{name: "Trader"},
+	{name: "Transport"},
+	{name: "Other"}
+]
+
+Occupation.create(occupations)
