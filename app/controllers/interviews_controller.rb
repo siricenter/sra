@@ -58,6 +58,24 @@ class InterviewsController < ApplicationController
 		@interview.morbidity = Morbidity.new(params[:expense])
 		@interview.household_id = params[:household_id]
 
+		if params[:consumed_foods]
+			params[:consumed_foods].each do |key, food|
+				@interview.consumed_foods.build(food)
+			end
+		end
+
+		if params[:stored_foods]
+			params[:stored_foods].each do |key, food|
+				@interview.stored_foods.build(food)
+			end
+		end
+
+		if params[:purchased_foods]
+			params[:purchased_foods].each do |key, food|
+				@interview.purchased_foods.build(food)
+			end
+		end
+
 		respond_to do |format|
 			if @interview.save
 				format.html { redirect_to @interview, notice: 'Interview was successfully create.' }

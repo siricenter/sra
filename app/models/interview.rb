@@ -3,6 +3,9 @@ class Interview
 	embeds_one :health
 	embeds_one :expense
 	embeds_one :morbidity
+	embeds_many :consumed_foods
+	embeds_many :stored_foods
+	embeds_many :purchased_foods
 
 	field :household_id, type: Integer
 	field :roof, type: String

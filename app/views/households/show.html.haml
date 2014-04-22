@@ -5,6 +5,7 @@
   %h1= @household.name + " Household"
 
 .row.btn-toolbar
+  = link_to 'Interview', new_household_interview_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household
   = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_top"
   = link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_top"
 
@@ -25,5 +26,6 @@
             = link_to 'Edit', edit_person_path(person), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"]
 
 .row.btn-toolbar
+  = link_to 'Interview', new_household_interview_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household
   = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_bottom"
   = link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_bottom"

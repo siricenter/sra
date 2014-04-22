@@ -144,5 +144,23 @@
       = morbidity_form.label :adult_common_ailment, class: "col-sm-2"
       = morbidity_form.text_field :adult_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
 
+  %h2
+    Foods Eaten
+
+  .row{id: "add_food_eaten"}
+    %input{type: "button", onclick: "newFoodEaten()", value: "Add New Food Consumed"}
+
+  %h2
+    Foods Stored
+
+  .row{id: "add_food_stored"}
+    %input{type: "button", onclick: "newFoodStored()", value: "Add New Food Stored"}
+
+  %h2
+    Foods Purchased
+
+  .row{id: "add_food_purchase"}
+    %input{type: "button", onclick: "newFoodPurchased()", value: "Add Food Purchased"}
+
   .row
     = f.submit
