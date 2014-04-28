@@ -1,10 +1,12 @@
-Given(/^I have created a family$/) do
-	@household = Household.create(name: "Gonzalez")
+Given(/^I have created a family named "(.*)"$/) do |family_name|
+	@household = Household.create(name: family_name)
 	@household.save
 end
 
-Given(/^I am on the family's personal page$/) do
-	visit household_path(@household)
+Given(/^I am on the "(.*)" family's personal page$/) do |family_name|
+	household = Household.find_by_name family_name
+	visit household_path(household)
+	current_path.should == household_path(household)
 end
 
 Then(/^I should be on the family's edit page$/) do

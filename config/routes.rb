@@ -2,6 +2,8 @@ Sra::Application.routes.draw do
 
 
 	scope "/admin" do
+		# Need to move users out of a resource and make it a bunch of
+		# more accurate rules instead
 		resources :users
 		resources :roles
 		resources :permissions

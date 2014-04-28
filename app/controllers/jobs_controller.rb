@@ -28,6 +28,11 @@ class JobsController < ApplicationController
 		@job = Job.find(params[:id])
 	end
 
+	def index
+		@person = Person.find(params[:person_id])
+		@jobs = @person.jobs
+	end
+
 	def edit
 		@job = Job.find(params[:id])
 		@person = @job.person

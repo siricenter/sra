@@ -107,11 +107,11 @@ class InterviewsController < ApplicationController
 	# DELETE /interviews/1.json
 	def destroy
 		@interview = Interview.find(params[:id])
-		@household = @interview.household_id
+		@household = Household.first
 		@interview.destroy
 
 		respond_to do |format|
-			format.html { redirect_to household_interviews_url(@household) }
+			format.html { redirect_to household_interviews_path(@household) }
 			format.json { head :no_content }
 		end
 	end

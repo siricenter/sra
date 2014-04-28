@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe "interviews/edit" do
   before(:each) do
+	assign(:household, stub_model(Household))
     @interview = assign(:interview, stub_model(Interview))
+	@interview.health = stub_model(Health)
+	@interview.expense = stub_model(Expense)
+	@interview.morbidity = stub_model(Morbidity)
+	assign(:path, @interview)
   end
 
   it "renders the edit interview form" do

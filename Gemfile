@@ -12,7 +12,6 @@ gem 'haml'
 gem 'mongoid'
 gem 'bootstrap-sass'
 
-gem 'rspec-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -27,9 +26,15 @@ group :assets do
 end
 
 group :test do 
-	gem 'cucumber-rails'
+	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
 	gem 'capybara'
+	gem 'faker'
+	gem 'rspec-rails'
+end
+
+group :test, :development do
+	gem 'factory_girl_rails'
 end
 
 group :development do 

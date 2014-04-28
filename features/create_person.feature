@@ -5,14 +5,14 @@ Feature: Field worker adds person to household
 
 	Scenario: Start Form
 		Given I am logged in
-		And I have created a family
-		And I am on the family's personal page
+		And I have created a family named "Martinez"
+		And I am on the "Martinez" family's personal page
 		When I press id "add_person_top" 
 		Then I should be on the create person page
 
 	Scenario: Create Person
 		Given I am logged in
-		And I have created a family
-		And I am on the create person page
+		And I have created a family named "Martinez"
+		And I am on the "Martinez" family create person page
 		When I fill out the person form
 		Then I should be on the household's personal page

@@ -20,141 +20,177 @@ require 'spec_helper'
 
 describe InterviewsController do
 
-  # This should return the minimal set of attributes required to create a valid
-  # Interview. As you add validations to Interview, be sure to
-  # adjust the attributes here as well.
-  let(:valid_attributes) { {  } }
+	# This should return the minimal set of attributes required to create a valid
+	# Interview. As you add validations to Interview, be sure to
+	# adjust the attributes here as well.
+	let(:valid_attributes) { {  } }
+	let(:expense_attributes) {{
+		shoe_cost: 10, 
+		clothing_cost: 10, 
+		medical_cost: 10,
+		school_cost: 10,
+		college_cost: 10,
+		utilities_cost: 10,
+		misc_cost: 10,
 
-  # This should return the minimal set of values that should be in the session
-  # in order to pass any filters (e.g. authentication) defined in
-  # InterviewsController. Be sure to keep this updated too.
-  let(:valid_session) { {} }
+		shoe_unit: "day",
+		clothing_unit: "day",
+		medical_unit: "day",
+		school_unit: "day",
+		college_unit: "day",
+		utilities_unit: "day",
+		misc_unit: "day"
+	}}
 
-  describe "GET index" do
-    it "assigns all interviews as @interviews" do
-      interview = Interview.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:interviews).should eq([interview])
-    end
-  end
+	# This should return the minimal set of values that should be in the session
+	# in order to pass any filters (e.g. authentication) defined in
+	# InterviewsController. Be sure to keep this updated too.
+	let(:valid_session) { {} }
 
-  describe "GET show" do
-    it "assigns the requested interview as @interview" do
-      interview = Interview.create! valid_attributes
-      get :show, {:id => interview.to_param}, valid_session
-      assigns(:interview).should eq(interview)
-    end
-  end
+	describe "GET index" do
+		it "assigns all interviews as @interviews" do
+			DatabaseCleaner.start
+			DatabaseCleaner.clean
+			household = Household.create!(name: "Poll")
+			interview = Interview.create! valid_attributes
+			get :index, {household_id: household.to_param}, valid_session
+			assigns(:interviews).to_a.should eq([interview])
+		end
+	end
 
-  describe "GET new" do
-    it "assigns a new interview as @interview" do
-      get :new, {}, valid_session
-      assigns(:interview).should be_a_new(Interview)
-    end
-  end
+	describe "GET show" do
+		it "assigns the requested interview as @interview" do
+			DatabaseCleaner.start
+			interview = Interview.create! valid_attributes
+			get :show, {:id => interview.to_param}, valid_session
+			assigns(:interview).should eq(interview)
+			DatabaseCleaner.clean
+		end
+	end
 
-  describe "GET edit" do
-    it "assigns the requested interview as @interview" do
-      interview = Interview.create! valid_attributes
-      get :edit, {:id => interview.to_param}, valid_session
-      assigns(:interview).should eq(interview)
-    end
-  end
+	describe "GET new" do
+		it "assigns a new interview as @interview" do
+			DatabaseCleaner.start
+			household = Household.create(name: "Poll")
+			get :new, {:household_id => household.to_param}, valid_session
+			assigns(:interview).should be_a_new(Interview)
+			DatabaseCleaner.clean
+		end
+	end
 
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Interview" do
-        expect {
-          post :create, {:interview => valid_attributes}, valid_session
-        }.to change(Interview, :count).by(1)
-      end
+	describe "GET edit" do
+		it "assigns the requested interview as @interview" do
+			DatabaseCleaner.start
+			household = Household.create! name: "Poll"
+			interview = Interview.create! valid_attributes
+			interview.household_id = household.id
+			interview.save
+			get :edit, {:id => interview.to_param}, valid_session
+			assigns(:interview).should eq(interview)
+			DatabaseCleaner.clean
+		end
+	end
 
-      it "assigns a newly created interview as @interview" do
-        post :create, {:interview => valid_attributes}, valid_session
-        assigns(:interview).should be_a(Interview)
-        assigns(:interview).should be_persisted
-      end
+	describe "POST create" do
+		describe "with valid params" do
+			it "creates a new Interview" do
+				household = Household.create name: "Poll"
+				expect {
+					post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+				}.to change(Interview, :count).by(1)
+			end
 
-      it "redirects to the created interview" do
-        post :create, {:interview => valid_attributes}, valid_session
-        response.should redirect_to(Interview.last)
-      end
-    end
+			it "assigns a newly created interview as @interview" do
+				household = Household.create! name: "Poll"
+				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+				assigns(:interview).should be_a(Interview)
+				assigns(:interview).should be_persisted
+			end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved interview as @interview" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Interview.any_instance.stub(:save).and_return(false)
-        post :create, {:interview => {  }}, valid_session
-        assigns(:interview).should be_a_new(Interview)
-      end
+			it "redirects to the created interview" do
+				household = Household.create! name: "Poll"
+				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+				response.should redirect_to(Interview.last)
+			end
+		end
 
-      it "re-renders the 'new' template" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Interview.any_instance.stub(:save).and_return(false)
-        post :create, {:interview => {  }}, valid_session
-        response.should render_template("new")
-      end
-    end
-  end
+		describe "with invalid params" do
+			it "assigns a newly created but unsaved interview as @interview" do
+				household = Household.create name: "Poll"
+				# Trigger the behavior that occurs when invalid params are submitted
+				Interview.any_instance.stub(:save).and_return(false)
+				post :create, {household_id: household.id, :interview => {  }}, valid_session
+				assigns(:interview).should be_a_new(Interview)
+			end
 
-  describe "PUT update" do
-    describe "with valid params" do
-      it "updates the requested interview" do
-        interview = Interview.create! valid_attributes
-        # Assuming there are no other interviews in the database, this
-        # specifies that the Interview created on the previous line
-        # receives the :update_attributes message with whatever params are
-        # submitted in the request.
-        Interview.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-        put :update, {:id => interview.to_param, :interview => { "these" => "params" }}, valid_session
-      end
+			it "re-renders the 'new' template" do
+				# Trigger the behavior that occurs when invalid params are submitted
+				household = Household.create name: "Poll"
+				Interview.any_instance.stub(:save).and_return(false)
+				post :create, {household_id: household.id, :interview => {  }}, valid_session
+				response.should render_template("new")
+			end
+		end
+	end
 
-      it "assigns the requested interview as @interview" do
-        interview = Interview.create! valid_attributes
-        put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
-        assigns(:interview).should eq(interview)
-      end
+	describe "PUT update" do
+		describe "with valid params" do
+			it "updates the requested interview" do
+				interview = Interview.create! valid_attributes
+				# Assuming there are no other interviews in the database, this
+				# specifies that the Interview created on the previous line
+				# receives the :update_attributes message with whatever params are
+				# submitted in the request.
+				Interview.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+				put :update, {:id => interview.to_param, :interview => { "these" => "params" }}, valid_session
+			end
 
-      it "redirects to the interview" do
-        interview = Interview.create! valid_attributes
-        put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
-        response.should redirect_to(interview)
-      end
-    end
+			it "assigns the requested interview as @interview" do
+				interview = Interview.create! valid_attributes
+				put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
+				assigns(:interview).should eq(interview)
+			end
 
-    describe "with invalid params" do
-      it "assigns the interview as @interview" do
-        interview = Interview.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Interview.any_instance.stub(:save).and_return(false)
-        put :update, {:id => interview.to_param, :interview => {  }}, valid_session
-        assigns(:interview).should eq(interview)
-      end
+			it "redirects to the interview" do
+				interview = Interview.create! valid_attributes
+				put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
+				response.should redirect_to(interview)
+			end
+		end
 
-      it "re-renders the 'edit' template" do
-        interview = Interview.create! valid_attributes
-        # Trigger the behavior that occurs when invalid params are submitted
-        Interview.any_instance.stub(:save).and_return(false)
-        put :update, {:id => interview.to_param, :interview => {  }}, valid_session
-        response.should render_template("edit")
-      end
-    end
-  end
+		describe "with invalid params" do
+			it "assigns the interview as @interview" do
+				interview = Interview.create! valid_attributes
+				# Trigger the behavior that occurs when invalid params are submitted
+				Interview.any_instance.stub(:save).and_return(false)
+				put :update, {:id => interview.to_param, :interview => {  }}, valid_session
+				assigns(:interview).should eq(interview)
+			end
 
-  describe "DELETE destroy" do
-    it "destroys the requested interview" do
-      interview = Interview.create! valid_attributes
-      expect {
-        delete :destroy, {:id => interview.to_param}, valid_session
-      }.to change(Interview, :count).by(-1)
-    end
+			it "re-renders the 'edit' template" do
+				interview = Interview.create! valid_attributes
+				# Trigger the behavior that occurs when invalid params are submitted
+				Interview.any_instance.stub(:save).and_return(false)
+				put :update, {:id => interview.to_param, :interview => {  }}, valid_session
+				response.should render_template("edit")
+			end
+		end
+	end
 
-    it "redirects to the interviews list" do
-      interview = Interview.create! valid_attributes
-      delete :destroy, {:id => interview.to_param}, valid_session
-      response.should redirect_to(interviews_url)
-    end
-  end
+	describe "DELETE destroy" do
+		it "destroys the requested interview" do
+			household = Household.create
+			interview = Interview.create! valid_attributes
+			expect {
+				delete :destroy, {:household_id => household.to_param,:id => interview.to_param}, valid_session
+			}.to change(Interview, :count).by(-1)
+		end
+
+		it "redirects to the interviews list" do
+			interview = Interview.create! valid_attributes
+			delete :destroy, {:id => interview.to_param}, valid_session
+			response.should redirect_to(household_interviews_url(Household.first))
+		end
+	end
 
 end

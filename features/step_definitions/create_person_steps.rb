@@ -2,8 +2,18 @@ Then(/^I should be on the create person page$/) do
 	current_path.should == new_household_person_path(@household)
 end
 
-Given(/^I am on the create person page$/) do
-	visit new_household_person_path(@household)
+Given(/^I am on the "(.*)" family create person page$/) do |family_name|
+	household = Household.find_by_name family_name
+	visit new_household_person_path(household)
+end
+
+Given(/^I have created a person named "(.*?)" "(.*?)"$/) do |given_name, family_name|
+	household = Household.find_by_name family_name
+	person = Person.create(given_name: given_name, family_name: family_name)
+	person.household = household
+	relationship = FamilyRelationship.find_by_name("Mother")
+	person.family_relationship = relationship
+	person.save
 end
 
 When(/^I fill out the person form$/) do

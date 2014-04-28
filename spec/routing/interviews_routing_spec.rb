@@ -4,11 +4,11 @@ describe InterviewsController do
   describe "routing" do
 
     it "routes to #index" do
-      get("/interviews").should route_to("interviews#index")
+      get("/households/1/interviews").should route_to("interviews#index", household_id: "1")
     end
 
     it "routes to #new" do
-      get("/interviews/new").should route_to("interviews#new")
+      get("/households/1/interviews/new").should route_to("interviews#new", household_id: "1")
     end
 
     it "routes to #show" do
@@ -20,7 +20,7 @@ describe InterviewsController do
     end
 
     it "routes to #create" do
-      post("/interviews").should route_to("interviews#create")
+      post("/households/1/interviews").should route_to("interviews#create", household_id: "1")
     end
 
     it "routes to #update" do
