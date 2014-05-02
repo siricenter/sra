@@ -55,7 +55,7 @@ class InterviewsController < ApplicationController
 		@interview = Interview.new(params[:interview])
 		@interview.health = Health.new(params[:health])
 		@interview.expense = Expense.new(params[:expense])
-		@interview.morbidity = Morbidity.new(params[:expense])
+		@interview.morbidity = Morbidity.new(params[:morbidity])
 		@interview.household_id = params[:household_id]
 
 		if params[:consumed_foods]

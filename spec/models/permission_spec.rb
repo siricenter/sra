@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: occupations
+# Table name: permissions
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -8,9 +8,7 @@
 #  updated_at :datetime         not null
 #
 
-class Occupation < ActiveRecord::Base
-  attr_accessible :name
-  has_many :jobs
+require 'spec_helper'
 
-  validates :name, presence: true
+describe Permission do
 end

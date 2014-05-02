@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: jobs
+#
+#  id            :integer          not null, primary key
+#  title         :string(255)
+#  seasonal      :boolean
+#  description   :string(255)
+#  person_id     :integer
+#  occupation_id :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Job do

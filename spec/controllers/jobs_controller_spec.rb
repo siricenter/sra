@@ -1,10 +1,18 @@
 require 'spec_helper'
 
 describe JobsController do
+	person_attributes = {given_name: "Gabriela",
+		family_name: "Martinez",
+		birthday: Time.now,
+		education_level: "some college",
+		gender: "male",
+		in_school: true
+	}
+
 
 	describe "GET 'new'" do
 		it "returns http success" do
-			person = Person.create(given_name: "Gabriela", family_name: "Martinez")
+			person = Person.create(person_attributes)
 			get 'new', person_id: person.id
 			response.should be_success
 		end
@@ -12,7 +20,7 @@ describe JobsController do
 
 	describe "GET 'index'" do
 		it "returns http success" do
-			person = Person.create(given_name: "Gabriela", family_name: "Martinez")
+			person = Person.create(person_attributes)
 			get 'index', person_id: person.id
 			response.should be_success
 		end

@@ -47,4 +47,29 @@ FactoryGirl.define do
 	factory :household do |factory|
 		factory.name { Faker::Name.last_name }
 	end
+
+	factory :morbidity do |factory|
+		factory.child_sickness_frequency { Faker::Number.digit }
+		factory.child_sickness_time "day" 
+		factory.child_aid "doctor"
+		factory.child_common_ailment "influenza"
+
+		factory.adult_sickness_frequency { Faker::Number.digit }
+		factory.adult_sickness_time "day" 
+		factory.adult_aid "doctor"
+		factory.adult_common_ailment "influenza"
+	end
+
+	factory :occupation do |factory|
+		factory.name "Farmer"
+	end
+
+	factory :person do |factory|
+		factory.given_name { Faker::Name.first_name }
+		factory.family_name { Faker::Name.last_name }
+		factory.birthday Time.now
+		factory.education_level "some college"
+		factory.gender "male"
+		factory.in_school true
+	end
 end

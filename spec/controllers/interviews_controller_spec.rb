@@ -49,6 +49,17 @@ describe InterviewsController do
 		water_source: "piped",
 		water_chlorinated: true
 	}}
+	let(:morbidity_attributes) {{
+		child_sickness_frequency: 1,
+		child_sickness_time: "day",
+		child_aid: "doctor",
+		child_common_ailment: "influenza",
+
+		adult_sickness_frequency: 1,
+		adult_sickness_time: "day",
+		adult_aid: "doctor",
+		adult_common_ailment: "influenza"
+	}}
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
@@ -104,20 +115,39 @@ describe InterviewsController do
 			it "creates a new Interview" do
 				household = Household.create name: "Poll"
 				expect {
-					post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
+					post :create,
+					{household_id: household.id,
+						:interview => valid_attributes,
+						expense: expense_attributes,
+						health: health_attributes,
+						morbidity: morbidity_attributes
+				},
+					valid_session
 				}.to change(Interview, :count).by(1)
 			end
 
 			it "assigns a newly created interview as @interview" do
 				household = Household.create! name: "Poll"
-				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
+				post :create,
+					{household_id: household.id,
+						:interview => valid_attributes,
+						expense: expense_attributes,
+						health: health_attributes,
+						morbidity: morbidity_attributes},
+						valid_session
 				assigns(:interview).should be_a(Interview)
 				assigns(:interview).should be_persisted
 			end
 
 			it "redirects to the created interview" do
 				household = Household.create! name: "Poll"
-				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
+				post :create,
+					{household_id: household.id,
+						interview: valid_attributes,
+						expense: expense_attributes,
+						health: health_attributes,
+						morbidity: morbidity_attributes},
+						valid_session
 				response.should redirect_to(Interview.last)
 			end
 		end
