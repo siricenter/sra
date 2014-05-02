@@ -41,6 +41,14 @@ describe InterviewsController do
 		utilities_unit: "day",
 		misc_unit: "day"
 	}}
+	let(:health_attributes) {{
+		bathroom_type: "outhouse",
+		garbage_disposal: "bury",
+		separate_kitchen: true,
+		sewage_disposal: "outhouse",
+		water_source: "piped",
+		water_chlorinated: true
+	}}
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
@@ -96,20 +104,20 @@ describe InterviewsController do
 			it "creates a new Interview" do
 				household = Household.create name: "Poll"
 				expect {
-					post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+					post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
 				}.to change(Interview, :count).by(1)
 			end
 
 			it "assigns a newly created interview as @interview" do
 				household = Household.create! name: "Poll"
-				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
 				assigns(:interview).should be_a(Interview)
 				assigns(:interview).should be_persisted
 			end
 
 			it "redirects to the created interview" do
 				household = Household.create! name: "Poll"
-				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes}, valid_session
+				post :create, {household_id: household.id, :interview => valid_attributes, expense: expense_attributes, health: health_attributes}, valid_session
 				response.should redirect_to(Interview.last)
 			end
 		end

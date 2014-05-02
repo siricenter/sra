@@ -30,4 +30,17 @@ FactoryGirl.define do
 		factory.utilities_unit "day"
 		factory.misc_unit "day"
 	end
+
+	factory :family_relationship do |factory|
+		factory.name "father"
+	end
+
+	factory :health do |factory| 
+		factory.bathroom_type "outhouse"
+		factory.garbage_disposal "bury"
+		factory.separate_kitchen true
+		factory.sewage_disposal "outhouse"
+		factory.water_source "piped"
+		factory.water_chlorinated true
+	end
 end
