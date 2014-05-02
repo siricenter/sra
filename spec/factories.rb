@@ -43,4 +43,8 @@ FactoryGirl.define do
 		factory.water_source "piped"
 		factory.water_chlorinated true
 	end
+
+	factory :household do |factory|
+		factory.name { Faker::Name.last_name }
+	end
 end

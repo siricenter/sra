@@ -13,5 +13,7 @@ class Household < ActiveRecord::Base
   has_many :people
 
   accepts_nested_attributes_for :people
-  validates :name, presence: true
+  validates :name, 
+	  presence: true,
+	  format: { with: /\A[a-zA-Z ]+\z/ }
 end
