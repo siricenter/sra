@@ -1,4 +1,45 @@
 require 'spec_helper'
 
 describe PurchasedFood do
+	before :each do
+		@food = FactoryGirl.build(:purchased_food)
+	end
+
+	it "should have a valid factory" do
+		@food.should be_valid
+	end
+
+	it "shouldn't be valid without a name" do
+		@food.name = nil
+		@food.should_not be_valid
+	end
+
+	it "shouldn't be valid without an amount" do
+		@food.amount = nil
+		@food.should_not be_valid
+	end
+
+	it "shouldn't be valid without a unit" do
+		@food.unit = nil
+		@food.should_not be_valid
+	end
+
+	it "shouldn't be valid without a frequency_amount" do
+		@food.frequency_amount = nil
+		@food.should_not be_valid
+	end
+
+	it "shouldn't be valid without a time_unit" do
+		@food.time_unit = nil
+		@food.should_not be_valid
+	end
+
+	it "shouldn't be valid with a duplicate name" do
+		interview = FactoryGirl.create(:purchased_food_interview)
+		second = FactoryGirl.build(:purchased_food)
+		interview.should be_valid
+		interview.purchased_foods << second
+
+		second.should_not be_valid
+	end
 end
