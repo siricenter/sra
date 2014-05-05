@@ -17,9 +17,11 @@ class PeopleController < ApplicationController
 		@person.family_relationship = relationship
 
 		@household.people << @person
-		@person.family_relationship.save
-
-		redirect_to household_people_path(@household)
+		if @person.family_relationship.save
+			redirect_to household_people_path(@household)
+		else
+			redirect_to new_household_people_path(@household), alert: @person.errors
+		end
 	end
 
 	def edit
