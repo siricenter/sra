@@ -45,6 +45,7 @@ class User < ActiveRecord::Base
 		self.roles.each do |role|
 			return true if role.has_permission(permission_name)
 		end
+
 		return false
 	end
 end

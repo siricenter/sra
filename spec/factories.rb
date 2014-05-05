@@ -48,9 +48,6 @@ FactoryGirl.define do
 		factory.name { Faker::Name.last_name }
 	end
 
-	factory :interview do |factory|
-	end
-
 	factory :morbidity do |factory|
 		factory.child_sickness_frequency { Faker::Number.digit }
 		factory.child_sickness_time "day" 
@@ -89,6 +86,25 @@ FactoryGirl.define do
 	end
 
 	factory :purchased_food_interview, class: :interview do |factory|
+		factory.household_id { Faker::Number.digit }
 		factory.purchased_foods {[FactoryGirl.build(:purchased_food)]}
+	end
+
+	factory :interview do |factory|
+		factory.household_id { Faker::Number.digit }
+		factory.roof "tin"
+		factory.wall "brick"
+		factory.floor "cement"
+		factory.bedroom_count { Faker::Number.digit }
+		factory.light true
+		factory.fuel_type "gas"
+		factory.total_income 500
+		factory.radio true
+		factory.tv false
+		factory.refrigerator true
+	end
+
+	factory :role do |factory|
+		factory.name "Do Something"
 	end
 end

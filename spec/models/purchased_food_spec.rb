@@ -35,11 +35,15 @@ describe PurchasedFood do
 	end
 
 	it "shouldn't be valid with a duplicate name" do
-		interview = FactoryGirl.create(:purchased_food_interview)
+		interview = FactoryGirl.create(:interview)
+		first = FactoryGirl.build(:purchased_food)
 		second = FactoryGirl.build(:purchased_food)
-		interview.should be_valid
-		interview.purchased_foods << second
 
+		interview.purchased_foods << first
+		interview.should be_valid
+
+		interview.purchased_foods << second
+		interview.should_not be_valid
 		second.should_not be_valid
 	end
 end

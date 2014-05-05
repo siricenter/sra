@@ -23,7 +23,19 @@ describe InterviewsController do
 	# This should return the minimal set of attributes required to create a valid
 	# Interview. As you add validations to Interview, be sure to
 	# adjust the attributes here as well.
-	let(:valid_attributes) { {  } }
+	let(:valid_attributes) { {
+		household_id: 1,
+		roof: "tin",
+		wall: "brick",
+		floor: "cement",
+		bedroom_count: 1,
+		light: true,
+		fuel_type: "gas",
+		total_income: 500,
+		radio: false,
+		tv: true,
+		refrigerator: false
+	} }
 	let(:expense_attributes) {{
 		shoe_cost: 10, 
 		clothing_cost: 10, 
