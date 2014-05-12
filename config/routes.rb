@@ -1,5 +1,8 @@
 Sra::Application.routes.draw do
 
+  resources :events
+
+  get "dashboard", to: "dashboard#show"
 
 	scope "/admin" do
 		# Need to move users out of a resource and make it a bunch of

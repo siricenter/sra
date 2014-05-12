@@ -25,12 +25,13 @@ class Person < ActiveRecord::Base
 		:in_school
 	belongs_to :household
 	belongs_to :family_relationship
+
 	has_many :jobs
 
-	validates :given_name, presence: true
-	validates :family_name, presence: true
 	validates :birthday, presence: true
 	validates :education_level, presence: true
+	validates :family_name, presence: true
 	validates :gender, presence: true
+	validates :given_name, presence: true
 	validates :in_school, presence: true
 end

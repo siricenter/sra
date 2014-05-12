@@ -16,6 +16,7 @@ class HouseholdsController < ApplicationController
 	# GET /households/1.json
 	def show
 		@household = Household.find(params[:id])
+		@people = @household.people
 
 		respond_to do |format|
 			format.html # show.html.erb

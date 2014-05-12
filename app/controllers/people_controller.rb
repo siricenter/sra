@@ -12,15 +12,21 @@ class PeopleController < ApplicationController
 
 	def create
 		@household = Household.find(params[:household_id])
+
 		relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
-		@person = Person.new(params[:person].except("family_relationship"))
+		@person = Person.new(params[:person].except(:family_relationship))
 		@person.family_relationship = relationship
 
 		@household.people << @person
-		if @person.family_relationship.save
-			redirect_to household_people_path(@household)
-		else
-			redirect_to new_household_people_path(@household), alert: @person.errors
+
+		respond_to do |format|
+			if @person.save
+				format.html {redirect_to @household}
+				format.json {render json: @household, status: :created, location: @household}
+			else
+				format.html { render action: "new" }
+				format.json { render json: @person.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 
@@ -35,7 +41,6 @@ class PeopleController < ApplicationController
 
 	def show
 		@person = Person.find(params[:id])
-		@relationship = @person.family_relationship
 	end
 
 	def index
@@ -49,11 +54,14 @@ class PeopleController < ApplicationController
 		relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
 		@person.family_relationship = relationship
 
-		if @person.save
-			redirect_to person_path(@person), notice: "#{@person.given_name} #{@person.family_name} was successfully updated"
-			#format.html {redirect_to household_person_path(@household, @person), notice: "OK"}
-		else
-			format.html {render action: "edit"}
+		respond_to do |format|
+			if @person.save
+				format.html {redirect_to @person}
+				format.json {render json: @person, status: :created, location: @household}
+			else
+				format.html { render action: "edit" }
+				format.json { render json: @person.errors, status: :unprocessable_entity }
+			end
 		end
 	end
 

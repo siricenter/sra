@@ -9,9 +9,9 @@
   = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_top"
   = link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_top"
 
-- if @household.people.size > 0
+- if @people.size > 0
   .row
-    - @household.people.each do |person|
+    - @people.each do |person|
       .col-sm-6.col-md-4
         .panel.panel-primary
           .panel-heading
