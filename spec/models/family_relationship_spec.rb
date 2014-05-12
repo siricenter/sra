@@ -12,7 +12,12 @@ require 'spec_helper'
 
 describe FamilyRelationship do
 	before :each do
+		DatabaseCleaner.start
 		@relationship = FactoryGirl.build(:family_relationship)
+	end
+
+	after :each do
+		DatabaseCleaner.clean
 	end
 
 	it "should have a valid factory" do

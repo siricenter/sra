@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Expense do
 	before :each do
 		@food = FactoryGirl.build(:expense)
+		DatabaseCleaner.start
+	end
+
+	after :each do
+		DatabaseCleaner.clean
 	end
 
 	it "should have a valid factory" do

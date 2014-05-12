@@ -16,19 +16,20 @@ require 'spec_helper'
 
 describe Job do
 	before :each do
-		@person = Person.new
-		@occupation = Occupation.new name: "Programmer"
-		@job = Job.new
+		@job = FactoryGirl.build(:job)
+	end
+
+	it "should have a valid factory" do
+		@job.should be_valid
 	end
 
 	it "should be invalid without a person" do
-		@job.occupation = @occupation
-		
+		@job.person = nil
 		@job.should_not be_valid
 	end
 
 	it "should be invalid without a occupation" do
-		@job.person = @person
+		@job.occupation = nil
 		@job.should_not be_valid
 	end
 end

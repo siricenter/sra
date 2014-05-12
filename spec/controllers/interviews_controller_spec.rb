@@ -19,6 +19,13 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 describe InterviewsController do
+	before :each do
+		DatabaseCleaner.start
+	end
+
+	after :each do
+		DatabaseCleaner.clean
+	end
 
 	# This should return the minimal set of attributes required to create a valid
 	# Interview. As you add validations to Interview, be sure to
@@ -72,6 +79,9 @@ describe InterviewsController do
 		adult_aid: "doctor",
 		adult_common_ailment: "influenza"
 	}}
+	let(:household_attributes) {{
+		name: "Poll"
+	}}
 
 	# This should return the minimal set of values that should be in the session
 	# in order to pass any filters (e.g. authentication) defined in
@@ -79,10 +89,16 @@ describe InterviewsController do
 	let(:valid_session) { {} }
 
 	describe "GET index" do
-		it "assigns all interviews as @interviews" do
+		before :each do
 			DatabaseCleaner.start
+		end
+
+		after :each do
 			DatabaseCleaner.clean
-			household = Household.create!(name: "Poll")
+		end
+
+		it "assigns all interviews as @interviews" do
+			household = Household.create! household_attributes
 			interview = Interview.create! valid_attributes
 			get :index, {household_id: household.to_param}, valid_session
 			assigns(:interviews).to_a.should eq([interview])
@@ -90,42 +106,68 @@ describe InterviewsController do
 	end
 
 	describe "GET show" do
-		it "assigns the requested interview as @interview" do
+		before :each do
 			DatabaseCleaner.start
+		end
+
+		after :each do
+			DatabaseCleaner.clean
+		end
+
+		it "assigns the requested interview as @interview" do
 			interview = Interview.create! valid_attributes
 			get :show, {:id => interview.to_param}, valid_session
 			assigns(:interview).should eq(interview)
-			DatabaseCleaner.clean
 		end
 	end
 
 	describe "GET new" do
-		it "assigns a new interview as @interview" do
+		before :each do
 			DatabaseCleaner.start
-			household = Household.create(name: "Poll")
+		end
+
+		after :each do
+			DatabaseCleaner.clean
+		end
+
+		it "assigns a new interview as @interview" do
+			household = Household.create household_attributes
 			get :new, {:household_id => household.to_param}, valid_session
 			assigns(:interview).should be_a_new(Interview)
-			DatabaseCleaner.clean
 		end
 	end
 
 	describe "GET edit" do
-		it "assigns the requested interview as @interview" do
+		before :each do
 			DatabaseCleaner.start
-			household = Household.create! name: "Poll"
+		end
+
+		after :each do
+			DatabaseCleaner.clean
+		end
+
+		it "assigns the requested interview as @interview" do
+			household = Household.create! household_attributes
 			interview = Interview.create! valid_attributes
 			interview.household_id = household.id
 			interview.save
 			get :edit, {:id => interview.to_param}, valid_session
 			assigns(:interview).should eq(interview)
-			DatabaseCleaner.clean
 		end
 	end
 
 	describe "POST create" do
 		describe "with valid params" do
+			before :each do
+				DatabaseCleaner.start
+			end
+
+			after :each do
+				DatabaseCleaner.clean
+			end
+
 			it "creates a new Interview" do
-				household = Household.create name: "Poll"
+				household = Household.create household_attributes
 				expect {
 					post :create,
 					{household_id: household.id,
@@ -139,7 +181,7 @@ describe InterviewsController do
 			end
 
 			it "assigns a newly created interview as @interview" do
-				household = Household.create! name: "Poll"
+				household = Household.create! household_attributes
 				post :create,
 					{household_id: household.id,
 						:interview => valid_attributes,
@@ -152,7 +194,7 @@ describe InterviewsController do
 			end
 
 			it "redirects to the created interview" do
-				household = Household.create! name: "Poll"
+				household = Household.create! household_attributes
 				post :create,
 					{household_id: household.id,
 						interview: valid_attributes,
@@ -165,8 +207,16 @@ describe InterviewsController do
 		end
 
 		describe "with invalid params" do
+			before :each do
+				DatabaseCleaner.start
+			end
+
+			after :each do
+				DatabaseCleaner.clean
+			end
+
 			it "assigns a newly created but unsaved interview as @interview" do
-				household = Household.create name: "Poll"
+				household = Household.create household_attributes
 				# Trigger the behavior that occurs when invalid params are submitted
 				Interview.any_instance.stub(:save).and_return(false)
 				post :create, {household_id: household.id, :interview => {  }}, valid_session
@@ -175,7 +225,7 @@ describe InterviewsController do
 
 			it "re-renders the 'new' template" do
 				# Trigger the behavior that occurs when invalid params are submitted
-				household = Household.create name: "Poll"
+				household = Household.create household_attributes
 				Interview.any_instance.stub(:save).and_return(false)
 				post :create, {household_id: household.id, :interview => {  }}, valid_session
 				response.should render_template("new")
@@ -185,6 +235,14 @@ describe InterviewsController do
 
 	describe "PUT update" do
 		describe "with valid params" do
+			before :each do
+				DatabaseCleaner.start
+			end
+
+			after :each do
+				DatabaseCleaner.clean
+			end
+
 			it "updates the requested interview" do
 				interview = Interview.create! valid_attributes
 				# Assuming there are no other interviews in the database, this
@@ -209,6 +267,14 @@ describe InterviewsController do
 		end
 
 		describe "with invalid params" do
+			before :each do
+				DatabaseCleaner.start
+			end
+
+			after :each do
+				DatabaseCleaner.clean
+			end
+
 			it "assigns the interview as @interview" do
 				interview = Interview.create! valid_attributes
 				# Trigger the behavior that occurs when invalid params are submitted
@@ -228,11 +294,19 @@ describe InterviewsController do
 	end
 
 	describe "DELETE destroy" do
+		before :each do
+			DatabaseCleaner.start
+			@household = Household.create household_attributes
+		end
+
+		after :each do
+			DatabaseCleaner.clean
+		end
+
 		it "destroys the requested interview" do
-			household = Household.create
 			interview = Interview.create! valid_attributes
 			expect {
-				delete :destroy, {:household_id => household.to_param,:id => interview.to_param}, valid_session
+				delete :destroy, {:household_id => @household.to_param,:id => interview.to_param}, valid_session
 			}.to change(Interview, :count).by(-1)
 		end
 

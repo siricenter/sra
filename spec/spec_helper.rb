@@ -41,3 +41,4 @@ RSpec.configure do |config|
 end
 
 DatabaseCleaner[:mongoid].strategy = :truncation
+DatabaseCleaner[:active_record].strategy = :transaction

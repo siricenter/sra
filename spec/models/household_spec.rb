@@ -13,6 +13,11 @@ require 'spec_helper'
 describe Household do
 	before :each do
 		@household = FactoryGirl.build(:household)
+		DatabaseCleaner.start
+	end
+
+	after :each do
+		DatabaseCleaner.clean
 	end
 
 	it "should have a valid factory" do

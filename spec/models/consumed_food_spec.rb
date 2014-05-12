@@ -4,6 +4,11 @@ require 'factory_girl'
 describe ConsumedFood do
 	before :each do
 		@food = FactoryGirl.build(:consumed_food)
+		DatabaseCleaner.start
+	end
+
+	after :each do
+		DatabaseCleaner.clean
 	end
 
 	it "should have a valid factory" do
