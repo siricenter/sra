@@ -1,3 +1,9 @@
+- if @interview.errors.any?
+  %ul
+  - @interview.errors.full_messages.each do |error|
+    %li
+      = error
+    
 %h1
   New Interview
 

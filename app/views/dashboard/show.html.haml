@@ -3,16 +3,4 @@
 
 #calendar
 
-.row
-  - @households.each do |household|
-    .col-sm-6.col-md-4
-      .panel.panel-primary
-        .panel-heading
-          %h3.panel-title
-            = household.name
-          = link_to 'X', household, method: :delete, id: "#{household.id}_remove"
-        .panel-body.index
-          %p
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali qua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu i officia deserunt mollit anim id est laborum.
-          = link_to 'Show', household, class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"], id: "#{household.id}_show"
-          = link_to 'Edit', edit_household_path(household), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"], id: "#{household.id}_edit"
+= render 'households/household_list'

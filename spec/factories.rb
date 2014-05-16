@@ -112,4 +112,8 @@ FactoryGirl.define do
 		factory.person {FactoryGirl.build :person}
 		factory.occupation {FactoryGirl.build :occupation}
 	end
+
+	factory :area do |factory|
+		factory.name "kyiv"
+	end
 end

@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140507192923) do
+ActiveRecord::Schema.define(:version => 20140515194739) do
+
+  create_table "areas", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -137,5 +143,10 @@ ActiveRecord::Schema.define(:version => 20140507192923) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "users_areas", :force => true do |t|
+    t.integer "areas_id"
+    t.integer "users_id"
+  end
 
 end
