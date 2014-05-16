@@ -9,11 +9,10 @@
 #
 
 class Household < ActiveRecord::Base
-  attr_accessible :name
-  has_many :people
-
-  accepts_nested_attributes_for :people
-  validates :name, 
-	  presence: true,
-	  format: { with: /\A[a-zA-Z' ]+\z/ }
+	attr_accessible :name
+	has_many :people
+	accepts_nested_attributes_for :people
+	validates :name, 
+		presence: true,
+		format: { with: /\A[a-zA-Z' ]+\z/ }
 end

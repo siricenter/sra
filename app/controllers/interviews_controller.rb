@@ -52,11 +52,15 @@ class InterviewsController < ApplicationController
 	# POST /interviews
 	# POST /interviews.json
 	def create
+		@household = Household.find(params[:household_id])
+
 		@interview = Interview.new(params[:interview])
 		@interview.health = Health.new(params[:health])
 		@interview.expense = Expense.new(params[:expense])
 		@interview.morbidity = Morbidity.new(params[:morbidity])
 		@interview.household_id = params[:household_id]
+
+		@path = [@household, @interview]
 
 		if params[:consumed_foods]
 			params[:consumed_foods].each do |key, food|
@@ -78,7 +82,7 @@ class InterviewsController < ApplicationController
 
 		respond_to do |format|
 			if @interview.save
-				format.html { redirect_to @interview, notice: 'Interview was successfully create.' }
+				format.html { redirect_to new_event_path, notice: 'Interview was successfully create.' }
 				format.json { render json: @interview, status: :created, location: @interview }
 			else
 				format.html { render action: "new" }

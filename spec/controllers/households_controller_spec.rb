@@ -18,7 +18,7 @@ describe HouseholdsController do
 	describe "GET index" do
 		it "assigns all households as @households" do
 			household = Household.create(name: Faker::Name.last_name)
-			get :index, valid_attributes, valid_session
+			get :index, valid_attributes
 			assigns(:households).to_a.should eq([household])
 		end
 	end
@@ -26,14 +26,14 @@ describe HouseholdsController do
 	describe "GET show" do
 		it "assigns the requested household as @household" do
 			household = Household.create! valid_attributes
-			get :show, { id:  household.to_param}, valid_session
+			get :show, { id:  household.to_param}
 			assigns(:household).should eq(household)
 		end
 	end
 
 	describe "GET new" do
 		it "assigns the new household as @household" do
-			get :new, {}, valid_session
+			get :new, {}
 			assigns(:household).should be_a_new(Household)
 		end
 	end
@@ -41,7 +41,7 @@ describe HouseholdsController do
 	describe "GET edit" do
 		it "assigns the requested household as @household" do
 			household = Household.create! valid_attributes
-			get :edit, { id: household.to_param }, valid_session
+			get :edit, { id: household.to_param }
 			assigns(:household).should eq(household)
 		end
 	end
@@ -59,15 +59,14 @@ describe HouseholdsController do
 			it "creates a new Household" do
 				expect {
 					post :create,
-					{household: valid_attributes}, 
-					valid_session
+					{household: valid_attributes}
 				}.to change(Household, :count).by(1)
 			end
 
 			it "assigns a newly created household as @household" do
 				post :create, {
 					household: valid_attributes
-				}, valid_session
+				}
 				assigns(:household).should be_a(Household)
 				assigns(:household).should be_persisted
 			end
@@ -75,7 +74,7 @@ describe HouseholdsController do
 			it "redirects to the created household" do
 				post :create, {
 					household: valid_attributes	
-				}, valid_session
+				}
 				response.should redirect_to(Household.last)
 			end
 		end
@@ -91,13 +90,13 @@ describe HouseholdsController do
 
 			it "assigns a newly created but unsaved household as @household" do
 				Household.any_instance.stub(:save).and_return(false)
-				post :create, {household: {}}, valid_session
+				post :create, {household: {}}
 				assigns(:household).should be_a_new(Household)
 			end
 
 			it "re-renders the 'new' template" do
 				Household.any_instance.stub(:save).and_return(false)
-				post :create, {household: {}}, valid_session
+				post :create, {household: {}}
 				response.should render_template("new")
 			end
 		end
@@ -116,18 +115,18 @@ describe HouseholdsController do
 			it "updates the requested household" do
 				household = Household.create! valid_attributes
 				Household.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
-				put :update, {:id => household.to_param, :household => { "these" => "params" }}, valid_session
+				put :update, {:id => household.to_param, :household => { "these" => "params" }}
 			end
 
 			it "assigns the requested household as @household" do
 				household = Household.create! valid_attributes
-				put :update, {id: household.to_param, household: valid_attributes}, valid_session
+				put :update, {id: household.to_param, household: valid_attributes}
 				assigns(:household).should eq(household)
 			end
 
 			it "redirects to the household" do
 				household = Household.create! valid_attributes
-				put :update, {id: household.to_param, interview: valid_attributes}, valid_session
+				put :update, {id: household.to_param, interview: valid_attributes}
 				response.should redirect_to(household)
 			end
 		end
@@ -136,14 +135,14 @@ describe HouseholdsController do
 			it "assigns the household as @household" do
 				household = Household.create! valid_attributes
 				Household.any_instance.stub(:save).and_return(false)
-				put :update, {id: household.to_param, interview: {}}, valid_session
+				put :update, {id: household.to_param, interview: {}}
 				assigns(:household).should eq(household)
 			end
 
 			it "re-renders the 'edit' template" do
 				household = Household.create! valid_attributes
 				Household.any_instance.stub(:save).and_return(false)
-				put :update, {id: household.to_param, interview: {}}, valid_session
+				put :update, {id: household.to_param, interview: {}}
 				response.should render_template("edit")
 			end
 		end
@@ -161,12 +160,12 @@ describe HouseholdsController do
 
 		it "destroys the requested household" do
 			expect {
-				delete :destroy, {id: @household.to_param}, valid_session
+				delete :destroy, {id: @household.to_param}
 			}.to change(Household, :count).by(-1)
 		end
 
 		it "redirects to the households list" do
-			delete :destroy, {id: @household.to_param}, valid_session
+			delete :destroy, {id: @household.to_param}
 			response.should redirect_to(households_url)
 		end
 	end

@@ -9,6 +9,7 @@ class RolesController < ApplicationController
 	end
 
 	def edit
+		@role = Role.find(params[:id])
 	end
 
 	def new
@@ -18,13 +19,38 @@ class RolesController < ApplicationController
 	def create
 		@role = Role.new(params[:role])
 
-		if @role.save
-			respond_to do |format|
-				format.html {redirect_to roles_path, notice: "Role successfully created"}
+		respond_to do |format|
+			if @role.save
+				format.html { redirect_to roles_path, notice: "Role successfully created" }
 				format.json {render json: @role, status: :created, location: role_path(@role)}
+			else
+				format.html { render action: :new }
+				format.json { render json: @role.errors, status: :unprocessable_entity }
 			end
-		else
-			redirect_to new_role_path(@role), error: "Unsuccessful"
+		end
+	end
+
+	def update
+		@role = Role.find(params[:id])
+
+		respond_to do |format|
+			if @role.update_attributes(params[:role])
+				format.html { redirect_to roles_path, notice: "Role was successfully updated" }
+				format.json { head :no_content }
+			else
+				format.html { render action: :edit }
+				format.json { render json: @role.errors, status: :unprocessable_entity }
+			end
+		end
+	end
+
+	def destroy
+		@role = Role.find(params[:id])
+		@role.destroy
+
+		respond_to do |format|
+			format.html { redirect_to roles_path }
+			format.json { head :no_content }
 		end
 	end
 end

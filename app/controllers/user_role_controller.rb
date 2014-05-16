@@ -3,14 +3,8 @@ class UserRoleController < ApplicationController
 		@user = User.find(params[:user_id])
 		@role = Role.find(params[:role_id])
 
-		unless @user.roles.include?(@role)
-			@user.roles << @role 
-
-			if @user.save
-				redirect_to user_path(@user)
-			else
-				redirect_to user_path(@user), alert: "Saving failed"
-			end
+		if !@user.roles.include?(@role) and @user.save
+			redirect_to user_path(@user)
 		else
 			redirect_to user_path(@user), alert: "Saving failed"
 		end

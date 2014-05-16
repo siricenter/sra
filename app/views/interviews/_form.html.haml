@@ -27,6 +27,10 @@
         = health_form.select :bathroom_type, ['outhouse', 'open field', 'toilet', 'bathroom with well'], class: [:textfield, "col-sm-8", "col-md-9"]
 
       .row
+        = health_form.label :garbage_disposal, class: "col-sm-2"
+        = health_form.select :garbage_disposal, ['buried', 'compost', 'shopping collector', 'other'], class: [:textfield, "col-sm-8", "col-md-9"]
+
+      .row
         = health_form.label :sewage_disposal, class: "col-sm-2"
         = health_form.select :sewage_disposal, ['outhouse', 'open field', 'bog', 'septic tank', 'sewer'], class: [:textfield, "col-sm-8", "col-md-9"]
 
@@ -134,19 +138,19 @@
         = morbidity_form.text_field :adult_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
 
       .row
-        = morbidity_form.label :adult_sickness_frequency, class: "col-sm-2"
-        = morbidity_form.number_field :adult_sickness_frequency, class: [:textfield, "col-sm-5", "col-md-6"]
+        = morbidity_form.label :child_sickness_frequency, class: "col-sm-2"
+        = morbidity_form.number_field :child_sickness_frequency, class: [:textfield, "col-sm-5", "col-md-6"]
 
         = morbidity_form.label :per, class: "col-sm-1"
-        = morbidity_form.select :adult_sickness_time, ["week", "month", "year"]
+        = morbidity_form.select :child_sickness_time, ["week", "month", "year"]
 
       .row
-        = morbidity_form.label :adult_aid_when_sick, class: "col-sm-2"
-        = morbidity_form.text_field :adult_aid, class: [:textfield, "col-sm-5", "col-md-6"]
+        = morbidity_form.label :child_aid_when_sick, class: "col-sm-2"
+        = morbidity_form.text_field :child_aid, class: [:textfield, "col-sm-5", "col-md-6"]
 
       .row
-        = morbidity_form.label :adult_common_ailment, class: "col-sm-2"
-        = morbidity_form.text_field :adult_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
+        = morbidity_form.label :child_common_ailment, class: "col-sm-2"
+        = morbidity_form.text_field :child_common_ailment, class: [:textfield, "col-sm-5", "col-md-6"]
 
   %h2
     Foods Eaten
