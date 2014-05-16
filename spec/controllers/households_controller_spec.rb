@@ -1,5 +1,6 @@
 require 'spec_helper'
 describe HouseholdsController do
+	login_user
 
 	before :each do
 		DatabaseCleaner.start

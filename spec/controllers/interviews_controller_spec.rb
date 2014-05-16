@@ -193,7 +193,7 @@ describe InterviewsController do
 				assigns(:interview).should be_persisted
 			end
 
-			it "redirects to the created interview" do
+			it "redirects to new_event path" do
 				household = Household.create! household_attributes
 				post :create,
 					{household_id: household.id,
@@ -202,7 +202,7 @@ describe InterviewsController do
 						health: health_attributes,
 						morbidity: morbidity_attributes},
 						valid_session
-				response.should redirect_to(Interview.last)
+				response.should redirect_to(new_event_url)
 			end
 		end
 
