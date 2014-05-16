@@ -2,8 +2,12 @@
   %h1
     = @user.email
 
-%p
-  = alert
+- if flash[:alert]
+  .alert
+    = flash[:alert]
+- if flash[:notice]
+  .notice
+    = flash[:notice]
 
 %h2
   Assigned
