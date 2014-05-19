@@ -1,4 +1,11 @@
 Given(/^I am an Admin$/) do
+	email = "admin@admin.com"
+	password = "abc123456"
+
+	visit 'users/sign_in'
+	fill_in "user_email", with: email
+	fill_in "user_password", with: password
+	click_button "Sign in"
 end
 
 Given(/^a user has been created$/) do
@@ -37,6 +44,6 @@ end
 
 Then(/^the "(.*?)" role should be unassigned$/) do |arg1|
 	current_path.should == user_path(@user)
-	page.has_selector?("#assigned ##{@role.id}_unassign").should == false
+	page.has_selector?("#assigned ##{@role.id}_unassign").should_not == true
 	page.has_selector?("#unassigned ##{@role.id}_assign").should == true
 end

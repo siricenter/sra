@@ -11,17 +11,17 @@ admin = User.new({email: "admin@admin.com", password: "abc123456", password_conf
 admin.roles << admin_role
 admin.save
 
-Permission.create([
-	{name: "Create Household"}, 
-	{name: "Edit Household"}])
+#Permission.create([
+#	{name: "Create Household"}, 
+#	{name: "Edit Household"}])
 
 Role.create([
 	{name: "Field Worker"}
 ])
 
-field_worker = Role.find_by_name("Field Worker")
-field_worker.permissions << Permission.find_by_name("Create Household")
-field_worker.permissions << Permission.find_by_name("Edit Household")
+#field_worker = Role.find_by_name("Field Worker")
+#field_worker.permissions << Permission.find_by_name("Create Household")
+#field_worker.permissions << Permission.find_by_name("Edit Household")
 
 relationships = [
 	{name: "Grandfather"},
