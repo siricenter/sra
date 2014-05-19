@@ -1,11 +1,11 @@
-Given(/^I am a field worker$/) do
-	field_worker = User.new({email: "fw@fw.com", password: "abc123456", password_confirmation: "abc123456"})
-	field_worker.roles << Role.find_by_name("Field Worker")
-	field_worker.save!
+Given(/^I am a "(.*?)"$/) do |role|
+	user = User.new({email: "user@user.com", password: "abc123456", password_confirmation: "abc123456"})
+	user.roles << Role.find_by_name(role)
+	user.save!
 
 	visit 'users/sign_in'
-	fill_in "user_email", with: field_worker.email
-	fill_in "user_password", with: field_worker.password
+	fill_in "user_email", with: user.email
+	fill_in "user_password", with: user.password
 	click_button "Sign in"
 end
 

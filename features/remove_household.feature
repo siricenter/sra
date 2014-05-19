@@ -4,7 +4,7 @@ Feature: Field worker removes household
 	I want to remove a household
 
 	Scenario: Remove a family
-		Given I am a field worker
+		Given I am a "Field Worker"
 		And I have created a family named "Martinez"
 		When I go to the "households" page
 		And I press the delete household button
