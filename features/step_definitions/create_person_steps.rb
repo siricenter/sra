@@ -9,7 +9,7 @@ end
 
 Given(/^I have created a person named "(.*?)" "(.*?)"$/) do |given_name, family_name|
 	household = Household.find_by_name family_name
-	person = Person.create(
+	@person = Person.create(
 		given_name: given_name,
 		family_name: family_name,
 		birthday: Date.today,
@@ -17,10 +17,10 @@ Given(/^I have created a person named "(.*?)" "(.*?)"$/) do |given_name, family_
 		gender: "Other",
 		in_school: true
 	)
-	person.household = household
+	@person.household = household
 	relationship = FamilyRelationship.find_by_name("Mother")
-	person.family_relationship = relationship
-	person.save
+	@person.family_relationship = relationship
+	@person.save
 end
 
 When(/^I fill out the person form$/) do
