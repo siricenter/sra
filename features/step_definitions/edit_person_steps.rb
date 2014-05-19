@@ -1,5 +1,5 @@
 Given(/^I am on "(.*?)" "(.*?)"'s personal page$/) do |given_name, family_name|
-	person = Person.find_by_given_name given_name
+	person = Person.find_by_given_name(given_name)
 	visit person_path(person)
 	current_path.should == person_path(person)
 end
