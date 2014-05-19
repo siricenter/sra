@@ -4,7 +4,7 @@ Feature: Field worker edits person
 	I want to edit a person
 
 	Scenario: Start From Personal Page
-		Given I am logged in
+		Given I am a field worker
 		And I have created a family named "Martinez"
 		And I have created a person named "Gabriela" "Martinez"
 		And I am on "Gabriela" "Martinez"'s personal page
@@ -12,7 +12,7 @@ Feature: Field worker edits person
 		Then I should be on the edit person page for "Gabriela" "Martinez"
 
 	Scenario: Start From Household Page
-		Given I am logged in
+		Given I am a field worker
 		And I have created a family named "Martinez"
 		And I have created a person named "Gabriela" "Martinez"
 		And I am on the "Martinez" family's personal page
@@ -20,7 +20,7 @@ Feature: Field worker edits person
 		Then I should be on the edit person page for "Gabriela" "Martinez"
 
 	Scenario: Edit Person
-		Given I am logged in
+		Given I am a field worker
 		And I have created a family named "Martinez"
 		And I have created a person named "Gabriela" "Martinez"
 		And I am on the edit person "Gabriela" "Martinez" page
