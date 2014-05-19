@@ -3,6 +3,7 @@ Feature: Field worker interviews household
 	As a field worker
 	I want to interview a household
 
+	@javascript
 	Scenario: Interview household
 		Given I am a "Field Worker"
 		And I have created a family named "Martinez"

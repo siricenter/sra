@@ -33,17 +33,63 @@ When(/^I fill out the interview form$/) do
 	fill_in 'expense[misc_cost]', with: '10'
 	select 'year', from: 'expense[misc_unit]'
 
+
 	fill_in 'morbidity[adult_sickness_frequency]', with: '2'
 	select 'year', from: 'morbidity[adult_sickness_time]'
-
 	fill_in 'morbidity[adult_aid]', with: 'witch doctor'
 	fill_in 'morbidity[adult_common_ailment]', with: 'influenza'
 
+	
 	fill_in 'morbidity[child_sickness_frequency]', with: '2'
 	select 'year', from: 'morbidity[child_sickness_time]'
-
 	fill_in 'morbidity[child_aid]', with: 'witch doctor'
 	fill_in 'morbidity[child_common_ailment]', with: 'influenza'
+
+	# Testing new food consumed
+
+	click_on 'Add New Food Consumed'
+
+	fill_in 'consumed_foods[consumed_food1[name]]', with: 'Chard'
+	fill_in 'consumed_foods[consumed_food1[amount]]', with: '100'
+	select 'grams', from: 'consumed_foods[consumed_food1[unit]]'
+
+	click_on 'Add New Food Consumed'
+
+	fill_in 'consumed_foods[consumed_food2[name]]', with: 'Carrots'
+	fill_in 'consumed_foods[consumed_food2[amount]]', with: '100'
+	select 'grams', from: 'consumed_foods[consumed_food2[unit]]'
+
+	# Testing new food stored
+
+	click_on 'Add New Food Stored'
+
+	fill_in 'stored_foods[stored_food1[name]]', with: 'Chard'
+	fill_in 'stored_foods[stored_food1[amount]]', with: '100'
+	select 'grams', from: 'stored_foods[stored_food1[unit]]'
+
+	click_on 'Add New Food Stored'
+
+	fill_in 'stored_foods[stored_food2[name]]', with: 'Carrots'
+	fill_in 'stored_foods[stored_food2[amount]]', with: '100'
+	select 'grams', from: 'stored_foods[stored_food2[unit]]'
+
+	# Testing new food purchased
+
+	click_on 'Add Food Purchased'
+
+	fill_in 'purchased_foods[food1[name]]', with: 'Chard'
+	fill_in 'purchased_foods[food1[amount]]', with: '100'
+	select 'grams', from: 'purchased_foods[food1[unit]]'
+	fill_in 'purchased_foods[food1[frequency_amount]]', with: '3'
+	select 'day', from: 'purchased_foods[food1[time_unit]]'
+
+	click_on 'Add Food Purchased'
+
+	fill_in 'purchased_foods[food2[name]]', with: 'Carrots'
+	fill_in 'purchased_foods[food2[amount]]', with: '100'
+	select 'grams', from: 'purchased_foods[food2[unit]]'
+	fill_in 'purchased_foods[food2[frequency_amount]]', with: '3'
+	select 'day', from: 'purchased_foods[food2[time_unit]]'
 
 	click_on 'Create Interview'
 end

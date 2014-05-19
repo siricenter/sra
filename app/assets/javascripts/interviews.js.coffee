@@ -11,8 +11,7 @@ createElement = (element) ->
 
 @newFoodStored = () ->
 	@storedFoodCount++
-	newRow = foodRow "stored_food"
-	newRow.setAttribute "class", "row"
+	newRow = foodRow "stored_food", @storedFoodCount
 
 	beforeRow = document.getElementById "add_food_stored"
 
@@ -21,16 +20,16 @@ createElement = (element) ->
 
 @newFoodEaten = () ->
 	@eatenFoodCount++
+	newRow = foodRow "consumed_food", @eatenFoodCount
 
-	newRow = foodRow "consumed_food"
 	beforeRow = document.getElementById "add_food_eaten"
 
 	addRow newRow, beforeRow
 
 @newFoodPurchased = () ->
 	@purchasedFoodCount++
-
 	newRow = purchasedFoodRow()
+
 	beforeRow = document.getElementById "add_food_purchase"
 
 	addRow newRow, beforeRow
@@ -45,7 +44,7 @@ addOptions = (select, options) ->
 		option.innerHTML = element
 		select.appendChild option
 
-foodRow = (name) ->
+foodRow = (name, count) ->
 	newRow = createElement "div"
 	newRow.setAttribute "class", "row"
 
@@ -56,7 +55,7 @@ foodRow = (name) ->
 	foodNameInput = createElement "input"
 	foodNameInput.setAttribute "type", "text_field"
 	foodNameInput.setAttribute "class", "textfield " + "col-sm-2 " + "col-md-3"
-	foodNameInput.setAttribute "name", "#{name}s[#{name}#{@eatenFoodCount}[name]]"
+	foodNameInput.setAttribute "name", "#{name}s[#{name}#{count}[name]]"
 
 	foodAmountLabel = createElement "label"
 	foodAmountLabel.innerHTML = "Amount: "
@@ -65,10 +64,10 @@ foodRow = (name) ->
 	foodAmountInput = createElement "input"
 	foodAmountInput.setAttribute "type", "number"
 	foodAmountInput.setAttribute "class", "textfield " + "col-sm-2 " + "col-md-3"
-	foodAmountInput.setAttribute "name", "#{name}s[#{name}#{@eatenFoodCount}[amount]]"
+	foodAmountInput.setAttribute "name", "#{name}s[#{name}#{count}[amount]]"
 
 	foodUnitSelect = createElement "select"
-	foodUnitSelect.setAttribute "name", "#{name}s[#{name}#{@eatenFoodCount}[unit]]"
+	foodUnitSelect.setAttribute "name", "#{name}s[#{name}#{count}[unit]]"
 
 	foodUnits = ["grams", "kilograms"]
 	addOptions foodUnitSelect, foodUnits
@@ -128,7 +127,7 @@ purchasedFoodRow = () ->
 	timeSelect = createElement "select"
 	timeSelect.setAttribute "name", "purchased_foods[food#{@purchasedFoodCount}[time_unit]]"
 
-	timeUnits = ["Day", "Week", "Two Weeks", "Month", "Year"]
+	timeUnits = ["day", "week", "two weeks", "month", "year"]
 	for unit in timeUnits
 		option = createElement "option"
 		option.innerHTML = unit
