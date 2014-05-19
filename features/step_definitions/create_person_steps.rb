@@ -39,7 +39,3 @@ When(/^I fill out the person form$/) do
 	check "person_in_school"
 	click_on "Submit"
 end
-
-Then(/^I should be on the household's personal page$/) do
-	current_path.should == household_path(@household)
-end

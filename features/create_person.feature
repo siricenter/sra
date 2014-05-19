@@ -15,4 +15,4 @@ Feature: Field worker adds person to household
 		And I have created a family named "Martinez"
 		And I am on the "Martinez" family create person page
 		When I fill out the person form
-		Then I should be on the household's personal page
+		Then I should be on the last household page

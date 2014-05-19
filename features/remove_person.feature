@@ -9,4 +9,4 @@ Feature: Field worker removes person from household
 		And I have created a person named "Gabriela" "Martinez"
 		And I am on the "Martinez" family's personal page
 		And I press the delete person button
-		Then I should be on the household's personal page
+		Then I should be on the last household page
