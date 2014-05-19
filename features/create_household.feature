@@ -4,13 +4,13 @@ Feature: Field worker creates household
 	I want to create a household
 
 	Scenario: Start Form
-		Given I am logged in
+		Given I am a field worker
 		When I go to the "households" page
 		And I press id "top"
 		Then I should be on the "/households/new" page
 
 	Scenario: Fill out form
-		Given I am logged in
+		Given I am a field worker
 		When I go to the "households/new" page
 		And I fill out the household form
-		Then I should be on the "/households/1" page
+		Then I should be on the last household page
