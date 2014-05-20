@@ -73,10 +73,6 @@ FactoryGirl.define do
 		factory.in_school true
 	end
 
-	factory :permission do |factory|
-		factory.name "do something"
-	end
-
 	factory :purchased_food do |factory|
 		factory.name "Chard"
 		factory.amount { Faker::Number.digit }

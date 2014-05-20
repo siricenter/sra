@@ -5,7 +5,6 @@ class RolesController < ApplicationController
 
 	def show
 		@role = Role.find(params[:id])
-		@permissions = Permission.all
 	end
 
 	def edit

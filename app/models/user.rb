@@ -35,17 +35,10 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :areas
 	has_many :events
 
-	def has_role role_name
+	def has_role? role_name
+		name = role_name.to_s
 		self.roles.each do |role|
-			return true if role.name == role_name
-		end
-
-		return false
-	end
-
-	def has_permission permission_name
-		self.roles.each do |role|
-			return true if role.has_permission(permission_name)
+			return true if role.name == name
 		end
 
 		return false
