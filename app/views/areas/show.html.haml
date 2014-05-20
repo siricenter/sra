@@ -1,0 +1,41 @@
+.row.btn-toolbar
+  = link_to 'Assign Worker', dashboard_path, class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household
+
+= link_to 'Edit', edit_area_path(@area)
+|
+= link_to 'Back', areas_path
+
+%p
+  %b
+    Name:
+  = @area.name
+
+%h2
+  Assigned
+.row
+  - @area.users.each do |fw|
+    .col-sm-6.col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = fw.email
+        .panel-body
+          = link_to  'Unassign', destroy_area_user_path(@area, fw), method: :delete, id: "#{fw.id}_unassign"
+
+%h2
+  Unassigned
+
+- if @field_workers.empty?
+  %p 
+    No users have been assigned as field workers
+- else
+  .row
+    - @field_workers.each do |fw|
+      - unless @area.users.include? fw
+        .col-sm-6.col-md-4
+          .panel.panel-primary
+            .panel-heading
+              %h3.panel-title
+                = fw.email
+            .panel-body
+              = link_to  'Assign', new_area_user_path(@area, fw), method: :post, id: "#{fw.id}_assign"

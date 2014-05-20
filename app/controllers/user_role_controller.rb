@@ -21,10 +21,12 @@ class UserRoleController < ApplicationController
 	end
 
 	def destroy
-		@user = User.find(params[:user_id])
-		@role = Role.find(params[:role_id])
+		if can? :delete, :user_role
+			@user = User.find(params[:user_id])
+			@role = Role.find(params[:role_id])
 
-		@user.roles.delete(@role) if @user.roles.include?(@role)
+			@user.roles.delete(@role) if @user.roles.include?(@role)
+		end
 
 		redirect_to user_path(@user)
 	end

@@ -1,8 +1,8 @@
 class CreateAreasUsersTable < ActiveRecord::Migration
   def change
-	  create_table :users_areas do |t|
-		  t.references :areas
-		  t.references :users
+	  create_table :areas_users do |t|
+		  t.references :area
+		  t.references :user
 	  end
   end
 end

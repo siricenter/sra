@@ -1,13 +1,13 @@
 Sra::Application.routes.draw do
 
-	resources :areas
 	resources :events
 
-	get "dashboard", to: "dashboard#show"
+	get "dashboard", to: "dashboard#show", as: :dashboard
 
 	scope "/admin" do
 		resources :users
 		resources :roles
+		resources :areas
 	end
 
 	devise_for :users, controllers: { registrations: "registrations" }
@@ -25,9 +25,9 @@ Sra::Application.routes.draw do
 	post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
 	delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
 
-	# Create or destroy association between roles and permissions
-	post '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#create', as: :new_role_permission
-	delete '/roles/:role_id/permissions/:permission_id', to: 'RolePermission#destroy', as: :destroy_role_permission
+	# Create or destroy association between areas and users
+	post '/areas/:area_id/users/:user_id', to: 'AreasUsers#create', as: :new_area_user
+	delete '/areas/:area_id/users/:user_id', to: 'AreasUsers#destroy', as: :destroy_area_user
 
 
 	# The priority is based upon order of creation:

@@ -19,6 +19,11 @@ ActiveRecord::Schema.define(:version => 20140515194739) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "areas_users", :force => true do |t|
+    t.integer "area_id"
+    t.integer "user_id"
+  end
+
   create_table "events", :force => true do |t|
     t.string   "title"
     t.datetime "start"
@@ -143,10 +148,5 @@ ActiveRecord::Schema.define(:version => 20140515194739) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "users_areas", :force => true do |t|
-    t.integer "areas_id"
-    t.integer "users_id"
-  end
 
 end

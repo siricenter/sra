@@ -1,4 +1,5 @@
 class AreasController < ApplicationController
+	before_filter :authenticate_user!
   # GET /areas
   # GET /areas.json
   def index
@@ -14,6 +15,9 @@ class AreasController < ApplicationController
   # GET /areas/1.json
   def show
     @area = Area.find(params[:id])
+
+	fw = Role.find_by_name("Field Worker")
+	@field_workers = fw.users
 
     respond_to do |format|
       format.html # show.html.erb

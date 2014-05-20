@@ -1,0 +1,2 @@
+module AreasUsersHelper
+end
