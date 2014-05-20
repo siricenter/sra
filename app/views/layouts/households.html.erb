@@ -8,13 +8,16 @@
 		<%= csrf_meta_tags %>
 	</head>
 	<body>
+		<%= render :partial => '/layouts/navbar' %>
 
 		<div>
-		<%= render :partial => '/layouts/navbar' %>
-			<%= yield %>
-			<% if alert %>
-				<div class="alert"><%= alert %></div>
+			<% if flash[:alert] %>
+				<div class="alert"><%= flash[:alert] %></div>
 			<% end %>
+			<% if flash[:notice] %>
+				<div class="notice"><%= flash[:notice] %></div>
+			<% end %>
+			<%= yield %>
 		</div>
 
 

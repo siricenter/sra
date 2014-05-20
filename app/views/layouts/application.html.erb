@@ -13,18 +13,17 @@
 
 
 		<div>
-    		<%= yield %>
-			<% if alert %>
-				<div class="alert"><%= alert %></div>
+			<% if flash[:alert] %>
+				<div class="alert"><%= flash[:alert] %></div>
 			<% end %>
+			<% if flash[:notice] %>
+				<div class="notice"><%= flash[:notice] %></div>
+			<% end %>
+    		<%= yield %>
     	</div>
 
 
-		<footer>
-
-		&copy; RSA | Images: <a href="http://fotogrph.com">Fotogrph</a> + <a href="http://iconify.it">Iconify.it</a> | Design: <a href="http://html5up.net/">HTML5 Up!</a> | highly edited by Luke Brewer
-
-		</footer>
+		<%= render :partial => '/layouts/footer' %>
 
 	</body>
 </html>
