@@ -12,11 +12,6 @@
         %h3.panel-title
           = link_to role.name, role
       .panel-body.index
-        %ul
-        - role.permissions.each do |permission|
-          %li
-            = link_to permission.name, permission
-        = link_to 'Show', role, class: [:btn, "btn-success", "btn-lg", "col-md-12", "col-sm-12"]
 
 
 .row
