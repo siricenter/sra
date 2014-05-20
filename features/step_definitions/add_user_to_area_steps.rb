@@ -24,6 +24,11 @@ When(/^I assign "(.*?)" to the area$/) do |email|
 	click_on "#{user.id}_assign"
 end
 
+When(/^I unassign "(.*?)" from the area$/) do |email|
+	user = User.find_by_email(email)
+	click_on "#{user.id}_unassign"
+end
+
 Then(/^I should be on the "(.*?)" area's show page$/) do |area_name|
 	area = Area.find_by_name(area_name)
 	current_path.should == area_path(area)
@@ -35,4 +40,12 @@ Then(/^"(.*?)" should be assigned to "(.*?)"$/) do |email, area_name|
 
 	user.areas.include?(area).should == true
 	area.users.include?(user).should == true
+end
+
+Then(/^"(.*?)" should not be assigned to "(.*?)"$/) do |email, area_name|
+	user = User.find_by_email(email)
+	area = Area.find_by_name(area_name)
+
+	user.areas.include?(area).should == false
+	area.users.include?(user).should == false
 end
