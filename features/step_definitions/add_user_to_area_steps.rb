@@ -1,7 +1,3 @@
-Given(/^a user with email "(.*?)" has been created$/) do |email|
-	user = User.create({email: email, password: "abc123456", password_confirmation: "abc123456"})
-end
-
 Given(/^the user "(.*?)" has been assigned the "(.*?)" role$/) do |email, role|
 	user = User.find_by_email(email)
 	role = Role.find_by_name(role)

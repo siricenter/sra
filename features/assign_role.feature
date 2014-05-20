@@ -4,16 +4,16 @@ Feature: Admin assigns role to user
 	I want to assign a role to a user 
 
 	Scenario: Assign role 
-		Given I am an Admin
-		And a user has been created 
+		Given I am a "Admin"
+		And a user with email "test@test.com" has been created
 		And the "Fake Role" role has been created 
-		When I assign the "Fake Role" to the user 
-		Then the "Fake Role" role should be assigned to the user 
+		When I assign the "Fake Role" to the user "test@test.com"
+		And the user "test@test.com" has been assigned the "Fake Role" role
 
 	Scenario: Unassign role
-		Given I am an Admin
-		And a user has been created
+		Given I am a "Admin"
+		And a user with email "test@test.com" has been created
 		And the "Fake Role" role has been created
-		And I have assigned the "Fake Role" role to the user
-		When I unassign the "Fake Role" from the user
-		Then the "Fake Role" role should be unassigned
+		And the user "test@test.com" has been assigned the "Fake Role" role
+		When I unassign the "Fake Role" from the user "test@test.com"
+		Then the user "test@test.com" should not be assigned the "Fake Role" role
