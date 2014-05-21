@@ -1,5 +1,8 @@
 Sra::Application.routes.draw do
 
+  resources :regions
+
+
 	resources :events
 
 	get "dashboard", to: "dashboard#show", as: :dashboard

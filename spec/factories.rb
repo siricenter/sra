@@ -110,12 +110,16 @@ FactoryGirl.define do
 	end
 
 	factory :area do |factory|
-		factory.name "kyiv"
+		factory.name "Novo Darnitsya"
 	end
 
 	factory :user do |factory|
 		factory.email { Faker::Internet.email }
 		factory.password "abc123456"
 		factory.password_confirmation "abc123456"
+	end
+
+	factory :region do |factory|
+		factory.name 'Kyiv'
 	end
 end
