@@ -1,7 +1,6 @@
 Sra::Application.routes.draw do
 
-  resources :regions
-
+	root to: 'static#landing'
 
 	resources :events
 
@@ -11,6 +10,19 @@ Sra::Application.routes.draw do
 		resources :users
 		resources :roles
 		resources :areas
+		resources :regions
+		
+		# Create or destroy association between users and roles
+		post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
+		delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
+
+		# Create or destroy association between areas and users
+		post '/areas/:area_id/users/:user_id', to: 'AreasUsers#create', as: :new_area_user
+		delete '/areas/:area_id/users/:user_id', to: 'AreasUsers#destroy', as: :destroy_area_user
+
+		# Create or destroy association between 
+		post '/areas/:area_id/regions/:region_id', to: 'AreasRegions#create', as: :new_area_region
+		delete '/areas/:area_id/regions/:region_id', to: 'AreasRegions#destroy', as: :destroy_area_region
 	end
 
 	devise_for :users, controllers: { registrations: "registrations" }
@@ -21,17 +33,6 @@ Sra::Application.routes.draw do
 			resources :jobs, shallow: true
 		end
 	end
-
-	root to: 'static#landing'
-
-	# Create or destroy association between users and roles
-	post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
-	delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
-
-	# Create or destroy association between areas and users
-	post '/areas/:area_id/users/:user_id', to: 'AreasUsers#create', as: :new_area_user
-	delete '/areas/:area_id/users/:user_id', to: 'AreasUsers#destroy', as: :destroy_area_user
-
 
 	# The priority is based upon order of creation:
 	# first created -> highest priority.

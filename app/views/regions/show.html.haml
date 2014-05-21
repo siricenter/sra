@@ -1,0 +1,22 @@
+%p
+  %b
+    Name:
+  = @region.name
+
+%h2
+  Assignable
+
+.row
+  - @areas.each do |area|
+    .col-sm-6.col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = area.name
+        .panel-body
+          = link_to  'Assign', new_area_region_path(area, @region), method: :post, id: "#{area.id}_assign"
+
+
+= link_to 'Edit', edit_region_path(@region) 
+|
+= link_to 'Back', regions_path
