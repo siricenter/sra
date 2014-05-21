@@ -4,17 +4,31 @@
   = @region.name
 
 %h2
-  Assignable
+  Assigned
 
 .row
-  - @areas.each do |area|
+  - @region.areas.each do |area|
     .col-sm-6.col-md-4
       .panel.panel-primary
         .panel-heading
           %h3.panel-title
             = area.name
         .panel-body
-          = link_to  'Assign', new_area_region_path(area, @region), method: :post, id: "#{area.id}_assign"
+          = link_to  'Unassign', new_area_region_path(area, @region), method: :delete, id: "#{area.id}_unassign"
+
+%h2
+  Unassigned
+
+.row
+  - @areas.each do |area|
+    - unless @region.areas.include? area
+      .col-sm-6.col-md-4
+        .panel.panel-primary
+          .panel-heading
+            %h3.panel-title
+              = area.name
+          .panel-body
+            = link_to  'Assign', new_area_region_path(area, @region), method: :post, id: "#{area.id}_assign"
 
 
 = link_to 'Edit', edit_region_path(@region) 
