@@ -8,7 +8,7 @@ describe RolesController do
 		it "assigns all roles as @roles" do
 			role = FactoryGirl.create :role
 			get :index, {}, valid_session
-			assigns(:roles).should eq([role])
+			assigns(:roles).should eq([Role.find_by_name("admin"), role])
 		end
 	end
 

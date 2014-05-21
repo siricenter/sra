@@ -1,6 +1,6 @@
 require 'spec_helper'
 describe RegionsController do
-	#login_user
+	login_admin
 
 	before :each do
 		DatabaseCleaner.start
@@ -18,7 +18,7 @@ describe RegionsController do
 
 	describe "GET index" do
 		it "assigns all regions as @regions" do
-			region = Region.create(name: Faker::Name.last_name)
+			region = FactoryGirl.create :region
 			get :index, valid_attributes
 			assigns(:regions).to_a.should eq([region])
 		end
@@ -26,7 +26,7 @@ describe RegionsController do
 
 	describe "GET show" do
 		it "assigns the requested region as @region" do
-			region = Region.create! valid_attributes
+			region = FactoryGirl.create :region
 			get :show, { id:  region.to_param}
 			assigns(:region).should eq(region)
 		end
@@ -41,7 +41,7 @@ describe RegionsController do
 
 	describe "GET edit" do
 		it "assigns the requested region as @region" do
-			region = Region.create! valid_attributes
+			region = FactoryGirl.create :region
 			get :edit, { id: region.to_param }
 			assigns(:region).should eq(region)
 		end
@@ -114,19 +114,19 @@ describe RegionsController do
 
 		describe "with valid params" do
 			it "updates the requested region" do
-				region = Region.create! valid_attributes
+				region = FactoryGirl.create :region
 				Region.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
 				put :update, {:id => region.to_param, :region => { "these" => "params" }}
 			end
 
 			it "assigns the requested region as @region" do
-				region = Region.create! valid_attributes
+				region = FactoryGirl.create :region
 				put :update, {id: region.to_param, region: valid_attributes}
 				assigns(:region).should eq(region)
 			end
 
 			it "redirects to the region" do
-				region = Region.create! valid_attributes
+				region = FactoryGirl.create :region
 				put :update, {id: region.to_param, interview: valid_attributes}
 				response.should redirect_to(region)
 			end
@@ -134,14 +134,14 @@ describe RegionsController do
 
 		describe "with invalid params" do
 			it "assigns the region as @region" do
-				region = Region.create! valid_attributes
+				region = FactoryGirl.create :region
 				Region.any_instance.stub(:save).and_return(false)
 				put :update, {id: region.to_param, interview: {}}
 				assigns(:region).should eq(region)
 			end
 
 			it "re-renders the 'edit' template" do
-				region = Region.create! valid_attributes
+				region = FactoryGirl.create :region
 				Region.any_instance.stub(:save).and_return(false)
 				put :update, {id: region.to_param, interview: {}}
 				response.should render_template("edit")
@@ -152,7 +152,7 @@ describe RegionsController do
 	describe "DELETE destroy" do
 		before :each do
 			DatabaseCleaner.start
-			@region = Region.create valid_attributes
+			@region = FactoryGirl.create :region
 		end
 
 		after :each do
