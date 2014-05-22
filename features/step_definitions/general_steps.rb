@@ -28,6 +28,10 @@ When(/^I press id "(.*?)"$/) do |name|
 	click_on name.to_sym
 end
 
+When(/^I press "(.*?)"$/) do |name|
+	click_on name.to_sym
+end
+
 Then(/^I should be on the "(.*?)" page$/) do |page|
 	current_path.should == "#{page}"
 end
