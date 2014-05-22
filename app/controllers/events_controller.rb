@@ -16,6 +16,10 @@ class EventsController < ApplicationController
 	def show
 		@event = Event.find(params[:id])
 
+		unless @event.user == current_user
+			raise CanCan::AccessDenied
+		end
+
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @event }
