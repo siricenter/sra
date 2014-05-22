@@ -4,14 +4,29 @@ class RolesController < ApplicationController
 
 	def index
 		@roles = Role.all
+
+		respond_to do |format|
+			format.html # index.html.erb
+			format.json { render json: @roles }
+		end
 	end
 
 	def show
 		@role = Role.find(params[:id])
+
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @role }
+		end
 	end
 
 	def edit
 		@role = Role.find(params[:id])
+
+		respond_to do |format|
+			format.html # new.html.erb
+			format.json { render json: @role }
+		end
 	end
 
 	def new
