@@ -104,6 +104,10 @@ FactoryGirl.define do
 		factory.name "Do Something"
 	end
 
+	factory :admin_role, class: :role do |factory|
+		factory.name 'admin'
+	end
+
 	factory :job do |factory|
 		factory.person {FactoryGirl.build :person}
 		factory.occupation {FactoryGirl.build :occupation}
@@ -119,6 +123,12 @@ FactoryGirl.define do
 		factory.password_confirmation "abc123456"
 	end
 
+	factory :email do |factory|
+		factory.email { Faker::Internet.email }
+		factory.password "abc123456"
+		factory.password_confirmation "abc123456"
+	end
+
 	factory :region do |factory|
 		factory.name 'Kyiv'
 	end
@@ -127,5 +137,12 @@ FactoryGirl.define do
 		factory.title 'My big party'
 		factory.start {Time.now}
 		factory.user {User.last}
+	end
+
+	factory :admin, class: :user do |factory|
+		factory.email { Faker::Internet.email }
+		factory.password "abc123456"
+		factory.password_confirmation "abc123456"
+		factory.roles {[Role.find_by_name(:admin)]}
 	end
 end
