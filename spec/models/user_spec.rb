@@ -29,6 +29,8 @@ describe User do
 		@user = User.new
 	end
 
+	it "has a valid factory"
+
 	it "should know when a user has a given role" do
 		@user.roles << Role.create(name: "Field Worker")
 		@user.has_role?("Field Worker").should == true
@@ -37,4 +39,5 @@ describe User do
 	it "should know when a user doesn't have a given role" do
 		@user.has_role?("Executive").should == false
 	end
+
 end

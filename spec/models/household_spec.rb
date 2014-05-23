@@ -20,16 +20,21 @@ describe Household do
 		DatabaseCleaner.clean
 	end
 
-	it "should have a valid factory" do
+	it "has a valid factory" do
 		@household.should be_valid
 	end
 
-	it "should not be valid without a name" do
+	it "isn't valid without a name" do
 		@household.name = nil
 		@household.should_not be_valid
 	end
 	
-	it "should only contain letters" do
+	it "isn't valid without a user" do
+		@household.user = nil
+		@household.should_not be_valid
+	end
+	
+	it "can only contain letters" do
 		@household.name = "abc123"
 		@household.should_not be_valid
 	end
