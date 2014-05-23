@@ -4,7 +4,7 @@ class HouseholdsController < ApplicationController
 	# GET /households
 	# GET /households.json
 	def index
-		@households = Household.all
+		@households = current_user.households
 
 		respond_to do |format|
 			format.html # index.html.erb
