@@ -18,7 +18,7 @@ describe HouseholdsController do
 
 	describe "GET index" do
 		it "assigns all households as @households" do
-			household = Household.create(name: Faker::Name.last_name)
+			household = FactoryGirl.create(:household)
 			get :index, valid_attributes
 			assigns(:households).to_a.should eq([household])
 		end
@@ -26,7 +26,7 @@ describe HouseholdsController do
 
 	describe "GET show" do
 		it "assigns the requested household as @household" do
-			household = Household.create! valid_attributes
+			household = FactoryGirl.create(:household)
 			get :show, { id:  household.to_param}
 			assigns(:household).should eq(household)
 		end
@@ -41,7 +41,7 @@ describe HouseholdsController do
 
 	describe "GET edit" do
 		it "assigns the requested household as @household" do
-			household = Household.create! valid_attributes
+			household = FactoryGirl.create(:household)
 			get :edit, { id: household.to_param }
 			assigns(:household).should eq(household)
 		end
@@ -114,19 +114,19 @@ describe HouseholdsController do
 
 		describe "with valid params" do
 			it "updates the requested household" do
-				household = Household.create! valid_attributes
+				household = FactoryGirl.create(:household)
 				Household.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
 				put :update, {:id => household.to_param, :household => { "these" => "params" }}
 			end
 
 			it "assigns the requested household as @household" do
-				household = Household.create! valid_attributes
+				household = FactoryGirl.create(:household)
 				put :update, {id: household.to_param, household: valid_attributes}
 				assigns(:household).should eq(household)
 			end
 
 			it "redirects to the household" do
-				household = Household.create! valid_attributes
+				household = FactoryGirl.create(:household)
 				put :update, {id: household.to_param, interview: valid_attributes}
 				response.should redirect_to(household)
 			end
@@ -134,14 +134,14 @@ describe HouseholdsController do
 
 		describe "with invalid params" do
 			it "assigns the household as @household" do
-				household = Household.create! valid_attributes
+				household = FactoryGirl.create(:household)
 				Household.any_instance.stub(:save).and_return(false)
 				put :update, {id: household.to_param, interview: {}}
 				assigns(:household).should eq(household)
 			end
 
 			it "re-renders the 'edit' template" do
-				household = Household.create! valid_attributes
+				household = FactoryGirl.create(:household)
 				Household.any_instance.stub(:save).and_return(false)
 				put :update, {id: household.to_param, interview: {}}
 				response.should render_template("edit")
@@ -152,7 +152,7 @@ describe HouseholdsController do
 	describe "DELETE destroy" do
 		before :each do
 			DatabaseCleaner.start
-			@household = Household.create valid_attributes
+			@household = FactoryGirl.create(:household)
 		end
 
 		after :each do

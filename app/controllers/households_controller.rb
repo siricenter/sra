@@ -44,6 +44,7 @@ class HouseholdsController < ApplicationController
 	# POST /households.json
 	def create
 		@household = Household.new(params[:household])
+		@household.user = current_user 
 
 		respond_to do |format|
 			if @household.save

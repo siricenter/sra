@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Interviews" do
 	before :each do
 		DatabaseCleaner.start
-		@household = Household.create(name: "Brewer")
+		@household = FactoryGirl.create :household
 	end
 
 	after :each do

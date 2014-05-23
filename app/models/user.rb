@@ -30,10 +30,12 @@ class User < ActiveRecord::Base
 
 	attr_accessible :email, :password, :password_confirmation, :remember_me
 
+
 	has_and_belongs_to_many :areas
 	has_and_belongs_to_many :roles
 
 	has_many :events
+	has_many :households
 
 	def has_role? role_name
 		name = role_name.to_s

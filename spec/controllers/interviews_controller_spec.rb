@@ -98,7 +98,7 @@ describe InterviewsController do
 		end
 
 		it "assigns all interviews as @interviews" do
-			household = Household.create! household_attributes
+			household = FactoryGirl.create(:household)
 			interview = Interview.create! valid_attributes
 			get :index, {household_id: household.to_param}, valid_session
 			assigns(:interviews).to_a.should eq([interview])
@@ -131,7 +131,7 @@ describe InterviewsController do
 		end
 
 		it "assigns a new interview as @interview" do
-			household = Household.create household_attributes
+			household = FactoryGirl.create(:household)
 			get :new, {:household_id => household.to_param}, valid_session
 			assigns(:interview).should be_a_new(Interview)
 		end
@@ -147,7 +147,7 @@ describe InterviewsController do
 		end
 
 		it "assigns the requested interview as @interview" do
-			household = Household.create! household_attributes
+			household = FactoryGirl.create(:household)
 			interview = Interview.create! valid_attributes
 			interview.household_id = household.id
 			interview.save
@@ -167,7 +167,7 @@ describe InterviewsController do
 			end
 
 			it "creates a new Interview" do
-				household = Household.create household_attributes
+				household = FactoryGirl.create(:household)
 				expect {
 					post :create,
 					{household_id: household.id,
@@ -181,7 +181,7 @@ describe InterviewsController do
 			end
 
 			it "assigns a newly created interview as @interview" do
-				household = Household.create! household_attributes
+				household = FactoryGirl.create(:household)
 				post :create,
 					{household_id: household.id,
 						:interview => valid_attributes,
@@ -194,7 +194,7 @@ describe InterviewsController do
 			end
 
 			it "redirects to new_event path" do
-				household = Household.create! household_attributes
+				household = FactoryGirl.create(:household)
 				post :create,
 					{household_id: household.id,
 						interview: valid_attributes,
@@ -216,7 +216,7 @@ describe InterviewsController do
 			end
 
 			it "assigns a newly created but unsaved interview as @interview" do
-				household = Household.create household_attributes
+				household = FactoryGirl.create(:household)
 				# Trigger the behavior that occurs when invalid params are submitted
 				Interview.any_instance.stub(:save).and_return(false)
 				post :create, {household_id: household.id, :interview => {  }}, valid_session
@@ -225,7 +225,7 @@ describe InterviewsController do
 
 			it "re-renders the 'new' template" do
 				# Trigger the behavior that occurs when invalid params are submitted
-				household = Household.create household_attributes
+				household = FactoryGirl.create(:household)
 				Interview.any_instance.stub(:save).and_return(false)
 				post :create, {household_id: household.id, :interview => {  }}, valid_session
 				response.should render_template("new")
@@ -296,7 +296,7 @@ describe InterviewsController do
 	describe "DELETE destroy" do
 		before :each do
 			DatabaseCleaner.start
-			@household = Household.create household_attributes
+			@household = FactoryGirl.create(:household)
 		end
 
 		after :each do

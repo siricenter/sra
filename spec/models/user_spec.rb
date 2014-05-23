@@ -26,10 +26,12 @@ require 'spec_helper'
 
 describe User do
 	before :each do
-		@user = User.new
+		@user = FactoryGirl.build :user
 	end
 
-	it "has a valid factory"
+	it "has a valid factory" do
+		@user.should be_valid
+	end
 
 	it "should know when a user has a given role" do
 		@user.roles << Role.create(name: "Field Worker")
