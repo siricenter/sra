@@ -143,6 +143,5 @@ FactoryGirl.define do
 		factory.email { Faker::Internet.email }
 		factory.password "abc123456"
 		factory.password_confirmation "abc123456"
-		factory.roles {[Role.find_by_name(:admin)]}
 	end
 end
