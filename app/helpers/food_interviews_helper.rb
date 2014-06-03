@@ -1,0 +1,2 @@
+module FoodInterviewsHelper
+end

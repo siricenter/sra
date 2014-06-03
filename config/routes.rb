@@ -1,5 +1,9 @@
 Sra::Application.routes.draw do
 
+  get "food_interviews/new"
+
+  get "food_interviews/display"
+
 	root to: 'static#landing'
 
 	resources :events
