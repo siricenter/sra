@@ -33,11 +33,11 @@ group :test do
 	gem 'selenium-webdriver'
 	gem 'capybara-webkit'
 	gem 'faker'
-	gem 'rspec-rails'
 end
 
 group :test, :development do
 	gem 'factory_girl_rails'
+	gem 'rspec-rails'
 end
 
 group :development do 
