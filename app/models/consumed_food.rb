@@ -8,5 +8,5 @@ class ConsumedFood
 
   validates :name, presence: true, format: {with: /\A[a-zA-Z ]+\z/}
   validates :amount, presence: true, numericality: true
-  validates :unit, presence: true, inclusion: {in: %w{grams kilograms}}
+  validates :unit, presence: true
 end
