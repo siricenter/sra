@@ -4,7 +4,7 @@ Feature: Field Worker conducts food interview
 	In order to help the families feed themselves
 
 	Scenario: Enter food information
-		When I am on the "/food_interviews/new" page 
+		When I go to the "/food_interviews/new" page 
 		And I search for "chard"
-		And I click ""
-		Then the form should contain ""
+		And I press "513fcc648110a4cafb90ca5e"
+		Then the form should contain "513fcc648110a4cafb90ca5e"
