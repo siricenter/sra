@@ -18,7 +18,7 @@ describe HouseholdsController do
 
 	describe "GET index" do
 		it "assigns all households as @households" do
-			household = FactoryGirl.create(:household)
+			household = FactoryGirl.create(:household, user: @current_user)
 			get :index, valid_attributes
 			assigns(:households).to_a.should eq([household])
 		end

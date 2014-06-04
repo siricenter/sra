@@ -1,5 +1,6 @@
-Then(/^I should be on the create person page$/) do
-	current_path.should == new_household_person_path(@household)
+Then(/^I should be on the create person page for the "(.*)" family$/) do |family_name|
+	household = Household.find_by_name(family_name)
+	current_path.should == new_household_person_path(household)
 end
 
 Given(/^I am on the "(.*)" family create person page$/) do |family_name|

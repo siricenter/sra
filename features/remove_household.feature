@@ -7,5 +7,5 @@ Feature: Field worker removes household
 		Given I am a "Field Worker"
 		And I have created a family named "Martinez"
 		When I go to the "households" page
-		And I press the delete household button
+		And I press the delete "Martinez" household button
 		Then I should be on the "/households" page

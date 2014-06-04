@@ -1,18 +1,18 @@
 Given(/^I am a "(.*?)"$/) do |role|
-	user = User.new({email: "user@user.com", password: "abc123456", password_confirmation: "abc123456"})
-	user.roles << Role.find_by_name(role)
-	user.save!
+	@current_user = User.new({email: "user@user.com", password: "abc123456", password_confirmation: "abc123456"})
+	@current_user.roles << Role.find_by_name(role)
+	@current_user.save!
 
 	visit '/users/sign_in'
 
-	fill_in "user[email]", with: user.email
-	fill_in "user_password", with: user.password
+	fill_in "user[email]", with: @current_user.email
+	fill_in "user_password", with: @current_user.password
 
 	click_button "Sign in"
 end
 
 Given(/^a user with email "(.*?)" has been created$/) do |email|
-	user = User.create({email: email, password: "abc123456", password_confirmation: "abc123456"})
+	User.create({email: email, password: "abc123456", password_confirmation: "abc123456"})
 end
 
 Given(/^the "(.*?)" role has been created$/) do |name|

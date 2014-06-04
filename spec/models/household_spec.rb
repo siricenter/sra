@@ -34,9 +34,4 @@ describe Household do
 		@household.user = nil
 		@household.should_not be_valid
 	end
-	
-	it "can only contain letters" do
-		@household.name = "abc123"
-		@household.should_not be_valid
-	end
 end

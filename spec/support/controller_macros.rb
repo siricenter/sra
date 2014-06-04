@@ -3,7 +3,8 @@ module ControllerMacros
 		before :each do
 			DatabaseCleaner.start
 			@request.env["devise.mapping"] = Devise.mappings[:user]
-			sign_in FactoryGirl.create :user
+			@current_user = FactoryGirl.create :user
+			sign_in @current_user
 		end
 
 		after :each do
@@ -14,7 +15,7 @@ module ControllerMacros
 	def login_admin
 		before :each do
 			@request.env["devise.mapping"] = Devise.mappings[:user]
-			admin = FactoryGirl.create(:admin)
+			@admin = FactoryGirl.create(:admin)
 			admin_role = FactoryGirl.build(:admin_role)
 			if admin_role.valid?
 				admin_role.save 

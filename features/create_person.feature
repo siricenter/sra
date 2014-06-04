@@ -8,7 +8,7 @@ Feature: Field worker adds person to household
 		And I have created a family named "Martinez"
 		And I am on the "Martinez" family's personal page
 		When I press id "add_person_top" 
-		Then I should be on the create person page
+		Then I should be on the create person page for the "Martinez" family
 
 	Scenario: Create Person
 		Given I am a "Field Worker"
