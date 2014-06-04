@@ -13,9 +13,9 @@ class Household < ActiveRecord::Base
 	attr_accessible :name
 	has_many :people
 	belongs_to :user
+
 	accepts_nested_attributes_for :people
-	validates :name, 
-		presence: true,
-		format: { with: /\A[a-zA-Z' ]+\z/ }
+
+	validates :name, presence: true
 	validates_presence_of :user
 end
