@@ -12,6 +12,7 @@ gem 'haml'
 gem 'mongoid'
 gem 'bootstrap-sass'
 gem 'cancan'
+gem 'nutritionix'
 
 
 # Gems used only for assets and not required

@@ -155,20 +155,28 @@
   %h2
     Foods Eaten
 
+    %h4
+      Don't push enter to search - it will cause problems
+
   .row{id: "add_food_eaten"}
-    %input{type: "button", onclick: "newFoodEaten()", value: "Add New Food Consumed"}
+    #consumed_foods
+    %input{type: "search", placeholder: "Search for consumed food", id: "consumed_food_search"}
+    %input{type: "button", value: "Search!"}
+    #display
 
-  %h2
-    Foods Stored
+  - if false
+    %h2
+      Foods Stored
 
-  .row{id: "add_food_stored"}
-    %input{type: "button", onclick: "newFoodStored()", value: "Add New Food Stored"}
+    .row{id: "add_food_stored"}
+      %input{type: "button", value: "Add New Food Stored"}
+      
 
-  %h2
-    Foods Purchased
+    %h2
+      Foods Purchased
 
-  .row{id: "add_food_purchase"}
-    %input{type: "button", onclick: "newFoodPurchased()", value: "Add Food Purchased"}
+    .row{id: "add_food_purchase"}
+      %input{type: "button", value: "Add Food Purchased"}
 
   .row
     = f.submit

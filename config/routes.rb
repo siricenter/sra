@@ -1,8 +1,8 @@
 Sra::Application.routes.draw do
 
   get "food_interviews/new"
-
   get "food_interviews/display"
+  get "search", to: "Search#search"
 
 	root to: 'static#landing'
 
