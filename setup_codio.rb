@@ -39,8 +39,8 @@ def install_vundle
 	puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 end
 
-#install_mysql
-#install_mongo
+install_mysql
+install_mongo
 bundle_install
 setup_database
 start_server

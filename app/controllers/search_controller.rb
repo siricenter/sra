@@ -1,4 +1,4 @@
-require "nutritionix/api_1_1"
+#require "nutritionix/api_1_1"
 class SearchController < ApplicationController
 	def search
 		app_id = "f67bfd42"
@@ -18,7 +18,6 @@ class SearchController < ApplicationController
 		@results_json = provider.nxql_search(search_params)
 
 		respond_to do |format|
-			format.html 
 			format.json { render json: @results_json }
 		end
 	end
