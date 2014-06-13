@@ -12,6 +12,7 @@ gem 'haml'
 gem 'mongoid'
 gem 'bootstrap-sass'
 gem 'cancan'
+gem 'nutritionix'
 
 
 # Gems used only for assets and not required
@@ -29,9 +30,9 @@ end
 group :test do 
 	gem 'cucumber-rails', require: false
 	gem 'database_cleaner'
-	gem 'capybara'
-	gem 'selenium-webdriver'
-	gem 'capybara-webkit'
+	#gem 'capybara'
+	#gem 'selenium-webdriver'
+	#gem 'capybara-webkit'
 	gem 'faker'
 end
 
