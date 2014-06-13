@@ -27,8 +27,24 @@ def start_server
     puts `rails server -d`
 end
 
+def get_vimrc
+    `pushd .`
+    `cd ~`
+    puts `git clone https://github.com/CJPoll/devenvset`
+    puts `mv devenvset/files/default/.vimrc ~`
+    puts `rm -rf devenvset`
+	`popd`
+end
+
+def install_vundle
+	puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+    `vim +PluginInstall +qa`
+end
+
 install_mysql
 install_mongo
 bundle_install
 setup_database
 start_server
+get_vimrc
+install_vundle
