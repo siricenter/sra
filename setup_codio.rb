@@ -17,7 +17,9 @@ def install_mongo
 end
 
 def setup_database
-    puts `mysql -u root -p < setup_database.sh`
+    puts `mysql -u root < setup_database.sh`
+	puts `rake db:migrate`
+    puts `rake db:seed`
 end
 
 def start_server
@@ -25,8 +27,8 @@ def start_server
     puts `rails server -d`
 end
 
-#install_mysql
-#install_mongo
-#bundle_install
+install_mysql
+install_mongo
+bundle_install
 setup_database
 start_server
