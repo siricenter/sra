@@ -61,35 +61,35 @@ When(/^I fill out the interview form$/) do
 
 	# Testing new food stored
 
-	click_on 'Add New Food Stored'
+	#click_on 'Add New Food Stored'
 
-	fill_in 'stored_foods[stored_food1[name]]', with: 'Chard'
-	fill_in 'stored_foods[stored_food1[amount]]', with: '100'
-	select 'grams', from: 'stored_foods[stored_food1[unit]]'
+	#fill_in 'stored_foods[stored_food1[name]]', with: 'Chard'
+	#fill_in 'stored_foods[stored_food1[amount]]', with: '100'
+	#select 'grams', from: 'stored_foods[stored_food1[unit]]'
 
-	click_on 'Add New Food Stored'
+	#click_on 'Add New Food Stored'
 
-	fill_in 'stored_foods[stored_food2[name]]', with: 'Carrots'
-	fill_in 'stored_foods[stored_food2[amount]]', with: '100'
-	select 'grams', from: 'stored_foods[stored_food2[unit]]'
+	#fill_in 'stored_foods[stored_food2[name]]', with: 'Carrots'
+	#fill_in 'stored_foods[stored_food2[amount]]', with: '100'
+	#select 'grams', from: 'stored_foods[stored_food2[unit]]'
 
-	# Testing new food purchased
+	## Testing new food purchased
 
-	click_on 'Add Food Purchased'
+	#click_on 'Add Food Purchased'
 
-	fill_in 'purchased_foods[food1[name]]', with: 'Chard'
-	fill_in 'purchased_foods[food1[amount]]', with: '100'
-	select 'grams', from: 'purchased_foods[food1[unit]]'
-	fill_in 'purchased_foods[food1[frequency_amount]]', with: '3'
-	select 'day', from: 'purchased_foods[food1[time_unit]]'
+	#fill_in 'purchased_foods[food1[name]]', with: 'Chard'
+	#fill_in 'purchased_foods[food1[amount]]', with: '100'
+	#select 'grams', from: 'purchased_foods[food1[unit]]'
+	#fill_in 'purchased_foods[food1[frequency_amount]]', with: '3'
+	#select 'day', from: 'purchased_foods[food1[time_unit]]'
 
-	click_on 'Add Food Purchased'
+	#click_on 'Add Food Purchased'
 
-	fill_in 'purchased_foods[food2[name]]', with: 'Carrots'
-	fill_in 'purchased_foods[food2[amount]]', with: '100'
-	select 'grams', from: 'purchased_foods[food2[unit]]'
-	fill_in 'purchased_foods[food2[frequency_amount]]', with: '3'
-	select 'day', from: 'purchased_foods[food2[time_unit]]'
+	#fill_in 'purchased_foods[food2[name]]', with: 'Carrots'
+	#fill_in 'purchased_foods[food2[amount]]', with: '100'
+	#select 'grams', from: 'purchased_foods[food2[unit]]'
+	#fill_in 'purchased_foods[food2[frequency_amount]]', with: '3'
+	#select 'day', from: 'purchased_foods[food2[time_unit]]'
 
-	click_on 'Create Interview'
+	#click_on 'Create Interview'
 end

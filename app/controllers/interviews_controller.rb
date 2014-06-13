@@ -52,43 +52,44 @@ class InterviewsController < ApplicationController
 	# POST /interviews
 	# POST /interviews.json
 	def create
-		@household = Household.find(params[:household_id])
+		render inline: params.inspect
+		#@household = Household.find(params[:household_id])
 
-		@interview = Interview.new(params[:interview])
-		@interview.health = Health.new(params[:health])
-		@interview.expense = Expense.new(params[:expense])
-		@interview.morbidity = Morbidity.new(params[:morbidity])
-		@interview.household_id = params[:household_id]
+		#@interview = Interview.new(params[:interview])
+		#@interview.health = Health.new(params[:health])
+		#@interview.expense = Expense.new(params[:expense])
+		#@interview.morbidity = Morbidity.new(params[:morbidity])
+		#@interview.household_id = params[:household_id]
 
-		@path = [@household, @interview]
+		#@path = [@household, @interview]
 
-		if params[:consumed_foods]
-			params[:consumed_foods].each do |key, food|
-				@interview.consumed_foods.build(food)
-			end
-		end
+		#if params[:consumed_foods]
+		#	params[:consumed_foods].each do |key, food|
+		#		@interview.consumed_foods.build(food)
+		#	end
+		#end
 
-		if params[:stored_foods]
-			params[:stored_foods].each do |key, food|
-				@interview.stored_foods.build(food)
-			end
-		end
+		#if params[:stored_foods]
+		#	params[:stored_foods].each do |key, food|
+		#		@interview.stored_foods.build(food)
+		#	end
+		#end
 
-		if params[:purchased_foods]
-			params[:purchased_foods].each do |key, food|
-				@interview.purchased_foods.build(food)
-			end
-		end
+		#if params[:purchased_foods]
+		#	params[:purchased_foods].each do |key, food|
+		#		@interview.purchased_foods.build(food)
+		#	end
+		#end
 
-		respond_to do |format|
-			if @interview.save
-				format.html { redirect_to new_event_path, notice: 'Interview was successfully create.' }
-				format.json { render json: @interview, status: :created, location: @interview }
-			else
-				format.html { render action: "new" }
-				format.json { render json: @interview.errors, status: :unprocessable_entity }
-			end
-		end
+		#respond_to do |format|
+		#	if @interview.save
+		#		format.html { redirect_to new_event_path, notice: 'Interview was successfully create.' }
+		#		format.json { render json: @interview, status: :created, location: @interview }
+		#	else
+		#		format.html { render action: "new" }
+		#		format.json { render json: @interview.errors, status: :unprocessable_entity }
+		#	end
+		#end
 	end
 
 	# PUT /interviews/1

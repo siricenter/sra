@@ -9,29 +9,82 @@
 createElement = (element) ->
 	document.createElement element
 
-@newFoodStored = () ->
+searchConsumed = () ->
+	searchString = this.value
+	url = "/search.json?query=#{searchString}"
+	$.ajax({
+		async: true,
+		url: url,
+		success: (results) ->
+			display = $('#display')
+			display.empty()
+			for result in results.hits
+				do (result) ->
+				  newRow = $('<div>')
+				  newRow.bind 'click', () ->
+					  window.eatenFoodCount += 1
+					  formRow = $('<div>').addClass('row')
+
+					  nameLabel = $('<label>')
+					  nameLabel.text('Name: ')
+					  nameLabel.addClass("col-sm-2 col-md-1")
+
+					  foodName = $('<input>')
+					  foodName.attr("type", "input")
+					  foodName.attr("disabled", "disabled")
+					  foodName.attr("name", "consumed_foods[consumed_food_#{window.eatenFoodCount}[name]]")
+					  foodName.attr("id", "consumed_foods_#{result.fields.item_id}")
+					  foodName.val(result.fields.item_name)
+					  foodName.addClass("textfield col-sm-4 col-md-5")
+
+					  servingsLabel = $('<label>').text('Servings:')
+					  servingsLabel.addClass("col-sm-2 col-md-2")
+
+					  servingsSelect = $('<select>').addClass('col-sm-1 col-md-1')
+
+					  for number in [1..10] by 1
+						  option = $('<option>').val(number).text(number)
+						  servingsSelect.append(option)
+
+					  frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
+
+					  frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
+
+					  frequencyOptions = ['day', 'week', 'month', 'year']
+					  for time in frequencyOptions
+						  option = $('<option>').val(time).text(time)
+						  frequencySelect.append(option)
+
+					  formRow.append(nameLabel)
+					  formRow.append(foodName)
+					  formRow.append(servingsLabel)
+					  formRow.append(servingsSelect)
+					  formRow.append(frequencyLabel)
+					  formRow.append(frequencySelect)
+
+					  $('#consumed_foods').append(formRow)
+				  newRow.append(result.fields.item_name)
+				  display.append(newRow)
+		error: (xhr, status, errorThrown) ->
+			window.alert "Status: #{status}; Error: #{errorThrown}"
+	})
+
+newFoodStored = () ->
 	@storedFoodCount++
 	newRow = foodRow "stored_food", @storedFoodCount
-
 	beforeRow = document.getElementById "add_food_stored"
-
 	addRow newRow, beforeRow
 
-
-@newFoodEaten = () ->
+newFoodEaten = () ->
 	@eatenFoodCount++
 	newRow = foodRow "consumed_food", @eatenFoodCount
-
 	beforeRow = document.getElementById "add_food_eaten"
-
 	addRow newRow, beforeRow
 
-@newFoodPurchased = () ->
+newFoodPurchased = () ->
 	@purchasedFoodCount++
 	newRow = purchasedFoodRow()
-
 	beforeRow = document.getElementById "add_food_purchase"
-
 	addRow newRow, beforeRow
 
 addRow = (row, before) ->
@@ -144,3 +197,8 @@ purchasedFoodRow = () ->
 	newRow.appendChild timeSelect
 
 	return newRow
+
+$(document).ready () ->
+	#$('#add_food_eaten').bind('click', () -> newFoodStored()) 
+	#$('#add_food_purchase').bind('click', () -> newFoodPurchased()) 
+	$('#consumed_food_search').bind('change', searchConsumed)
