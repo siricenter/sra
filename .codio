@@ -3,7 +3,7 @@
 
 // Run button configuration
   "commands": {
-        "Node version": "node --version"
+      "Build Server": "./setup_codio.rb"
   },
 
 // Preview button configuration
