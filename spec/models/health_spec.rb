@@ -5,11 +5,11 @@ describe Health do
 		@health = FactoryGirl.build(:health)
 	end
 
-	it "should have a valid factory" do
+	it "has a valid factory" do
 		@health.should be_valid
 	end
 
-	it "should not be valid without a bathroom_type" do
+	it "isn't valid without a bathroom_type" do
 		@health.bathroom_type = nil
 		@health.should_not be_valid
 	end
