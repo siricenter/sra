@@ -27,30 +27,30 @@ def setup_database
 end
 
 def start_server
-    puts `cd ~/workspace`
-    puts `rails server -d`
+	puts `cd ~/workspace`
+	puts `rails server -d`
 end
 
 def get_vimrc
-    `cd ~`
-    puts `git clone https://github.com/CJPoll/devenvset`
-    puts `mv devenvset/files/default/.vimrc ~`
-    puts `rm -rf devenvset`
-    `cd ~/workspace`
+	unless File.exists? "/home/codio/.vimrc"
+		`cd ~`
+		puts `git clone https://github.com/CJPoll/devenvset`
+		puts `mv devenvset/files/default/.vimrc ~`
+		puts `rm -rf devenvset`
+		`cd ~/workspace`
+	end
 end
 
 def install_vundle
-	unless File.directory? "~/.vim/bundle/"
-		puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
-    end
+	puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim` unless File.directory? "/home/codio/.vim/bundle/"
 end
 
 def install_packages
 	packages = [
 		"ack",
 		"tmux"
-		]
-	
+	]
+
 	packages.each do |package|
 		`parts install #{package}`
 	end
