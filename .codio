@@ -3,7 +3,9 @@
 
 // Run button configuration
   "commands": {
-      "Build Server": "./setup_codio.rb"
+	"Build Server": "./setup_codio.rb",
+	  "Run RSpec": "rake spec",
+	  "Run Cucumber": "rake cucumber"
   },
 
 // Preview button configuration
