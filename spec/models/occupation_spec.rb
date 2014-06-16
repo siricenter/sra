@@ -15,11 +15,11 @@ describe Occupation do
 		@occupation = FactoryGirl.build(:occupation)
 	end
 
-	it "should have a valid factory" do
+	it "has a valid factory" do
 		@occupation.should be_valid
 	end
 
-	it "shouldn't be valid without a name" do
+	it "isn't valid without a name" do
 		@occupation.name = nil
 		@occupation.should_not be_valid
 	end
