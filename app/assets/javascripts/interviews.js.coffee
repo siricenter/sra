@@ -5,6 +5,7 @@
 @eatenFoodCount = 0
 @storedFoodCount = 0
 @purchasedFoodCount = 0
+@results = {}
 
 createElement = (element) ->
 	document.createElement element
@@ -16,68 +17,30 @@ searchConsumed = () ->
 		async: true,
 		url: url,
 		success: (results) ->
+			window.results = results
 			display = $('#display')
 			display.empty()
 			for result in results.hits
 				do (result) ->
-                    newRow = $('<div>')
-                    newRow.bind 'click', () -> 
-                    window.eatenFoodCount += 1
-                    formRow = $('<div>').addClass('row')
-
-                    nameLabel = $('<label>')
-					nameLabel.text('Name: ')
-					nameLabel.addClass("col-sm-2 col-md-1")
-
-					foodName = $('<input>')
-					foodName.attr("type", "input")
-					foodName.attr("disabled", "disabled")
-					foodName.attr("name", "consumed_foods[consumed_food_#{window.eatenFoodCount}[name]]")
-					foodName.attr("id", "consumed_foods_#{result.fields.item_id}")
-					foodName.val(result.fields.item_name)
-					foodName.addClass("textfield col-sm-4 col-md-5")
-
-					servingsLabel = $('<label>').text('Servings:')
-					servingsLabel.addClass("col-sm-2 col-md-2")
-
-					servingsSelect = $('<select>').addClass('col-sm-1 col-md-1')
-
-					for number in [1..10] by 1
-						option = $('<option>').val(number).text(number)
-						servingsSelect.append(option)
-
-					frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
-
-					frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
-
-					frequencyOptions = ['day', 'week', 'month', 'year']
-					for time in frequencyOptions
-                        option = $('<option>').val(time).text(time)
-                    	frequencySelect.append(option)
-
-					formRow.append(nameLabel)
-					formRow.append(foodName)
-					formRow.append(servingsLabel)
-					formRow.append(servingsSelect)
-					formRow.append(frequencyLabel)
-					formRow.append(frequencySelect)
-					$('#consumed_foods').append(formRow)
+					newRow = $('<div>').attr('id', result.fields.item_id)
+					newRow.bind 'click', newFoodEaten
 					newRow.append(result.fields.item_name)
 					display.append(newRow)
 		error: (xhr, status, errorThrown) ->
 			window.alert "Status: #{status}; Error: #{errorThrown}"
 	})
 
-newFoodStored = () ->
-	@storedFoodCount++
-	newRow = foodRow "stored_food", @storedFoodCount
-	beforeRow = document.getElementById "add_food_stored"
-	addRow newRow, beforeRow
+findResult = (id) ->
+	for result in window.results.hits
+		if result._id == id
+			return result
+	return null
 
-newFoodEaten = () ->
-	@eatenFoodCount++
-	newRow = foodRow "consumed_food", @eatenFoodCount
-	beforeRow = document.getElementById "add_food_eaten"
+newFoodEaten = (event) ->
+	window.eatenFoodCount++
+	result = findResult(event.target.id)
+	newRow = foodRow("consumed_food", @eatenFoodCount, result)
+	beforeRow = $('#consumed_foods')
 	addRow newRow, beforeRow
 
 newFoodPurchased = () ->
@@ -87,8 +50,7 @@ newFoodPurchased = () ->
 	addRow newRow, beforeRow
 
 addRow = (row, before) ->
-	form = document.getElementById "new_interview"
-	form.insertBefore row, before
+	row.insertBefore(before)
 
 addOptions = (select, options) ->
 	for element in options
@@ -96,40 +58,46 @@ addOptions = (select, options) ->
 		option.innerHTML = element
 		select.appendChild option
 
-foodRow = (name, count) ->
-	newRow = createElement "div"
-	newRow.setAttribute "class", "row"
+foodRow = (name, count, result) ->
+	newRow = $('<div>').addClass('row')
 
-	foodNameLabel = createElement "label"
-	foodNameLabel.innerHTML = "Name: "
-	foodNameLabel.setAttribute "class", "col-sm-2"
+	nameLabel = $('<label>')
+	nameLabel.text('Name: ')
+	nameLabel.addClass("col-sm-2 col-md-1")
 
-	foodNameInput = createElement "input"
-	foodNameInput.setAttribute "type", "text_field"
-	foodNameInput.setAttribute "class", "textfield " + "col-sm-2 " + "col-md-3"
-	foodNameInput.setAttribute "name", "#{name}s[#{name}#{count}[name]]"
+	foodName = $('<input>')
+	foodName.attr("type", "input")
+	foodName.attr("readonly", "true")
+	foodName.attr("name", "consumed_foods[consumed_food_#{window.eatenFoodCount}[name]]")
+	foodName.attr("id", "consumed_foods_#{result.fields.item_id}")
+	foodName.val(result.fields.item_name)
+	foodName.addClass("textfield col-sm-4 col-md-5")
 
-	foodAmountLabel = createElement "label"
-	foodAmountLabel.innerHTML = "Amount: "
-	foodAmountLabel.setAttribute "class", "col-sm-2"
+	servingsLabel = $('<label>').text('Servings:')
+	servingsLabel.addClass("col-sm-2 col-md-2")
 
-	foodAmountInput = createElement "input"
-	foodAmountInput.setAttribute "type", "number"
-	foodAmountInput.setAttribute "class", "textfield " + "col-sm-2 " + "col-md-3"
-	foodAmountInput.setAttribute "name", "#{name}s[#{name}#{count}[amount]]"
+	servingsSelect = $('<select>').addClass('col-sm-1 col-md-1')
 
-	foodUnitSelect = createElement "select"
-	foodUnitSelect.setAttribute "name", "#{name}s[#{name}#{count}[unit]]"
+	for number in [1..10] by 1
+		option = $('<option>').val(number).text(number)
+		servingsSelect.append(option)
 
-	foodUnits = ["grams", "kilograms"]
-	addOptions foodUnitSelect, foodUnits
+	frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
 
-	newRow.appendChild foodNameLabel
-	newRow.appendChild foodNameInput
-	newRow.appendChild foodAmountLabel
-	newRow.appendChild foodAmountInput
-	newRow.appendChild foodUnitSelect
+	frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
 
+	frequencyOptions = ['day', 'week', 'month', 'year']
+	for time in frequencyOptions
+		option = $('<option>').val(time).text(time)
+		frequencySelect.append(option)
+
+	newRow.append(nameLabel)
+	newRow.append(foodName)
+	newRow.append(servingsLabel)
+	newRow.append(servingsSelect)
+	newRow.append(frequencyLabel)
+	newRow.append(frequencySelect)
+	
 	return newRow
 
 purchasedFoodRow = () ->
