@@ -5,21 +5,25 @@ def bundle_install
 end
 
 def install_mysql
-    puts `parts install mariadb`
-    puts `parts stop mariadb`
+	unless `parts list`.match(/mariadb/)
+		puts `parts install mariadb`
+	end
+
 	puts `parts start mariadb`
 end
 
 def install_mongo
-	puts `parts install mongodb`
-    puts `parts stop mongodb`
-    puts `parts start mongodb`
+	unless `parts list`.match(/mongodb/)
+		puts `parts install mongodb`
+	end
+
+	puts `parts start mongodb`
 end
 
 def setup_database
-    puts `mysql -u root < setup_database.sh`
+	puts `mysql -u root < setup_database.sh`
 	puts `rake db:migrate`
-    puts `rake db:seed`
+	puts `rake db:seed`
 end
 
 def start_server
@@ -36,7 +40,20 @@ def get_vimrc
 end
 
 def install_vundle
-	puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+	unless File.directory? "~/.vim/bundle/"
+		puts `git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
+    end
+end
+
+def install_packages
+	packages = [
+		"ack",
+		"tmux"
+		]
+	
+	packages.each do |package|
+		`parts install #{package}`
+	end
 end
 
 install_mysql
@@ -46,3 +63,4 @@ setup_database
 start_server
 get_vimrc
 install_vundle
+install_packages
