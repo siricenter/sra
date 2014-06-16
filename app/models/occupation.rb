@@ -1,3 +1,4 @@
+# //@annotation:tour model-active-record-1
 # == Schema Information
 #
 # Table name: occupations
@@ -14,3 +15,4 @@ class Occupation < ActiveRecord::Base
 
   validates :name, presence: true
 end
+# //@annotation:/tour model-active-record-1
