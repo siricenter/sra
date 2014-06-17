@@ -1,0 +1,14 @@
+!!! 5
+%html
+	%head
+		%title
+			Sra
+		= stylesheet_link_tag "households", :media => "all"
+		= csrf_meta_tags
+	%body
+
+		= render :partial => '/layouts/navbar'
+
+		= yield
+    
+		= render '/layouts/footer'
