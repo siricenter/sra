@@ -4,7 +4,7 @@
 %h1
   Show Interview
 
-= @interview.to_json
+= @interview.consumed_foods.to_json
 
 
 = link_to 'Edit', edit_interview_path(@interview)
