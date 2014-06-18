@@ -6,7 +6,7 @@
 	"Build Server": "./setup_codio.rb",
 	  "Run RSpec": "rake db:test:prepare; rake spec",
 	  "Run Cucumber": "rake cucumber",
-	  "Compile Assets" : "rake assets:clean; RAILS_ENV=development bundle exec rake assets:precompile",
+	  "Compile Assets" : "rake assets:clean; bundle exec rake assets:precompile",
 	  "Clean Assets" : "rake assets:clean"
   },
 
