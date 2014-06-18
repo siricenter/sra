@@ -24,7 +24,7 @@ class PeopleController < ApplicationController
 				format.html {redirect_to @household}
 				format.json {render json: @household, status: :created, location: @household}
 			else
-				format.html { render action: "new" }
+				format.html { redirect_to new_household_person_path }
 				format.json { render json: @person.errors, status: :unprocessable_entity }
 			end
 		end

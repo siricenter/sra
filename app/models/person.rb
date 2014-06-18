@@ -33,5 +33,4 @@ class Person < ActiveRecord::Base
 	validates :family_name, presence: true
 	validates :gender, presence: true
 	validates :given_name, presence: true
-	validates :in_school, presence: true
 end
