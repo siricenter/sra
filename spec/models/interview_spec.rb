@@ -3,6 +3,11 @@ require 'spec_helper'
 describe Interview do
 	before :each do
 		@interview = FactoryGirl.build(:interview)
+		#DatabaseCleaner[:mongoid].start
+	end
+
+	after :each do
+		#DatabaseCleaner[:mongoid].clean
 	end
 
 	it "should have a valid factory" do
