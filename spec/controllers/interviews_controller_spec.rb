@@ -20,11 +20,11 @@ require 'spec_helper'
 
 describe InterviewsController do
 	before :each do
-		DatabaseCleaner.start
+		DatabaseCleaner[:mongoid].start
 	end
 
 	after :each do
-		DatabaseCleaner.clean
+		DatabaseCleaner[:mongoid].clean
 	end
 
 	# This should return the minimal set of attributes required to create a valid
@@ -90,16 +90,16 @@ describe InterviewsController do
 
 	describe "GET index" do
 		before :each do
-			DatabaseCleaner.start
+			DatabaseCleaner[:mongoid].start
 		end
 
 		after :each do
-			DatabaseCleaner.clean
+			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "assigns all interviews as @interviews" do
 			household = FactoryGirl.create(:household)
-			interview = Interview.create! valid_attributes
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1010})
 			get :index, {household_id: household.to_param}, valid_session
 			assigns(:interviews).to_a.should eq([interview])
 		end
@@ -107,15 +107,15 @@ describe InterviewsController do
 
 	describe "GET show" do
 		before :each do
-			DatabaseCleaner.start
+			DatabaseCleaner[:mongoid].start
 		end
 
 		after :each do
-			DatabaseCleaner.clean
+			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "assigns the requested interview as @interview" do
-			interview = Interview.create! valid_attributes
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1009})
 			get :show, {:id => interview.to_param}, valid_session
 			assigns(:interview).should eq(interview)
 		end
@@ -123,11 +123,11 @@ describe InterviewsController do
 
 	describe "GET new" do
 		before :each do
-			DatabaseCleaner.start
+			DatabaseCleaner[:mongoid].start
 		end
 
 		after :each do
-			DatabaseCleaner.clean
+			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "assigns a new interview as @interview" do
@@ -139,16 +139,16 @@ describe InterviewsController do
 
 	describe "GET edit" do
 		before :each do
-			DatabaseCleaner.start
+			DatabaseCleaner[:mongoid].start
 		end
 
 		after :each do
-			DatabaseCleaner.clean
+			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "assigns the requested interview as @interview" do
 			household = FactoryGirl.create(:household)
-			interview = Interview.create! valid_attributes
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1001})
 			interview.household_id = household.id
 			interview.save
 			get :edit, {:id => interview.to_param}, valid_session
@@ -159,11 +159,11 @@ describe InterviewsController do
 	describe "POST create" do
 		describe "with valid params" do
 			before :each do
-				DatabaseCleaner.start
+				DatabaseCleaner[:mongoid].start
 			end
 
 			after :each do
-				DatabaseCleaner.clean
+				DatabaseCleaner[:mongoid].clean
 			end
 
 			it "creates a new Interview" do
@@ -208,11 +208,11 @@ describe InterviewsController do
 
 		describe "with invalid params" do
 			before :each do
-				DatabaseCleaner.start
+				DatabaseCleaner[:mongoid].start
 			end
 
 			after :each do
-				DatabaseCleaner.clean
+				DatabaseCleaner[:mongoid].clean
 			end
 
 			it "assigns a newly created but unsaved interview as @interview" do
@@ -236,15 +236,15 @@ describe InterviewsController do
 	describe "PUT update" do
 		describe "with valid params" do
 			before :each do
-				DatabaseCleaner.start
+				DatabaseCleaner[:mongoid].start
 			end
 
 			after :each do
-				DatabaseCleaner.clean
+				DatabaseCleaner[:mongoid].clean
 			end
 
 			it "updates the requested interview" do
-				interview = Interview.create! valid_attributes
+				interview = FactoryGirl.create(:interview, {bedroom_count: 1002})
 				# Assuming there are no other interviews in the database, this
 				# specifies that the Interview created on the previous line
 				# receives the :update_attributes message with whatever params are
@@ -254,13 +254,13 @@ describe InterviewsController do
 			end
 
 			it "assigns the requested interview as @interview" do
-				interview = Interview.create! valid_attributes
+				interview = FactoryGirl.create(:interview, {bedroom_count: 1003})
 				put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
 				assigns(:interview).should eq(interview)
 			end
 
 			it "redirects to the interview" do
-				interview = Interview.create! valid_attributes
+				interview = FactoryGirl.create(:interview, {bedroom_count: 1004})
 				put :update, {:id => interview.to_param, :interview => valid_attributes}, valid_session
 				response.should redirect_to(interview)
 			end
@@ -268,15 +268,15 @@ describe InterviewsController do
 
 		describe "with invalid params" do
 			before :each do
-				DatabaseCleaner.start
+				DatabaseCleaner[:mongoid].start
 			end
 
 			after :each do
-				DatabaseCleaner.clean
+				DatabaseCleaner[:mongoid].clean
 			end
 
 			it "assigns the interview as @interview" do
-				interview = Interview.create! valid_attributes
+				interview = FactoryGirl.create(:interview, {bedroom_count: 1005})
 				# Trigger the behavior that occurs when invalid params are submitted
 				Interview.any_instance.stub(:save).and_return(false)
 				put :update, {:id => interview.to_param, :interview => {  }}, valid_session
@@ -284,7 +284,7 @@ describe InterviewsController do
 			end
 
 			it "re-renders the 'edit' template" do
-				interview = Interview.create! valid_attributes
+				interview = FactoryGirl.create(:interview, {bedroom_count: 1006})
 				# Trigger the behavior that occurs when invalid params are submitted
 				Interview.any_instance.stub(:save).and_return(false)
 				put :update, {:id => interview.to_param, :interview => {  }}, valid_session
@@ -295,23 +295,23 @@ describe InterviewsController do
 
 	describe "DELETE destroy" do
 		before :each do
-			DatabaseCleaner.start
+			DatabaseCleaner[:mongoid].start
 			@household = FactoryGirl.create(:household)
 		end
 
 		after :each do
-			DatabaseCleaner.clean
+			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "destroys the requested interview" do
-			interview = Interview.create! valid_attributes
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1007})
 			expect {
 				delete :destroy, {:household_id => @household.to_param,:id => interview.to_param}, valid_session
 			}.to change(Interview, :count).by(-1)
 		end
 
 		it "redirects to the interviews list" do
-			interview = Interview.create! valid_attributes
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1008})
 			delete :destroy, {:id => interview.to_param}, valid_session
 			response.should redirect_to(household_interviews_url(Household.first))
 		end
