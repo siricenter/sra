@@ -4,7 +4,10 @@
     %h2
       Self Reliance + Sustainable Farming + Lasting impact
     %p &nbsp;
-    = link_to 'Login', "/users/sign_in", class: :button
+    - if user_signed_in?
+      = link_to 'Households', households_path, class: :button
+    - else
+      = link_to 'Login', new_user_session_path, class: :button
 %p &nbsp;
 %article
   %h1
