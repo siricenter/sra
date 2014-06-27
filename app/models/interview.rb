@@ -32,4 +32,13 @@ class Interview
 	validates :radio, presence: true
 	validates :tv, presence: true
 	validates :refrigerator, presence: true
+
+	def calories
+		calories = 0
+		self.consumed_foods.each do |food|
+			calories += food.calories
+		end
+
+		return calories
+	end
 end

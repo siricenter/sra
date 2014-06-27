@@ -1,4 +1,4 @@
-#require "nutritionix/api_1_1"
+require "nutritionix/api_1_1"
 class SearchController < ApplicationController
 	def search
 		app_id = "f67bfd42"

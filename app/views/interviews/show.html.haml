@@ -1,10 +1,21 @@
 %p#notice
-  = notice
+	= notice
 
 %h1
-  Show Interview
+	Show Interview
 
 = @interview.consumed_foods.to_json
 
+%h1
+	Calories
+
+.row
+	= @interview.calories
+	Calories
+- unless @household.people.count == 0
+	.row
+		That's
+		= @interview.calories / @household.people.count
+		Per Person
 
 = link_to 'Edit', edit_interview_path(@interview)

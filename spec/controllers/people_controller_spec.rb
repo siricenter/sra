@@ -6,7 +6,6 @@ describe PeopleController do
 		birthday: Time.now,
 		education_level: "some college",
 		family_name: "Rodriguez",
-		family_relationship: "father",
 		gender: "male",
 		given_name: "Jose",
 		in_school: true
@@ -59,7 +58,6 @@ describe PeopleController do
 		describe "with valid params" do
 			it "creates a new Person" do
 				household = FactoryGirl.create :household
-				relationship = FactoryGirl.create :family_relationship
 
 				expect {
 					post :create,
@@ -73,7 +71,6 @@ describe PeopleController do
 
 			it "assigns the new person as @person" do
 				household = FactoryGirl.create :household
-				relationship = FactoryGirl.create :family_relationship
 				post :create,
 					{household_id: household.to_param,
 						person: valid_attributes},
@@ -84,7 +81,6 @@ describe PeopleController do
 
 			it "redirects to the newly-created person's household" do
 				household = FactoryGirl.create :household
-				relationship = FactoryGirl.create :family_relationship
 				post :create,
 					{household_id: household.to_param,
 						person: valid_attributes},
@@ -96,7 +92,6 @@ describe PeopleController do
 		describe "with invalid params" do
 			it "assigns a newly created but unsaved Person as @person" do
 				household = FactoryGirl.create :household
-				relationship = FactoryGirl.create :family_relationship
 				post :create,
 					{household_id: household.to_param,
 						person: {}},
@@ -104,14 +99,13 @@ describe PeopleController do
 				assigns(:person).should be_a_new(Person)
 			end
 
-			it "re-renders the 'new' template" do
+			it "redirects to the 'new' action" do
 				household = FactoryGirl.create :household
-				relationship = FactoryGirl.create :family_relationship
 				post :create,
 					{household_id: household.to_param,
 						person: {}},
 						valid_session
-				response.should render_template("new")
+				response.should redirect_to(new_household_person_url(household))
 			end
 		end
 	end

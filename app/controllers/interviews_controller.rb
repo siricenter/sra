@@ -15,14 +15,13 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1.json
 	def show
 		@interview = Interview.find(params[:id])
+		#render inline: @interview.to_json
+		@household = Household.find(@interview.household_id)
 
-		render inline: @interview.to_json
-		#@household = Household.find(@interview.household_id)
-
-		#respond_to do |format|
-		#	format.html # show.html.erb
-		#	format.json { render json: @interview }
-		#end
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @interview }
+		end
 	end
 
 	# GET /interviews/new

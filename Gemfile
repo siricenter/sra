@@ -16,7 +16,7 @@ gem 'haml'									# HTML done right
 gem 'therubyracer'							# JavaScript runtime so CoffeeScript can compile to JavaScript
 gem 'bootstrap-sass'						# Installs bootstrap for us. We're transitioning away from bootstrap
 
-gem 'nutritionix-mod'						# Allows us to access an open nutritional API
+gem 'nutritionix'						# Allows us to access an open nutritional API
 
 # Gems used only for assets and not required
 # in production environments by default.
