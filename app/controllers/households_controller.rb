@@ -77,6 +77,10 @@ class HouseholdsController < ApplicationController
 	# DELETE /households/1.json
 	def destroy
 		@household = Household.find(params[:id])
+		@interviews = Interview.where({household_id: @household.id})
+		@interviews.each do |interview|
+			interview.destroy
+		end
 		@household.destroy
 
 		respond_to do |format|

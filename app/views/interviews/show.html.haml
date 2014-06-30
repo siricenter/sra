@@ -10,7 +10,8 @@
 .row
 	= @interview.calories
 	Calories
-- unless @household.people.count == 0
+	= @household.people.count
+- if @household.people.count > 0
 	.row
 		That's
 		= @interview.calories / @household.people.count

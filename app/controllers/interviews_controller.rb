@@ -2,8 +2,8 @@ class InterviewsController < ApplicationController
 	# GET /interviews
 	# GET /interviews.json
 	def index
-		@interviews = Interview.all
 		@household = Household.find(params[:household_id])
+		@interviews = Interview.where({household_id: @household.id})
 
 		respond_to do |format|
 			format.html # index.html.erb
@@ -17,6 +17,7 @@ class InterviewsController < ApplicationController
 		@interview = Interview.find(params[:id])
 		#render inline: @interview.to_json
 		@household = Household.find(@interview.household_id)
+		raise "No such household" unless @household 
 
 		respond_to do |format|
 			format.html # show.html.erb
