@@ -34,7 +34,7 @@ group :test do
 	gem 'cucumber-rails', require: false	# Integration testing framework that lets us write tests in plain English
 	gem 'database_cleaner'					# Cleans the test databases after every test
 	gem 'faker'								# Generates names, emails, and other stuff for our tests.
-    
+
 	gem 'capybara'							# Lets us programmatically interact with a test browser
 	# These gems are commented out because I can't make them play nice with Codio yet.
 	# gem 'selenium-webdriver'				# Makes our test browser a Firefox instance. Slow loading.

@@ -33,5 +33,9 @@ When(/^I press "(.*?)"$/) do |name|
 end
 
 Then(/^I should be on the "(.*?)" page$/) do |page|
-	current_path.should == "#{page}"
+	if page == "interview's show"
+		current_path.should == interview_path(Interview.last)
+	else
+		current_path.should == "#{page}"
+	end
 end

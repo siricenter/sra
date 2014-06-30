@@ -1,8 +1,6 @@
 Sra::Application.routes.draw do
 
-  get "food_interviews/new"
-  get "food_interviews/display"
-  get "search", to: "Search#search"
+	get "search", to: "Search#search"
 
 	root to: 'static#landing'
 
@@ -15,7 +13,7 @@ Sra::Application.routes.draw do
 		resources :roles
 		resources :areas
 		resources :regions
-		
+
 		# Create or destroy association between users and roles
 		post '/users/:user_id/roles/:role_id', to: 'UserRole#create', as: :new_user_role
 		delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role

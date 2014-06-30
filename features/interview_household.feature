@@ -10,4 +10,4 @@ Feature: Field worker interviews household
 		And I am on the "Martinez" family's personal page
 		When I press id "interview_household"
 		And I fill out the interview form
-		Then I should be on the "/events/new" page
+		Then I should be on the "interview's show" page

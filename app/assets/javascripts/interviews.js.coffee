@@ -40,7 +40,7 @@ findResult = (id) ->
 newFoodEaten = (event) ->
 	window.eatenFoodCount++
 	result = findResult(event.target.id)
-	newRow = foodRow("consumed_food", @eatenFoodCount, result)
+	newRow = foodRow("consumed_food", window.eatenFoodCount, result)
 	beforeRow = $('#consumed_foods')
 	addRow newRow, beforeRow
 
@@ -62,14 +62,18 @@ addOptions = (select, options) ->
 foodRow = (name, count, result) ->
 	newRow = $('<div>').addClass('row')
 
+	hiddenId = $('<input>').val(result._id)
+	hiddenId.attr('name', "consumed_foods[consumed_food_#{count}[n_id]]")
+	hiddenId.attr('type', 'hidden')
+
 	nameLabel = $('<label>')
 	nameLabel.text('Name: ')
 	nameLabel.addClass("col-sm-2 col-md-1")
 
 	foodName = $('<input>')
 	foodName.attr("type", "input")
-	foodName.attr("readonly", "true")
-	foodName.attr("name", "consumed_foods[consumed_food_#{window.eatenFoodCount}[name]]")
+	foodName.attr("disabled", "true")
+	foodName.attr("name", "consumed_foods[consumed_food_#{count}[name]]")
 	foodName.attr("id", "consumed_foods_#{result.fields.item_id}")
 	foodName.val(result.fields.item_name)
 	foodName.addClass("textfield col-sm-4 col-md-5")
@@ -78,6 +82,7 @@ foodRow = (name, count, result) ->
 	servingsLabel.addClass("col-sm-2 col-md-2")
 
 	servingsSelect = $('<select>').addClass('col-sm-1 col-md-1')
+	servingsSelect.attr('name', "consumed_foods[consumed_food_#{count}[servings]]")
 
 	for number in [1..10] by 1
 		option = $('<option>').val(number).text(number)
@@ -86,12 +91,14 @@ foodRow = (name, count, result) ->
 	frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
 
 	frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
+	frequencySelect.attr('name', "consumed_foods[consumed_food_#{count}[frequency]]")
 
-	frequencyOptions = ['day', 'week', 'month', 'year']
+	frequencyOptions = ['daily', 'weekly', 'monthly']
 	for time in frequencyOptions
 		option = $('<option>').val(time).text(time)
 		frequencySelect.append(option)
 
+	newRow.append(hiddenId)
 	newRow.append(nameLabel)
 	newRow.append(foodName)
 	newRow.append(servingsLabel)

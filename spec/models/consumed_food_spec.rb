@@ -16,7 +16,7 @@ describe ConsumedFood do
 	end
 
 	it "is invalid without a UID" do
-		@food.nutritionix_id = nil
+		@food.n_id = nil
 		@food.should_not be_valid
 	end
 

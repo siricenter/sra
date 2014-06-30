@@ -89,14 +89,6 @@ describe InterviewsController do
 	let(:valid_session) { {} }
 
 	describe "GET index" do
-		before :each do
-			DatabaseCleaner[:mongoid].start
-		end
-
-		after :each do
-			DatabaseCleaner[:mongoid].clean
-		end
-
 		it "assigns all interviews as @interviews" do
 			household = FactoryGirl.create(:household)
 			interview = FactoryGirl.create(:interview, {bedroom_count: 1010})
@@ -106,30 +98,15 @@ describe InterviewsController do
 	end
 
 	describe "GET show" do
-		before :each do
-			DatabaseCleaner[:mongoid].start
-		end
-
-		after :each do
-			DatabaseCleaner[:mongoid].clean
-		end
-
 		it "assigns the requested interview as @interview" do
-			interview = FactoryGirl.create(:interview, {bedroom_count: 1009})
+			household = FactoryGirl.create(:household)
+			interview = FactoryGirl.create(:interview, {bedroom_count: 1009, household_id: household.id})
 			get :show, {:id => interview.to_param}, valid_session
 			assigns(:interview).should eq(interview)
 		end
 	end
 
 	describe "GET new" do
-		before :each do
-			DatabaseCleaner[:mongoid].start
-		end
-
-		after :each do
-			DatabaseCleaner[:mongoid].clean
-		end
-
 		it "assigns a new interview as @interview" do
 			household = FactoryGirl.create(:household)
 			get :new, {:household_id => household.to_param}, valid_session
@@ -138,14 +115,6 @@ describe InterviewsController do
 	end
 
 	describe "GET edit" do
-		before :each do
-			DatabaseCleaner[:mongoid].start
-		end
-
-		after :each do
-			DatabaseCleaner[:mongoid].clean
-		end
-
 		it "assigns the requested interview as @interview" do
 			household = FactoryGirl.create(:household)
 			interview = FactoryGirl.create(:interview, {bedroom_count: 1001})
@@ -158,14 +127,6 @@ describe InterviewsController do
 
 	describe "POST create" do
 		describe "with valid params" do
-			before :each do
-				DatabaseCleaner[:mongoid].start
-			end
-
-			after :each do
-				DatabaseCleaner[:mongoid].clean
-			end
-
 			it "creates a new Interview" do
 				household = FactoryGirl.create(:household)
 				expect {
@@ -193,7 +154,7 @@ describe InterviewsController do
 				assigns(:interview).should be_persisted
 			end
 
-			it "redirects to new_event path" do
+			it "redirects to newest interview path" do
 				household = FactoryGirl.create(:household)
 				post :create,
 					{household_id: household.id,
@@ -202,19 +163,11 @@ describe InterviewsController do
 						health: health_attributes,
 						morbidity: morbidity_attributes},
 						valid_session
-				response.should redirect_to(new_event_url)
+				response.should redirect_to(Interview.last)
 			end
 		end
 
 		describe "with invalid params" do
-			before :each do
-				DatabaseCleaner[:mongoid].start
-			end
-
-			after :each do
-				DatabaseCleaner[:mongoid].clean
-			end
-
 			it "assigns a newly created but unsaved interview as @interview" do
 				household = FactoryGirl.create(:household)
 				# Trigger the behavior that occurs when invalid params are submitted
@@ -235,14 +188,6 @@ describe InterviewsController do
 
 	describe "PUT update" do
 		describe "with valid params" do
-			before :each do
-				DatabaseCleaner[:mongoid].start
-			end
-
-			after :each do
-				DatabaseCleaner[:mongoid].clean
-			end
-
 			it "updates the requested interview" do
 				interview = FactoryGirl.create(:interview, {bedroom_count: 1002})
 				# Assuming there are no other interviews in the database, this
@@ -267,14 +212,6 @@ describe InterviewsController do
 		end
 
 		describe "with invalid params" do
-			before :each do
-				DatabaseCleaner[:mongoid].start
-			end
-
-			after :each do
-				DatabaseCleaner[:mongoid].clean
-			end
-
 			it "assigns the interview as @interview" do
 				interview = FactoryGirl.create(:interview, {bedroom_count: 1005})
 				# Trigger the behavior that occurs when invalid params are submitted
@@ -295,12 +232,7 @@ describe InterviewsController do
 
 	describe "DELETE destroy" do
 		before :each do
-			DatabaseCleaner[:mongoid].start
 			@household = FactoryGirl.create(:household)
-		end
-
-		after :each do
-			DatabaseCleaner[:mongoid].clean
 		end
 
 		it "destroys the requested interview" do
