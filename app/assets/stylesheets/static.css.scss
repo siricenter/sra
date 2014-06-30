@@ -122,6 +122,19 @@ z-index:1;
 		outline:none;
 	}
 
+	nav a:visited
+	{
+		float:left; 
+		padding:2% 2% 3% 2%;
+		margin-top:-1%;
+		border-radius: 8px;
+		display:block; 
+		color:#555454; 
+		text-decoration:none; 
+		cursor:pointer; 
+		outline:none;
+	}
+
 	nav a:hover{
 		color:#FFFFFF;
 		background-color:#B4B4B4;
