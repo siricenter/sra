@@ -90,7 +90,7 @@ describe InterviewsController do
 
 	describe "GET index" do
 		it "assigns all interviews as @interviews" do
-			household = FactoryGirl.create(:household)
+			household = FactoryGirl.create(:household, {id: 1})
 			interview = FactoryGirl.create(:interview, {bedroom_count: 1010})
 			get :index, {household_id: household.to_param}, valid_session
 			assigns(:interviews).to_a.should eq([interview])
