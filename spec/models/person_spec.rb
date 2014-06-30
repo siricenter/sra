@@ -31,4 +31,29 @@ describe Person do
 		@person.in_school = "0"
 		@person.should be_valid
 	end
+
+	it "is invalid without a birthday" do
+		@person.birthday = nil
+		@person.should_not be_valid
+	end
+
+	it "is invalid without an education_level" do
+		@person.education_level = nil
+		@person.should_not be_valid
+	end
+
+	it "is invalid without an family_name" do
+		@person.family_name = nil
+		@person.should_not be_valid
+	end
+
+	it "is invalid without an gender" do
+		@person.gender = nil
+		@person.should_not be_valid
+	end
+
+	it "is invalid without a given_name" do
+		@person.given_name = nil
+		@person.should_not be_valid
+	end
 end
