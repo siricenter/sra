@@ -4,13 +4,15 @@
 %h1
 	Show Interview
 
-%h1
+%h2
 	Calories
 
 .row
 	= @interview.calories
-	Calories
+	Calories divided amongst
 	= @household.people.count
+	people
+
 - if @household.people.count > 0
 	.row
 		That's
