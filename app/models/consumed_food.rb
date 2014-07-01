@@ -15,6 +15,10 @@ class ConsumedFood
 		@data["nf_calories"]
 	end
 
+	def sugars_grams
+		get_data["nf_sugars"]
+	end
+
 	def is_cached
 		!(@data.nil?)
 	end

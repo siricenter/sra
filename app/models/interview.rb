@@ -41,4 +41,13 @@ class Interview
 
 		return calories
 	end
+
+	def sugars
+		sugars = 0
+		self.consumed_foods.each do |food|
+			sugars += food.sugars_grams
+		end
+
+		return sugars
+	end
 end

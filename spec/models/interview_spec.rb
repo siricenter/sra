@@ -69,9 +69,19 @@ describe Interview do
 		@interview.should_not be_valid
 	end
 
-	it "calculates how many calories the household eats per day" do
-		@interview.consumed_foods << FactoryGirl.build(:consumed_food)
-		@interview.calories.should == 9.12
+	describe "With consumed foods" do
+		before :each do
+			@interview = FactoryGirl.build(:interview)
+			@interview.consumed_foods << FactoryGirl.build(:consumed_food)
+		end
+
+		it "calculates how many calories the household eats per day" do
+			@interview.calories.should == 9.12
+		end
+
+		it "calculates how many grams of sugar the household eats per day" do
+			@interview.sugars.should == 0.53
+		end
 	end
 
 	it "returns 0 calories if there are no consumed foods" do
