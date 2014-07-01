@@ -34,20 +34,27 @@ class Interview
 	validates :refrigerator, presence: true
 
 	def calories
-		calories = 0
-		self.consumed_foods.each do |food|
-			calories += food.calories
-		end
-
-		return calories
+		aggregate_nutrient :calories
 	end
 
 	def sugars
-		sugars = 0
+		aggregate_nutrient :sugars_grams
+	end
+
+	def sodium
+		aggregate_nutrient :sodium_grams
+	end
+
+	def fat
+		aggregate_nutrient :fat_grams
+	end
+
+	def aggregate_nutrient nutrient
+		amount = 0
 		self.consumed_foods.each do |food|
-			sugars += food.sugars_grams
+			amount += food.send(nutrient)
 		end
 
-		return sugars
+		return amount
 	end
 end

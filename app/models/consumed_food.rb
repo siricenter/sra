@@ -11,12 +11,19 @@ class ConsumedFood
 	validates :frequency, inclusion: {in: %w{daily weekly monthly}}
 
 	def calories
-		get_data
-		@data["nf_calories"]
+		get_data["nf_calories"]
 	end
 
 	def sugars_grams
 		get_data["nf_sugars"]
+	end
+
+	def fat_grams
+		get_data["nf_total_fat"]
+	end
+
+	def sodium_grams
+		get_data["nf_sodium"]
 	end
 
 	def is_cached
@@ -30,6 +37,6 @@ class ConsumedFood
 			json = Nutritionix::API.new(app_id, app_key, "https://api.nutritionix.com/v1/").get_item(self.n_id)
 			@data = JSON.parse(json)
 		end
-		@data
+		return @data
 	end
 end
