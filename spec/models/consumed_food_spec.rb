@@ -56,18 +56,26 @@ describe ConsumedFood do
 	end
 
 	it "retrieves the calorie information from the api" do
-		@food.calories.should == 9.12
+		@food.calories.should == 9.12 * 3
 	end
 
 	it "retrieves the sugar information from the api" do
-		@food.sugars_grams.should == 0.53
+		@food.sugars_grams.should == 0.53 * 3
 	end
 
 	it "retrieves the fat information from the api" do
-		@food.fat_grams.should == 0.1
+		@food.fat_grams.should == 0.1 * 3
 	end
 
 	it "retrieves the sodium information from the api" do
-		@food.sodium_grams.should == 102.24
+		@food.sodium_grams.should == 102.24 * 3
 	end
+
+	it "retrieves the protein information from the api" do
+		@food.protein_grams.should == 0.86 * 3
+	end
+
+	 it "retrieves the total cholesterol from the api" do
+		 @food.cholesterol_grams.should == 0 * 3
+	 end
 end

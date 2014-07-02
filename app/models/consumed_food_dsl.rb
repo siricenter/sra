@@ -2,7 +2,7 @@ class ConsumedFoodDSL
 	def self.nutrients nutrients_hash
 		nutrients_hash.each do |method_name, api_key|
 			define_method(method_name.to_s) do
-				get_data[api_key]
+				servings_of(get_data[api_key])
 			end
 		end
 	end
@@ -20,4 +20,17 @@ class ConsumedFoodDSL
 		end
 		return @data
 	end
+
+	def servings_of amount
+		amount *= self.servings
+
+		if self.frequency == 'daily'
+			amount
+		elsif self.frequency == 'weekly'
+			amount / 7
+		elsif self.frequency == 'monthly'
+			amount / 30
+		end
+	end
 end
+

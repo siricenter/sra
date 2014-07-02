@@ -76,19 +76,27 @@ describe Interview do
 		end
 
 		it "calculates how many calories the household eats per day" do
-			@interview.calories.should == 9.12
+			@interview.calories.should == 9.12 * 3
 		end
 
 		it "calculates how many grams of sugar the household eats per day" do
-			@interview.sugars_grams.should == 0.53
+			@interview.sugars_grams.should == 0.53 * 3
 		end
 
 		it "calculates how many grams of fat the household eats per day" do
-			@interview.fat_grams.should == 0.1
+			@interview.fat_grams.should == 0.1 * 3
 		end
 
 		it "calculates how many grams of sodium the household eats per day" do
-			@interview.sodium_grams.should == 102.24
+			@interview.sodium_grams.should == 102.24 * 3
+		end
+
+		it "calculates how many grams of protein the household eats per day" do
+			@interview.protein_grams.should == 0.86 * 3
+		end
+
+		it "calculates how much cholesterol the household eats per day" do
+			@interview.cholesterol_grams.should == 0 * 3
 		end
 	end
 
@@ -107,6 +115,14 @@ describe Interview do
 
 		it "returns 0 grams of sodium" do
 			@interview.sodium_grams.should == 0
+		end
+
+		it "returns 0 grams of protein" do
+			@interview.protein_grams.should == 0
+		end
+
+		it "returns 0 grams of cholesterol" do
+			@interview.cholesterol_grams.should == 0
 		end
 	end
 

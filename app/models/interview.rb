@@ -33,23 +33,6 @@ class Interview
 	validates :tv, presence: true
 	validates :refrigerator, presence: true
 
-
-	#def calories
-	#	aggregate_nutrient :calories
-	#end
-
-	#def sugars
-	#	aggregate_nutrient :sugars_grams
-	#end
-
-	#def sodium
-	#	aggregate_nutrient :sodium_grams
-	#end
-
-	#def fat
-	#	aggregate_nutrient :fat_grams
-	#end
-
 	def aggregate_nutrient nutrient
 		amount = 0
 		self.consumed_foods.each do |food|
@@ -67,5 +50,5 @@ class Interview
 		end
 	end
 
-	define_nutrients :calories, :sugars_grams, :sodium_grams, :fat_grams
+	define_nutrients :calories, :sugars_grams, :sodium_grams, :fat_grams, :protein_grams, :cholesterol_grams
 end
