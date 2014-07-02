@@ -4,7 +4,7 @@ class ConsumedFood < ConsumedFoodDSL
 
 	embedded_in :interview
 
-	field :n_id, type: String
+	field :n_id, type: String # means nutritionix_id
 	field :servings, type: Integer
 	field :frequency, type: String
 
