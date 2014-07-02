@@ -4,19 +4,16 @@
 %h1
 	Show Interview
 
-%h2
-	Calories
-
-.row
-	= @interview.calories
-	Calories divided amongst
-	= @household.people.count
-	people
-
-- if @household.people.count > 0
+- unless @household.people.count == 0
+	= nutrient_row "Calories", @interview.calories, @household.people.count
+	= nutrient_row "Grams of Sugar", @interview.sugars_grams, @household.people.count
+	= nutrient_row "Grams of Protein", @interview.protein_grams, @household.people.count
+	= nutrient_row "Grams of Sodium", @interview.sodium_grams, @household.people.count
+	= nutrient_row "Grams of Cholesterol", @interview.cholesterol_grams, @household.people.count
+	= nutrient_row "Grams of Cholesterol", @interview.cholesterol_grams, @household.people.count
+- else
 	.row
-		That's
-		= @interview.calories / @household.people.count
-		Per Person
+		%p
+			Can't figure out nutritional info without people in the household
 
 = link_to 'Edit', edit_interview_path(@interview)
