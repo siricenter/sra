@@ -80,21 +80,33 @@ describe Interview do
 		end
 
 		it "calculates how many grams of sugar the household eats per day" do
-			@interview.sugars.should == 0.53
+			@interview.sugars_grams.should == 0.53
 		end
 
 		it "calculates how many grams of fat the household eats per day" do
-			@interview.fat.should == 0.1
+			@interview.fat_grams.should == 0.1
 		end
 
 		it "calculates how many grams of sodium the household eats per day" do
-			@interview.sodium.should == 102.24
+			@interview.sodium_grams.should == 102.24
 		end
 	end
 
 	describe "with no consumed foods" do
-		it "returns 0 calories if there are no consumed foods" do
+		it "returns 0 calories" do
 			@interview.calories.should == 0
+		end
+
+		it "returns 0 grams of sugar" do
+			@interview.sugars_grams.should == 0
+		end
+
+		it "returns 0 grams of fat" do
+			@interview.fat_grams.should == 0
+		end
+
+		it "returns 0 grams of sodium" do
+			@interview.sodium_grams.should == 0
 		end
 	end
 
