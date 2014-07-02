@@ -1,4 +1,4 @@
-class Interview
+class Interview < InterviewDSL
 	include Mongoid::Document
 	embeds_one :health
 	embeds_one :expense
@@ -32,23 +32,6 @@ class Interview
 	validates :radio, presence: true
 	validates :tv, presence: true
 	validates :refrigerator, presence: true
-
-	def aggregate_nutrient nutrient
-		amount = 0
-		self.consumed_foods.each do |food|
-			amount += food.send(nutrient)
-		end
-
-		return amount
-	end
-
-	def self.define_nutrients *nutrients
-		nutrients.each do |nutrient|
-			define_method("#{nutrient}") do
-				aggregate_nutrient nutrient.to_s
-			end
-		end
-	end
 
 	define_nutrients :calories, :sugars_grams, :sodium_grams, :fat_grams, :protein_grams, :cholesterol_grams
 end
