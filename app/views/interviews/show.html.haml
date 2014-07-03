@@ -2,7 +2,8 @@
 	= notice
 
 %h1
-	Show Interview
+	= "#{@household.name}'s"
+	Nutrition
 
 - unless @household.people.count == 0
 	= nutrient_row "Calories", @interview.calories, @household.people.count
@@ -10,7 +11,8 @@
 	= nutrient_row "Grams of Protein", @interview.protein_grams, @household.people.count
 	= nutrient_row "Grams of Sodium", @interview.sodium_grams, @household.people.count
 	= nutrient_row "Grams of Cholesterol", @interview.cholesterol_grams, @household.people.count
-	= nutrient_row "Grams of Cholesterol", @interview.cholesterol_grams, @household.people.count
+	= nutrient_row "% Daily Value of Vitamin A", @interview.vitamin_a_dv, @household.people.count
+	= nutrient_row "% Daily Value of Vitamin C", @interview.vitamin_c_dv, @household.people.count
 - else
 	.row
 		%p
