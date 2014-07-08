@@ -71,4 +71,4 @@ gem 'jquery-rails'							# Installs JQuery for us
 group :development do
 	#gem 'debugger'
 end
-ruby '2.1.1'
+ruby '2.0.0'
