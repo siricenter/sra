@@ -162,8 +162,9 @@
   .row{id: "add_food_eaten"}
     = render partial: 'consumed_food', collection: @interview.consumed_foods
     #consumed_foods
-      %input{type: "search", placeholder: "Search for consumed food", id: "consumed_food_search"}
-      %input{type: "button", value: "Search!"}
+      %input{type: "search", placeholder: "Search for food", id: "consumed_food_search", class: ['textfield', "col-sm-5"]}
+      %input{type: "button", value: "Search!", class: [:btn, "btn-large", "btn-success", "col-sm-2"]}
+  .row
     #display
 
   - if false
