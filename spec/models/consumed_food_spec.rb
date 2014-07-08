@@ -86,4 +86,8 @@ describe ConsumedFood do
 	it "retrieves the vitamin C DV from the api" do
 		@food.vitamin_c_dv.should == 24 * 3
 	end
+
+	it "retrieves the food's name from the api" do
+		@food.name.should == "Swiss Chard, Raw - 1 leaf"
+	end
 end

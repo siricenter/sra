@@ -19,4 +19,7 @@ class ConsumedFood < ConsumedFoodDSL
 	validates :servings, presence: true, numericality: {greater_than: 0}
 	validates :frequency, inclusion: {in: %w{daily weekly monthly}}
 	
+	def name
+		get_data["item_name"]
+	end
 end
