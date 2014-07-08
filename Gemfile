@@ -6,7 +6,8 @@ gem 'rails', '3.2.16'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'								# Allows Rails to interact with MySQL
+gem 'pg'
+#gem 'mysql2'								# Allows Rails to interact with MySQL
 gem 'mongoid'								# Allows Rails to interact with MongoDB
 
 gem 'devise'								# Manages authentication (loggin in) for us
@@ -67,4 +68,7 @@ gem 'jquery-rails'							# Installs JQuery for us
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
+group :development do
+	#gem 'debugger'
+end
+ruby '2.1.1'
