@@ -6,8 +6,12 @@ gem 'rails', '3.2.16'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'pg'
-#gem 'mysql2'								# Allows Rails to interact with MySQL
+group :production do
+	gem 'pg'
+end
+group :development, :test do
+	gem 'mysql2'								# Allows Rails to interact with MySQL
+end
 gem 'mongoid'								# Allows Rails to interact with MongoDB
 
 gem 'devise'								# Manages authentication (loggin in) for us
