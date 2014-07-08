@@ -2,7 +2,8 @@
 	= notice
 
 %h1
-	Show Interview
+	= "#{@household.name}'s"
+	Nutrition
 
 .row
 	= link_to 'Edit Interview', edit_interview_path(@interview), class: [:btn, "btn-large", "btn-success", "col-sm-2", :right]
@@ -13,6 +14,8 @@
 	= nutrient_row "Grams of Protein", @interview.protein_grams, 50, @household.people.count
 	= nutrient_row "Grams of Sodium", @interview.sodium_grams, 2, @household.people.count
 	= nutrient_row "Grams of Cholesterol", @interview.cholesterol_grams, 0.3, @household.people.count
+	= nutrient_row "% Daily Value of Vitamin A", @interview.vitamin_a_dv, 100, @household.people.count
+	= nutrient_row "% Daily Value of Vitamin C", @interview.vitamin_c_dv, 100, @household.people.count
 - else
 	.row
 		%p

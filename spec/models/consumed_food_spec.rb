@@ -78,4 +78,12 @@ describe ConsumedFood do
 	 it "retrieves the total cholesterol from the api" do
 		 @food.cholesterol_grams.should == 0 * 3
 	 end
+	
+	it "retrieves the vitamin A DV from the api" do
+		@food.vitamin_a_dv.should == 59 * 3
+	end
+	
+	it "retrieves the vitamin C DV from the api" do
+		@food.vitamin_c_dv.should == 24 * 3
+	end
 end

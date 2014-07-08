@@ -98,6 +98,14 @@ describe Interview do
 		it "calculates how much cholesterol the household eats per day" do
 			@interview.cholesterol_grams.should == 0 * 3
 		end
+
+		it "calculates what percent of vitamin A daily value the household eats per day" do
+			@interview.vitamin_a_dv.should == 59 * 3
+		end
+
+		it "calculates what percent of vitamin C daily value the household eats per day" do
+			@interview.vitamin_c_dv.should == 24 * 3
+		end
 	end
 
 	describe "with no consumed foods" do
@@ -123,6 +131,14 @@ describe Interview do
 
 		it "returns 0 grams of cholesterol" do
 			@interview.cholesterol_grams.should == 0
+		end
+
+		it "returns 0% dv of vitamin a" do
+			@interview.vitamin_a_dv.should == 0
+		end
+
+		it "returns 0% dv of vitamin c" do
+			@interview.vitamin_c_dv.should == 0
 		end
 	end
 

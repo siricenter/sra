@@ -23,6 +23,7 @@ module InterviewsHelper
 				<label class="col-sm-9">#{label} Per Person</label>
 			</div>
 		EOH
+		
 		row.html_safe
 	end
 end

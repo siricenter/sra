@@ -9,7 +9,7 @@
 				.panel-body.index
 					- household.people.each do |person|
 						%ul
-							%li
+							%li.alabel
 								= "#{person.given_name} #{person.family_name}"
         
 					= link_to 'Show', household, class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"], id: "#{household.id}_show"
