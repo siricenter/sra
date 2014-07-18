@@ -30,12 +30,15 @@ Sra::Application.routes.draw do
 	end
 
 	devise_for :users, controllers: { registrations: "registrations" }
+    
+    
 
 	resources :households do 
 		resources :interviews, shallow: true
 		resources :people, shallow: true do
 			resources :jobs, shallow: true
 		end
+        
 	end
 
 	# The priority is based upon order of creation:

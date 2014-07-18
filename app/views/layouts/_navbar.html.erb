@@ -1,4 +1,12 @@
-<nav class="row-fluid btn-toolbar btn-group">             	
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src = "//maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+ 
+ 
+                <script src = "http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+                
+ <nav class="row-fluid btn-toolbar btn-group">             	
 <%= link_to 'Home', root_url %>
 <%= link_to 'Households', households_path %>
 <%= link_to 'ftwdev2', "http://ftwdev2.evancaldwell.com/" %>
@@ -9,4 +17,26 @@
 <% else %>
 	<%= link_to 'Login', new_user_session_path %> 
 <% end %>
-</nav>
+     <% if user_signed_in? %>
+     <%= link_to "My Account", edit_user_registration_path %>
+     <%end%>
+</nav>              
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,9 +2,9 @@ class PeopleController < ApplicationController
 	#before_filter :authenticate_user!
 	def new
 		@household = Household.find(params[:household_id])
-		@person = Person.new
+		@person = Person.new(family_name: @household.name)
 		@path = [@household, @person]
-
+		
 		@relationships = FamilyRelationship.all.map do |relationship|
 			relationship.name
 		end
