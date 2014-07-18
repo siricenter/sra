@@ -2,8 +2,8 @@ class InterviewsController < ApplicationController
 	# GET /interviews
 	# GET /interviews.json
 	def index
-		@interviews = Interview.all
 		@household = Household.find(params[:household_id])
+		@interviews = Interview.where({household_id: @household.id})
 
 		respond_to do |format|
 			format.html # index.html.erb
@@ -15,14 +15,14 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1.json
 	def show
 		@interview = Interview.find(params[:id])
+		#render inline: @interview.to_json
+		@household = Household.find(@interview.household_id)
+		raise "No such household" unless @household 
 
-		render inline: @interview.to_json
-		#@household = Household.find(@interview.household_id)
-
-		#respond_to do |format|
-		#	format.html # show.html.erb
-		#	format.json { render json: @interview }
-		#end
+		respond_to do |format|
+			format.html # show.html.erb
+			format.json { render json: @interview }
+		end
 	end
 
 	# GET /interviews/new
@@ -83,7 +83,7 @@ class InterviewsController < ApplicationController
 
 		respond_to do |format|
 			if @interview.save
-				format.html { redirect_to new_event_path, notice: 'Interview was successfully create.' }
+				format.html { redirect_to @interview, notice: 'Interview was successfully created.' }
 				format.json { render json: @interview, status: :created, location: @interview }
 			else
 				format.html { render action: "new" }

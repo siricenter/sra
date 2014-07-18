@@ -1,4 +1,4 @@
-class Interview
+class Interview < InterviewDSL
 	include Mongoid::Document
 	embeds_one :health
 	embeds_one :expense
@@ -32,4 +32,6 @@ class Interview
 	validates :radio, presence: true
 	validates :tv, presence: true
 	validates :refrigerator, presence: true
+
+	define_nutrients :calories, :sugars_grams, :sodium_grams, :fat_grams, :protein_grams, :cholesterol_grams, :vitamin_a_dv, :vitamin_c_dv
 end

@@ -47,17 +47,12 @@ When(/^I fill out the interview form$/) do
 
 	# Testing new food consumed
 
-	click_on 'Add New Food Consumed'
+	fill_in 'consumed_food_search', with: 'chard'
+	click_on 'Search!'
+	find_by_id("513fceb575b8dbbc21001506").click  # A specific result for chard
 
-	fill_in 'consumed_foods[consumed_food1[name]]', with: 'Chard'
-	fill_in 'consumed_foods[consumed_food1[amount]]', with: '100'
-	select 'grams', from: 'consumed_foods[consumed_food1[unit]]'
-
-	click_on 'Add New Food Consumed'
-
-	fill_in 'consumed_foods[consumed_food2[name]]', with: 'Carrots'
-	fill_in 'consumed_foods[consumed_food2[amount]]', with: '100'
-	select 'grams', from: 'consumed_foods[consumed_food2[unit]]'
+	select '2', from: 'consumed_foods[consumed_food_1[servings]]'
+	select 'daily', from: 'consumed_foods[consumed_food_1[frequency]]'
 
 	# Testing new food stored
 
@@ -91,5 +86,5 @@ When(/^I fill out the interview form$/) do
 	#fill_in 'purchased_foods[food2[frequency_amount]]', with: '3'
 	#select 'day', from: 'purchased_foods[food2[time_unit]]'
 
-	#click_on 'Create Interview'
+	click_on 'Create Interview'
 end

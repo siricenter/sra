@@ -13,4 +13,17 @@ module InterviewsHelper
 		end
 		return option_string.html_safe
 	end
+
+	def nutrient_row label, amount, min, people
+		row = <<-EOH
+			<div class="row">
+				<input disabled="true", value="#{amount / people}", class="textfield col-sm-1"/>
+				<label class="col-sm-1">Of</label>
+				<input disabed="true", value="#{min}", class="textfield col-sm-1" />
+				<label class="col-sm-9">#{label} Per Person</label>
+			</div>
+		EOH
+		
+		row.html_safe
+	end
 end

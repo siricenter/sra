@@ -11,7 +11,9 @@
 	%body
 
 		= render :partial => '/layouts/navbar'
-
+		
+		= flash[:alert] if flash[:alert]
+		
 		= yield
     
 		= render '/layouts/footer'

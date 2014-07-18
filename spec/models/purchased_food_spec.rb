@@ -2,7 +2,12 @@ require 'spec_helper'
 
 describe PurchasedFood do
 	before :each do
+		DatabaseCleaner[:mongoid].start
 		@food = FactoryGirl.build(:purchased_food)
+	end
+	
+	after :each do
+		DatabaseCleaner[:mongoid].clean
 	end
 
 	it "should have a valid factory" do

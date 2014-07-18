@@ -1,30 +1,32 @@
 .row
-  = link_to 'Back', households_path, class: [:btn, "btn-large", "btn-success", "col-sm-2"], id: :back
+	= link_to 'Households', households_path, class: [:btn, "btn-large", "btn-success", "col-sm-2"], id: :back
 
 .row
-  %h1= @household.name + " Household"
+	%h1= @household.name + " Household"
 
 .row.btn-toolbar
-  = link_to 'Interview', new_household_interview_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household
-  = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_top"
-  = link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_top"
+	- if @household.people.count > 0
+		= link_to 'Interview', new_household_interview_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household
+	= link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_top"
+	= link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_top"
+	- if Interview.where({household_id: @household.id}).last
+		= link_to 'Nutrition', interview_path(Interview.where({household_id: @household.id}).last), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "nutrition"
 
 - if @people.size > 0
-  .row
-    - @people.each do |person|
-      .col-sm-6.col-md-4
-        .panel.panel-primary
-          .panel-heading
-            %h3.panel-title
-              = person.given_name
-              = person.family_name
-            = link_to 'X', person, method: :delete, class: :right, id: "#{person.id}_remove"
-          .panel-body
-            %p
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna ali qua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qu i officia deserunt mollit anim id est laborum.
-            = link_to 'Show', person_path(person), class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
-            = link_to 'Edit', edit_person_path(person), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"], id: "#{person.id}_edit"
-
-.row.btn-toolbar
-  = link_to 'Add Person', new_household_person_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "add_person_bottom"
-  = link_to 'Rename', edit_household_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: "rename_bottom"
+	.row
+		- @people.each do |person|
+			.col-sm-6.col-md-4
+				.panel.panel-primary
+					.panel-heading
+						%h3.panel-title
+							= person.given_name
+							= person.family_name
+						= link_to 'X', person, method: :delete, class: :right, id: "#{person.id}_remove"
+					.panel-body
+						%ul
+							%li.alabel
+								= person.gender
+							%li.alabel 
+								= "Born #{person.birthday}"
+						= link_to 'Show', person_path(person), class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
+						= link_to 'Edit', edit_person_path(person), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"], id: "#{person.id}_edit"

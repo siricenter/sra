@@ -1,12 +1,25 @@
-class ConsumedFood
-  include Mongoid::Document
-  embedded_in :interview
+class ConsumedFood < ConsumedFoodDSL
+	include Mongoid::Document
+	nutrients calories: "nf_calories", 
+		sugars_grams: "nf_sugars", 
+		fat_grams: "nf_total_fat", 
+		sodium_grams: "nf_sodium", 
+		protein_grams: "nf_protein", 
+		cholesterol_grams: "nf_cholesterol", 
+		vitamin_a_dv: "nf_vitamin_a_dv",
+		vitamin_c_dv: "nf_vitamin_c_dv"
 
-  field :name, type: String
-  field :amount, type: Integer
-  field :unit, type: String
+	embedded_in :interview
 
-  validates :name, presence: true, format: {with: /\A[a-zA-Z ]+\z/}
-  validates :amount, presence: true, numericality: true
-  validates :unit, presence: true
+	field :n_id, type: String # means nutritionix_id
+	field :servings, type: Integer
+	field :frequency, type: String
+
+	validates :n_id, presence: true
+	validates :servings, presence: true, numericality: {greater_than: 0}
+	validates :frequency, inclusion: {in: %w{daily weekly monthly}}
+	
+	def name
+		get_data["item_name"]
+	end
 end
