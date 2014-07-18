@@ -19,55 +19,7 @@ describe Interview do
 		@interview.should_not be_valid
 	end
 
-	it "is invalid without a roof" do
-		@interview.roof = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a wall" do
-		@interview.wall = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a floor" do
-		@interview.floor = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a bedroom_count" do
-		@interview.bedroom_count = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a light" do
-		@interview.light = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a fuel_type" do
-		@interview.fuel_type = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a total_income" do
-		@interview.total_income = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a radio" do
-		@interview.radio = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a tv" do
-		@interview.tv = nil
-		@interview.should_not be_valid
-	end
-
-	it "is invalid without a refrigerator" do
-		@interview.refrigerator = nil
-		@interview.should_not be_valid
-	end
+	
 
 	describe "With consumed foods" do
 		before :each do

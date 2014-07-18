@@ -30,9 +30,9 @@ class InterviewsController < ApplicationController
 	def new
 		@household = Household.find(params[:household_id])
 		@interview = Interview.new
-		@interview.health = Health.new
-		@interview.expense = Expense.new
-		@interview.morbidity = Morbidity.new
+		# @interview.health = Health.new
+		# @interview.expense = Expense.new
+		# @interview.morbidity = Morbidity.new
 
 		@path = [@household, @interview]
 
