@@ -38,11 +38,8 @@ class User < ActiveRecord::Base
 	has_many :households
 
 	def has_role? role_name
-		name = role_name.to_s
-		self.roles.each do |role|
-			return true if role.name == name
-		end
-
-		return false
+		roles = Role.where(name: role_name)
+		return false if roles.empty?
+		return true
 	end
 end
