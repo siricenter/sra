@@ -76,7 +76,7 @@ foodRow = (name, count, result) ->
 	foodName.attr("name", "consumed_foods[consumed_food_#{count}[name]]")
 	foodName.attr("id", "consumed_foods_#{result.fields.item_id}")
 	foodName.val(result.fields.item_name)
-	foodName.addClass("textfield col-sm-4 col-md-5")
+	foodName.addClass("textfield col-sm-5 col-md-6")
 
 	servingsLabel = $('<label>').text('Servings:')
 	servingsLabel.addClass("col-sm-2 col-md-2")
@@ -90,7 +90,7 @@ foodRow = (name, count, result) ->
 
 	frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
 
-	frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
+	frequencySelect = $('<select>').addClass('col-sm-2 col-md-2')
 	frequencySelect.attr('name', "consumed_foods[consumed_food_#{count}[frequency]]")
 
 	frequencyOptions = ['daily', 'weekly', 'monthly']
@@ -103,7 +103,7 @@ foodRow = (name, count, result) ->
 	newRow.append(foodName)
 	newRow.append(servingsLabel)
 	newRow.append(servingsSelect)
-	newRow.append(frequencyLabel)
+	#newRow.append(frequencyLabel)
 	newRow.append(frequencySelect)
 	
 	return newRow
