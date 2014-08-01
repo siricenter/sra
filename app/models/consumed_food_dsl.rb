@@ -1,8 +1,12 @@
-class ConsumedFoodDSL
-	def self.nutrients nutrients_hash
-		nutrients_hash.each do |method_name, api_key|
-			define_method(method_name.to_s) do
-				servings_of(get_data[api_key])
+module ConsumedFoodDSL
+	def self.included base
+		base.class_eval do
+			def self.nutrients nutrients_hash
+				nutrients_hash.each do |method_name, api_key|
+					define_method(method_name.to_s) do
+						servings_of(get_data[api_key])
+					end
+				end
 			end
 		end
 	end

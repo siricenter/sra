@@ -1,5 +1,7 @@
-class ConsumedFood < ConsumedFoodDSL
-	include Mongoid::Document
+class ConsumedFood < ActiveRecord::Base
+	include ConsumedFoodDSL
+	belongs_to :interview
+	attr_accessible :frequency, :n_id, :servings
 	nutrients calories: "nf_calories", 
 		sugars_grams: "nf_sugars", 
 		fat_grams: "nf_total_fat", 
@@ -9,16 +11,10 @@ class ConsumedFood < ConsumedFoodDSL
 		vitamin_a_dv: "nf_vitamin_a_dv",
 		vitamin_c_dv: "nf_vitamin_c_dv"
 
-	embedded_in :interview
-
-	field :n_id, type: String # means nutritionix_id
-	field :servings, type: Integer
-	field :frequency, type: String
-
 	validates :n_id, presence: true
 	validates :servings, presence: true, numericality: {greater_than: 0}
 	validates :frequency, inclusion: {in: %w{daily weekly monthly}}
-	
+
 	def name
 		get_data["item_name"]
 	end

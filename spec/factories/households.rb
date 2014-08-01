@@ -9,14 +9,9 @@
 #  user_id    :integer
 #
 
-class Household < ActiveRecord::Base
-	attr_accessible :name
-	has_many :people
-	has_one :interview
-	belongs_to :user
-
-	accepts_nested_attributes_for :people
-
-	validates :name, presence: true
-	validates_presence_of :user
+FactoryGirl.define do
+	factory :household do |factory|
+		factory.name { Faker::Name.last_name }
+		user
+	end
 end

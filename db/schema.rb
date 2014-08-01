@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140523210207) do
+ActiveRecord::Schema.define(:version => 20140801095558) do
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -28,6 +28,17 @@ ActiveRecord::Schema.define(:version => 20140523210207) do
     t.integer "area_id"
     t.integer "user_id"
   end
+
+  create_table "consumed_foods", :force => true do |t|
+    t.integer  "interview_id"
+    t.string   "n_id"
+    t.integer  "servings"
+    t.string   "frequency"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  add_index "consumed_foods", ["interview_id"], :name => "index_consumed_foods_on_interview_id"
 
   create_table "events", :force => true do |t|
     t.string   "title"
@@ -51,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20140523210207) do
   end
 
   create_table "interviews", :force => true do |t|
+    t.integer  "household_id"
     t.string   "roof"
     t.string   "wall"
     t.string   "floor"

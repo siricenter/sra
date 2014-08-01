@@ -37,14 +37,18 @@
 #  updated_at          :datetime         not null
 #
 
-class Interview < ActiveRecord::Base
-
-	include InterviewDSL
-
-	belongs_to :household
-	has_many :consumed_foods
-
-	define_nutrients :calories, :sugars_grams, :sodium_grams, :fat_grams, :protein_grams, :cholesterol_grams, :vitamin_a_dv, :vitamin_c_dv
-
-	validates_presence_of :consumed_foods
+FactoryGirl.define do
+	factory :interview do |factory|
+		household
+		roof "tin"
+		wall "brick"
+		floor "cement"
+		bedroom_count { Faker::Number.digit }
+		light true
+		fuel_type "gas"
+		total_income 500
+		radio true
+		tv false
+		refrigerator true
+	end
 end
