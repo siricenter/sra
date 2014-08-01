@@ -97,6 +97,13 @@ class InterviewsController < ApplicationController
 	def update
 		#render inline: params.inspect
 		@interview = Interview.find(params[:id])
+		@interview.consumed_foods = []
+
+		if params[:consumed_foods]
+			params[:consumed_foods].each do |key, food|
+				@interview.consumed_foods.build(food)
+			end
+		end
 
 		respond_to do |format|
 			if @interview.update_attributes(params[:interview])
