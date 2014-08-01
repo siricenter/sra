@@ -1,19 +1,19 @@
 !!! 5
 %html
-	%head
-		%title
-			Sra
+  %head
+    %title
+      Sra
 
-		= stylesheet_link_tag    "application", :media => "all"
-		= javascript_include_tag "application", :media => "all"
-		= csrf_meta_tags
+    = stylesheet_link_tag    "application", :media => "all"
+    = javascript_include_tag "application", :media => "all"
+    = csrf_meta_tags
 
-	%body
+    %body
 
-		= render :partial => '/layouts/navbar'
-		
-		= flash[:alert] if flash[:alert]
-		
-		= yield
-    
-		= render '/layouts/footer'
+      = render :partial => '/layouts/navbar'
+
+      = flash[:alert] if flash[:alert]
+
+      = yield
+
+      = render '/layouts/footer'
