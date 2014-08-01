@@ -3,11 +3,13 @@
  <nav class="row-fluid btn-toolbar btn-group">             	
 <%= link_to 'Home', root_url %>
 <%= link_to 'Households', households_path %>
-<%= link_to 'ftwdev2', "http://ftwdev2.evancaldwell.com/" %>
+<% if user_signed_in? %>  
+    <%= link_to 'Dashboard', dashboard_path %>
+<% end %>
 <%= link_to 'SIRI', "http://www.sirinstitute.org/" %>
 <%= link_to 'Contact Us', "http://www.dilbert.com" %>
 <% if user_signed_in? %>
-<%= link_to "My Account", edit_user_registration_path %>
+    <%= link_to "My Account", edit_user_registration_path %>
 <%end%>
 <% if user_signed_in? %>
 	<%= link_to "Logout", destroy_user_session_path, :method => :delete %>
