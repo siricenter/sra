@@ -56,9 +56,9 @@ class InterviewsController < ApplicationController
 		@household = Household.find(params[:household_id])
 
 		@interview = Interview.new(params[:interview])
-		@interview.health = Health.new(params[:health])
-		@interview.expense = Expense.new(params[:expense])
-		@interview.morbidity = Morbidity.new(params[:morbidity])
+		#@interview.health = Health.new(params[:health])
+		#@interview.expense = Expense.new(params[:expense])
+		#@interview.morbidity = Morbidity.new(params[:morbidity])
 		@interview.household_id = params[:household_id]
 
 		@path = [@household, @interview]
@@ -95,6 +95,7 @@ class InterviewsController < ApplicationController
 	# PUT /interviews/1
 	# PUT /interviews/1.json
 	def update
+		#render inline: params.inspect
 		@interview = Interview.find(params[:id])
 
 		respond_to do |format|
