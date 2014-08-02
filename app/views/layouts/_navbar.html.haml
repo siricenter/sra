@@ -10,9 +10,7 @@
       %a.navbar-brand{href: root_path}
         = image_tag 'SRALogo2.svg'
     .collapse.navbar-collapse
-      %ul.nav.navbar-nav
-        %li
-          = link_to 'Home', root_url 
+      %ul.nav.nav-pills.nav-justified
         %li
           = link_to 'Households', households_path 
         - if user_signed_in? 
