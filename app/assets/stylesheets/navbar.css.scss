@@ -1,0 +1,72 @@
+nav
+{
+	background: #FFFFFF;
+	//padding-left: 10%;
+	font-size: large;
+	line-height: 40px;
+	top: 0;
+	width: 100%;
+	height: 60px;
+	z-index: 1;
+
+	a
+	{
+		padding: 2% 2% 3% 2%;
+		margin-top: -1%;
+		border-radius: 8px;
+		display: block;
+		color: #555454;
+		text-decoration: none;
+		cursor: pointer;
+		outline: none;
+	}
+
+	a:link {
+		font-weight: 700;
+		font-size: larger;
+		color: #555454;
+	}
+
+	li
+	{
+		color: #2D2D2D;
+		display: inline;
+	}
+
+	a.active, a.active:hover{
+		line-height: 63px;
+		color: #fff;
+	}
+}
+
+.nav a:visited
+{
+	padding:2% 2% 3% 2%;
+	margin-top:-1%;
+	border-radius: 8px;
+	display:block; 
+	color:#555454; 
+	text-decoration:none; 
+	cursor:pointer; 
+	outline:none;
+}
+
+.navbar .nav > li > a:hover{
+	color: #FFFFFF;
+	background-color: #B4B4B4;
+	-moz-border-radius-topleft: 0px;
+	-moz-border-radius-topright: 0px;
+	-webkit-border-top-left-radius: 0px;
+	-webkit-border-top-right-radius: 0px;
+	-moz-transition: border-color .2s ease-in-out, color .2s
+	ease-in-out;
+	-webkit-transition: border-color .2s ease-in-out, color .2s
+	ease-in-out;
+	-o-transition: border-color .2s ease-in-out, color .2s
+	ease-in-out;
+	-ms-transition: border-color .2s ease-in-out, color
+	.2s ease-in-out;
+	transition: border-color .2s ease-in-out, color
+	.2s ease-in-out;
+	text-decoration: none;
+}

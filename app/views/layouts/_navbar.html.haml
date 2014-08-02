@@ -1,13 +1,26 @@
-%meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
-%nav.row-fluid
-  = link_to 'Home', root_url 
-  = link_to 'Households', households_path 
-  - if user_signed_in? 
-    = link_to 'Dashboard', dashboard_path 
-  = link_to 'SIRI', "http://www.sirinstitute.org/" 
-  - if user_signed_in? 
-    = link_to "My Account", edit_user_registration_path 
-  - if user_signed_in? 
-    = link_to "Logout", destroy_user_session_path, :method => :delete 
-  - else 
-    = link_to 'Login', new_user_session_path 
+%nav.navbar.navbar-default{role: 'navbar'}
+  .navbar-header
+    %button.navbar-toggle{type: :button, 'data-toggle' => :collapse}
+    %span.sr-only
+      Toggle navigation
+    %a{href: '#'}
+  .collapse.navbar-collapse
+    %ul.nav.navbar-nav
+      %li
+        = link_to 'Home', root_url 
+      %li
+        = link_to 'Households', households_path 
+      - if user_signed_in? 
+        %li
+          = link_to 'Dashboard', dashboard_path 
+      %li
+        = link_to 'SIRI', "http://www.sirinstitute.org/" 
+      - if user_signed_in? 
+        %li
+          = link_to "My Account", edit_user_registration_path 
+      - if user_signed_in? 
+        %li
+          = link_to "Logout", destroy_user_session_path, :method => :delete 
+      - else 
+        %li
+          = link_to 'Login', new_user_session_path 
