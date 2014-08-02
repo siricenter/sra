@@ -1,19 +1,20 @@
-#banner-wrapper
-  %header
-    %h1 Welcome to SRA
-    %h2
-      Self Reliance + Sustainable Farming + Lasting impact
-    %p &nbsp;
-    - if user_signed_in?
-      = link_to 'Households', households_path, class: :button
-    - else
-      = link_to 'Login', new_user_session_path, class: :button
-%p &nbsp;
-.main
-  %h1
-    About us
+.row-fluid
+  #banner-wrapper
+    %header
+      %h1 Welcome to SRA
+      %h2
+        Self Reliance + Sustainable Farming + Lasting impact
+      %p &nbsp;
+      - if user_signed_in?
+        = link_to 'Households', households_path, class: :button
+      - else
+        = link_to 'Login', new_user_session_path, class: :button
   %p &nbsp;
-  %p
+  .main
+    %h1
+      About us
+    %p &nbsp;
+    %p
     Feed The World + The Institute for Self Reliant Agriculture (SRA) empowers poor smallholder farm families to feed themselves and 
     provide for the future through sustainable farming. Our in-country nutritionists, agronomists, and animal scientists work hand in 
     hand with smallholder farm families as they develop the skills that will allow them to be independent for life. 
