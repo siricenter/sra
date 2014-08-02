@@ -6,16 +6,18 @@
           Sign in
       .panel-body
         = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-          .row
-            = f.label :email, class: ["col-sm-4", "col-md-3"]
-            = f.email_field :email, :autofocus => true, class: [:textfield, "col-sm-8", "col-md-8"]
-          .row
-            = f.label :password, class: ["col-sm-4", "col-md-3"]
-            = f.password_field :password, class: [:textfield, "col-sm-8", "col-md-8"]
+          .row.form-group
+            = f.label :email, class: ["col-sm-3", 'label-control']
+            .col-sm-9
+              = f.email_field :email, :autofocus => true, class: [:textfield, 'form-control']
+          .row.form-group
+            = f.label :password, class: ["col-sm-3", "col-md-3"]
+            .col-sm-9
+              = f.password_field :password, class: [:textfield, 'form-control', "col-sm-7", "col-md-8"]
 
           - if devise_mapping.rememberable?
-            .row
-              = f.label :remember_me, class: ["col-sm-5", "col-md-3"]
+            .row.form-group
+              = f.label :remember_me, class: ["col-sm-2", "col-md-3"]
               = f.check_box :remember_me
 
           .row
