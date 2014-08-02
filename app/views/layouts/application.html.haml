@@ -9,12 +9,12 @@
     = javascript_include_tag "application", :media => "all"
     = csrf_meta_tags
 
-    %body
+  %body
 
-      = render :partial => '/layouts/navbar'
+    = render :partial => '/layouts/navbar'
 
-      = flash[:alert] if flash[:alert]
+    = flash[:alert] if flash[:alert]
 
-      = yield
+    = yield
 
-      = render '/layouts/footer'
+    = render '/layouts/footer'
