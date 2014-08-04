@@ -3,7 +3,7 @@ Given(/^I am a "(.*?)"$/) do |role|
 	@current_user.roles << Role.find_by_name(role)
 	@current_user.save!
 
-	visit '/users/sign_in'
+	visit new_user_session
 
 	fill_in "user[email]", with: @current_user.email
 	fill_in "user_password", with: @current_user.password
