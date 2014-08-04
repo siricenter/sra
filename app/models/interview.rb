@@ -3,7 +3,6 @@
 # Table name: interviews
 #
 #  id                  :integer          not null, primary key
-#  household_id        :integer
 #  roof                :string(255)
 #  wall                :string(255)
 #  floor               :string(255)
