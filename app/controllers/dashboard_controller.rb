@@ -3,7 +3,11 @@ class DashboardController < ApplicationController
 		@user=current_user
         if @user.has_role? "admin"
             admin
-        elsif @user.has_role? "Field Worker"
+        end
+        if @user.has_role? "Manager"
+            manager
+        end
+		if @user.has_role? "Field Worker"
 			field_worker
 		end
 	end
@@ -14,6 +18,11 @@ class DashboardController < ApplicationController
 	end
     
     def admin
-        render :admin
+        
     end
+    
+    def manager
+        
+    end
+    
 end
