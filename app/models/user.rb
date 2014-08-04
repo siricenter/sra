@@ -38,7 +38,7 @@ class User < ActiveRecord::Base
 	has_many :households
 	
 	def has_role? role_name
-		roles = Role.where(name: role_name.to_s)
+        roles = self.roles.where(name: role_name.to_s)
 		return false if roles.empty?
 		return true
 	end
