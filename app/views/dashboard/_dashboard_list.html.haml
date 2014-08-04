@@ -1,16 +1,12 @@
+         
 .row
-	- @households.each do |household|
-		.col-sm-6.col-md-4
-			.panel.panel-primary
-				.panel-heading
-					%h3.panel-title
-						= household.name
-					= link_to 'X', household, method: :delete, id: "#{household.id}_remove"
-				.panel-body.index
-					- household.people.each do |person|
-						%ul
-							%li.alabel
-								= "#{person.given_name} #{person.family_name}"
-        
-					= link_to 'Show', household, class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"], id: "#{household.id}_show"
-					= link_to 'Edit', edit_household_path(household), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"], id: "#{household.id}_edit"
+   .col-sm-10.col-md-8
+      .panel.panel-primary
+         .panel-heading
+            %h3.panel-title
+               ="interviews"
+         .panel-body.index
+            - @households.each do |household|
+               %ul
+                  %li.alabel
+                     = "#{household.name}"

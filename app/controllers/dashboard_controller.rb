@@ -1,27 +1,32 @@
 class DashboardController < ApplicationController
 	def show
+        @households = Household.all
 		@user=current_user
         if @user.has_role? "admin"
-            admin
+            render :admin
+        elsif @user.has_role? "manager"
+            render :manager
+        elsif @user.has_role? "field worker"
+            render :worker
+        elsif @user.has_role? "public"
+            redirect_to households_path
         end
-        if @user.has_role? "Manager"
-            manager
-        end
-		if @user.has_role? "Field Worker"
-			field_worker
-		end
+       
+      
 	end
 
 	def field_worker
-		@households = Household.all
-		render :field_worker
+        @households=@user.households
+		
 	end
     
     def admin
         
+        
     end
     
     def manager
+        
         
     end
     

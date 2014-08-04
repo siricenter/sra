@@ -57,7 +57,7 @@ def install_packages
 end
 
 install_mysql
-install_mongo
+#install_mongo
 bundle_install
 setup_database
 start_server
