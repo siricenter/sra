@@ -16,7 +16,16 @@
                      = link_to 'Edit', edit_household_path(household), id: "#{household.id}_edit"
                      
                      = link_to 'Delete', household, method: :delete, id: "#{household.id}_remove"
-.row
-   =@interviews
+                     
+                  %li
+                     = "Interviews"
+                  .alabel
+                     - @interview = Interview.where({household_id: household.id})
+                     - if @interview.blank?
+                        = "None"
+                     - else
+                        = link_to 'Show in Progress', @interview[0], id: "#{@interview[0].id}_show"
+
+
    
    
