@@ -1,13 +1,15 @@
 class DashboardController < ApplicationController
 	def show
         @households = Household.all
+        
 		@user=current_user
         if @user.has_role? "admin"
-            render :admin
+            admin
         elsif @user.has_role? "manager"
-            render :manager
+            manager
         elsif @user.has_role? "field worker"
-            render :worker
+            
+            field_worker
         elsif @user.has_role? "public"
             redirect_to households_path
         end
@@ -17,17 +19,22 @@ class DashboardController < ApplicationController
 
 	def field_worker
         @households=@user.households
+        # @household=Household.find(params[:household_id])
+        # @interview=Interview.where({household_id: @household.id})
+        
+        
+        render :worker
         
 		
 	end
     
     def admin
-        
+        render :admin
         
     end
     
     def manager
-        
+        render :manager
         
     end
     
