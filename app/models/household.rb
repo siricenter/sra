@@ -19,4 +19,6 @@ class Household < ActiveRecord::Base
 
 	validates :name, presence: true
 	validates_presence_of :user
+    
+    
 end

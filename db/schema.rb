@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20140801095558) do
   end
 
   create_table "interviews", :force => true do |t|
+    t.integer  "household_id"
     t.string   "roof"
     t.string   "wall"
     t.string   "floor"
