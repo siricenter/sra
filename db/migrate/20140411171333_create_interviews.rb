@@ -2,7 +2,6 @@ class CreateInterviews < ActiveRecord::Migration
 	def change
 		create_table :interviews do |t|
 			t.references :household
-
 			t.string :roof
 			t.string :wall
 			t.string :floor

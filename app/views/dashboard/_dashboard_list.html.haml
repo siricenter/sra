@@ -1,12 +1,22 @@
          
 .row
-   .col-sm-10.col-md-8
+   .col-sm-8.col-md-6
       .panel.panel-primary
          .panel-heading
             %h3.panel-title
-               ="interviews"
+               ="Households"
          .panel-body.index
-            - @households.each do |household|
-               %ul
-                  %li.alabel
-                     = "#{household.name}"
+            %ul
+               - @households.each do |household|
+                  %li
+                     = "#{household.name}"    
+                  .alabel   
+                     = link_to 'View', household, id: "#{household.id}_show"
+                     
+                     = link_to 'Edit', edit_household_path(household), id: "#{household.id}_edit"
+                     
+                     = link_to 'Delete', household, method: :delete, id: "#{household.id}_remove"
+.row
+   =@interviews
+   
+   
