@@ -22,7 +22,7 @@ end
 
 When(/^I go to the "(.*?)" page$/) do |page|
     if page == "admin dashboard"
-        vist dashboard_path
+        visit dashboard_path
     else
     	visit "#{page}"
     end

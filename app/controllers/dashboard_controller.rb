@@ -28,6 +28,10 @@ class DashboardController < ApplicationController
 	end
     
     def admin
+        @user = User.new
+        @user
+            
+            
         render :admin
         
     end
