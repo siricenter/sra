@@ -19,8 +19,7 @@ class DashboardController < ApplicationController
 
 	def field_worker
         @households=@user.households
-        # @household=Household.find(params[:household_id])
-        # @interview=Interview.where({household_id: @household.id})
+        
         
         
         render :worker

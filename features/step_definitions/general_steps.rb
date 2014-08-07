@@ -21,7 +21,11 @@ Given(/^the "(.*?)" role has been created$/) do |name|
 end
 
 When(/^I go to the "(.*?)" page$/) do |page|
-	visit "#{page}"
+    if page == "admin dashboard"
+        vist dashboard_path
+    else
+    	visit "#{page}"
+    end
 end
 
 When(/^I press id "(.*?)"$/) do |name|
@@ -33,9 +37,12 @@ When(/^I press "(.*?)"$/) do |name|
 end
 
 Then(/^I should be on the "(.*?)" page$/) do |page|
-	if page == "interview's show"
-		current_path.should == interview_path(Interview.last)
-	else
-		current_path.should == "#{page}"
-	end
+	pages = {
+		"interview's show" => interview_path(Interview.last),
+		"Users Index" => users_path
+		}
+	
+	page = pages[page] if pages.has_key?(page)
+	
+	current_path.should == page
 end
