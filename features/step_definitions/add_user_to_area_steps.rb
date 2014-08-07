@@ -14,6 +14,7 @@ When(/^I visit the "(.*?)" area's page$/) do |area_name|
 	area = Area.find_by_name(area_name)
 	visit area_path(area)
 end
+	
 
 When(/^I assign "(.*?)" to the area$/) do |email|
 	user = User.find_by_email(email)
