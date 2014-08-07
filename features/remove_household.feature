@@ -8,4 +8,4 @@ Feature: Field worker removes household
 		And I have created a family named "Martinez"
 		When I go to the "households" page
 		And I press the delete "Martinez" household button
-		Then I should be on the "/households" page
+		Then I should be on the "households index" page

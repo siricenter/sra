@@ -38,11 +38,12 @@ end
 
 Then(/^I should be on the "(.*?)" page$/) do |page|
 	pages = {
-		"interview's show" => interview_path(Interview.last),
-		"Users Index" => users_path
+		"households index" => lambda {households_path},
+		"interview's show" => lambda {interview_path(Interview.last)},
+		"Users Index" => lambda {users_path},
 		}
-	
-	page = pages[page] if pages.has_key?(page)
+
+	page = pages[page].call if pages.has_key?(page)
 	
 	current_path.should == page
 end
