@@ -47,3 +47,17 @@ Then(/^I should be on the "(.*?)" page$/) do |page|
 
 	current_path.should == page
 end
+
+When(/^I fill out the new user form with email "(.*?)" and password "(.*?)"$/) do |email, password|                                                       
+    fill_in 'user_email', with: email
+    fill_in 'user_password', with: password
+    fill_in 'user_password_confirmation', with: password
+    click_on 'Create User'
+    
+end                                                                                                                                                  
+                                                                                                                                                     
+Then(/^there should be a user with email "(.*?)"$/) do |arg1|                                                                                        
+  pending # express the regexp above with the code you wish you had                                                                                  
+end                                                                                                                                                  
+          
+     
