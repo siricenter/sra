@@ -22,8 +22,7 @@ end
 
 def setup_database
 	puts `mysql -u root < setup_database.sh`
-	puts `rake db:migrate`
-	puts `rake db:seed`
+	puts `rake db:reset`
 end
 
 def start_server
