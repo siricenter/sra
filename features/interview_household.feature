@@ -12,3 +12,8 @@ Feature: Field worker interviews household
 		When I press id "interview_household"
 		And I fill out the interview form
 		Then I should be on the "interview's show" page
+	
+	Scenario: Edit interview
+		Given I am a "Field Worker"
+		And I have created a family named "Martinez"
+		And I have created a person named "Gabriela" "Martinez"

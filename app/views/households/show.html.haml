@@ -4,6 +4,7 @@
 .row
 	%h1= @household.name + " Household"
 
+- interviewed =  Interview.where({household_id: @household}).last
 .row.btn-toolbar
 	- if @household.people.count > 0
 		= link_to 'Interview', new_household_interview_path(@household), class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-3", "col-md-2", :right], id: :interview_household

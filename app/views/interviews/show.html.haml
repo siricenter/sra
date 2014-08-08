@@ -5,8 +5,7 @@
 	= "#{@household.name}'s"
 	Nutrition
 
-- if false
-	.row
+.row
 	= link_to 'Edit Interview', edit_interview_path(@interview), class: [:btn, "btn-large", "btn-success", "col-sm-2", :right]
 
 - unless @household.people.count == 0
