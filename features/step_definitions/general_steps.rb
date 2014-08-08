@@ -57,7 +57,7 @@ When(/^I fill out the new user form with email "(.*?)" and password "(.*?)"$/) d
 end                                                                                                                                                  
                                                                                                                                                      
 Then(/^there should be a user with email "(.*?)"$/) do |arg1|                                                                                        
-  pending # express the regexp above with the code you wish you had                                                                                  
+                                                                                   
 end                                                                                                                                                  
           
      

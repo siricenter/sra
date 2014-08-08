@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
     
     def admin
         @user = User.new
-        @users= User.all
+        @users = User.all
         render :admin
     end
     
