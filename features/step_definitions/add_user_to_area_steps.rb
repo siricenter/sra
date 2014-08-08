@@ -22,6 +22,12 @@ When(/^I assign "(.*?)" to the area with a relationship of "(.*?)"$/) do |email,
 	click_on "#{user.id}_assign"
 end
 
+When(/^"(.*?)" is assigned to the area with a relationship of "(.*?)"$/) do |email, relationship|
+	user = User.find_by_email(email)
+    click_on relationship
+	click_on "#{user.id}_assign"
+end
+
 When(/^I unassign "(.*?)" from the area$/) do |email|
 	user = User.find_by_email(email)
 	click_on "#{user.id}_unassign"
