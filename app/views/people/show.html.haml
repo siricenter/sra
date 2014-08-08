@@ -1,7 +1,8 @@
-.row-fluid
-  .banner
-    %h2
-      Hello world
+/.row-fluid
+/  .banner
+/    %h2
+/      Hello world
+%h1= @person.given_name + " " + @person.family_name
 
 .row.btn-toolbar
   = link_to 'Edit Person', edit_person_path(@person),  class: [:btn, "btn-large", "btn-success", "col-sm-offset-8", "col-md-offset-10", "col-sm-4", "col-md-2", :right], id: :edit_person_top
@@ -11,8 +12,6 @@
   .panel.panel-primary
     .panel-body
       .row
-        %h1= @person.given_name + " " + @person.family_name
-        %br
         %label{class: "col-sm-3"}
           Name:
         %label
