@@ -39,11 +39,11 @@ end
 Then(/^I should be on the "(.*?)" page$/) do |page|
 	pages = {
 		"households index" => lambda {households_path},
-		"interview's show" => lambda {interview_path(Interview.last)},
+		"interview's show" => lambda {'/interviews/1'},
 		"Users Index" => lambda {users_path},
-		}
+	}
 
 	page = pages[page].call if pages.has_key?(page)
-	
+
 	current_path.should == page
 end

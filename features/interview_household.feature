@@ -7,6 +7,7 @@ Feature: Field worker interviews household
 	Scenario: Interview household
 		Given I am a "Field Worker"
 		And I have created a family named "Martinez"
+		And I have created a person named "Gabriela" "Martinez"
 		And I am on the "Martinez" family's personal page
 		When I press id "interview_household"
 		And I fill out the interview form
