@@ -10,7 +10,7 @@ Feature: Admin assigns user to area
 		And the user "test@test.com" has been assigned the "Field Worker" role
 		And the "Novo Darnitsya" area has been created
 		When I visit the "Novo Darnitsya" area's page
-		And I assign "test@test.com" to the area with a relationship of "field_worker"
+		And I assign "test@test.com" to the area with a relationship of "ield_worker"
 		Then I should be on the "Novo Darnitsya" area's show page
 		And "test@test.com" should be assigned to "Novo Darnitsya" with a relationship of "field_worker"
 

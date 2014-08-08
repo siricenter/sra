@@ -19,6 +19,7 @@ end
 When(/^I assign "(.*?)" to the area with a relationship of "(.*?)"$/) do |email, relationship|
 	user = User.find_by_email(email)
 	click_on "#{user.id}_assign"
+    
 end
 
 When(/^I unassign "(.*?)" from the area$/) do |email|
