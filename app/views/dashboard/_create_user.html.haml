@@ -1,17 +1,17 @@
-.container-admin
+.container-admin.col-md-3.col-sm-6
   %h2 Create User
   = form_for(@user) do |f|
-    %div
+    .row
       = f.label :email
-      %br/
-      = f.email_field :email, :autofocus => true
-    %div
+    .row
+      = f.email_field :email, :autofocus => true, class: ['textfield', 'col-xs-12']
+    .row
       = f.label :password
-      %br/
-      = f.password_field :password
-    %div
+    .row
+      = f.password_field :password, class: ['textfield', 'col-xs-12']
+    .row
       = f.label :password_confirmation
-      %br/
-      = f.password_field :password_confirmation
-      %p
-    %div= f.submit "Create User"
+    .row
+      = f.password_field :password_confirmation, class: ['textfield', 'col-xs-12']
+    .row
+      = f.submit "Create User", class: ['btn', 'btn-lg', 'btn-success']

@@ -4,7 +4,7 @@ Feature: Any user creates event
 	In order to keep track of my important meetings
 
 	Scenario: Create from dashboard
-		Given I am a "Public"
+		Given I am a "Field Worker"
 		When I go to the "dashboard" page
 		And I press "New Meeting"
 		And I fill out the event form

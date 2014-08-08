@@ -31,8 +31,11 @@ class UsersController < ApplicationController
 	end
 	def create
         @user = User.new({:email => params[:email], :password => params[:password], :password_confirmation => [:password_confirmation] })
-        @user.save
-        
+        if @user.save
+			render :admin
+		else
+			redirect_to dashboard_path
+		end
     end
     
 end
