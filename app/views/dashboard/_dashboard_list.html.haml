@@ -7,6 +7,9 @@
             Household Name
           %th
             Family Members
+          %th
+            Interview
+            
       %tbody
         - @households.each do |household|
           %tr
@@ -15,6 +18,13 @@
           - household.people.each do |person|
             %tr
               %td
-                = link_to person.given_name, person
+                = link_to person.given_name, person 
+                %td
+                  -interview = Interview.where({household_id: household.id})
+                  - if interview.blank?
+                    = "None"
+                  -else
+                    = link_to 'Show in Progress', interview[0], id: "#{interview[0].id}_show"
+              
 
                 
