@@ -16,6 +16,7 @@ class DashboardController < ApplicationController
 
 	def field_worker
         @households = @user.households
+        
         render :worker
 	end
     
