@@ -20,6 +20,12 @@ def install_mongo
 	puts `parts start mongodb`
 end
 
+def install_phantomjs
+	unless `parts list`.match(/phantomjs/)
+		puts `parts install phantomjs`
+	end
+end
+
 def setup_database
 	puts `mysql -u root < setup_database.sh`
 	puts `rake db:reset`
@@ -57,6 +63,7 @@ end
 
 install_mysql
 #install_mongo
+install_phantomjs
 bundle_install
 setup_database
 start_server
