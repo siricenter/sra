@@ -41,6 +41,6 @@
             .panel-body
               Select Role
               .row
-                = link_to  'Field Worker', new_area_user_path(@area, user, 'Field Worker'), method: :post, id: "#{user.id}_assign", class: [:btn, :"btn-success", :"col-xs-12"]
+                = link_to  'Field Worker', new_area_user_path(@area, user, 'Field Worker'), method: :post, id: "#{user.id}_assign_field_worker", class: [:btn, :"btn-success", :"col-xs-12"]
               .row
-                = link_to  'Manager', new_area_user_path(@area, user, 'Manager'), method: :post, id: "#{user.id}_assign", class: [:btn, :"btn-success", :"col-xs-12"]
+                = link_to  'Manager', new_area_user_path(@area, user, 'Manager'), method: :post, id: "#{user.id}_assign_manager", class: [:btn, :"btn-success", :"col-xs-12"]
