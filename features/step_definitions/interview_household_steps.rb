@@ -88,3 +88,14 @@ When(/^I fill out the interview form$/) do
 
 	click_on 'Create Interview'
 end
+
+When(/^I edit the interview form$/) do
+	select '3', from: 'consumed_foods[consumed_food_513fceb575b8dbbc21001506[servings]]'
+	select 'weekly', from: 'consumed_foods[consumed_food_513fceb575b8dbbc21001506[frequency]]'
+	click_on 'Update Interview'
+end
+
+Then(/^the interview should reflect the changes I made$/) do
+	expect(Interview.last.consumed_foods.first.servings).to eq(3)
+	expect(Interview.last.consumed_foods.first.frequency).to eq('weekly')
+end
