@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140806182035) do
+ActiveRecord::Schema.define(:version => 20140811211827) do
+
+  create_table "area_relationships", :force => true do |t|
+    t.integer "area_id"
+    t.integer "user_id"
+    t.string  "relationship"
+  end
 
   create_table "areas", :force => true do |t|
     t.string   "name"
@@ -22,12 +28,6 @@ ActiveRecord::Schema.define(:version => 20140806182035) do
   create_table "areas_regions", :force => true do |t|
     t.integer "area_id"
     t.integer "region_id"
-  end
-
-  create_table "areas_users", :force => true do |t|
-    t.integer "area_id"
-    t.integer "user_id"
-    t.string  "relationship"
   end
 
   create_table "consumed_foods", :force => true do |t|
