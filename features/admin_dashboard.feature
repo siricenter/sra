@@ -12,6 +12,6 @@ Feature: Admin visit the admin dashboard
     Scenario: Admin Getting to  user index in the matter of one click from the dashboard
     	Given I am a "Admin"
         When I go to the "admin dashboard" page
-        And I press "Create Index"
-        Then I should be on the "User Index" page
+        And I press "Users Index"
+        Then I should be on the "Users Index" page
         

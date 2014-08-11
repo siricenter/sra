@@ -41,6 +41,7 @@ Then(/^I should be on the "(.*?)" page$/) do |page|
 		"households index" => lambda {households_path},
 		"interview's show" => lambda {'/interviews/1'},
 		"Users Index" => lambda {users_path},
+        "admin dashboard" => lambda {dashboard_path}
 	}
 
 	page = pages[page].call if pages.has_key?(page)
@@ -56,8 +57,8 @@ When(/^I fill out the new user form with email "(.*?)" and password "(.*?)"$/) d
     
 end                                                                                                                                                  
                                                                                                                                                      
-Then(/^there should be a user with email "(.*?)"$/) do |arg1|                                                                                        
-                                                                                   
+Then(/^there should be a user with email "(.*?)"$/) do |email|         
+	expect(User.where(name: email)).to_not be_nil
 end                                                                                                                                                  
           
      
