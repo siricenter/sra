@@ -40,9 +40,6 @@ group :test do
 
 	gem 'capybara'							# Lets us programmatically interact with a test browser
 	gem 'poltergeist'
-	# These gems are commented out because I can't make them play nice with Codio yet.
-	gem 'selenium-webdriver'				# Makes our test browser a Firefox instance. Slow loading.
-	gem 'capybara-webkit'					# Makes our test browswer a headless Webkit instance. Faster loading.
 end
 
 group :test, :development do
