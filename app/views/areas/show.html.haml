@@ -20,7 +20,7 @@
           %h3.panel-title
             = fw.email
         .panel-body
-          = link_to  'Unassign', destroy_area_user_path(@area, fw), method: :delete, id: "#{fw.id}_unassign"
+          = link_to  'Unassign', destroy_area_user_path(@area, fw), method: :delete, id: "#{fw.id}_unassign", class: "btn btn-success"
 
 %h2
   Unassigned
@@ -38,4 +38,4 @@
               %h3.panel-title
                 = fw.email
             .panel-body
-              = link_to  'Assign', new_area_user_path(@area, fw), method: :post, id: "#{fw.id}_assign"
+              = link_to  'Assign', new_area_user_path(@area, fw), method: :post, id: "#{fw.id}_assign", class: "btn btn-success"
