@@ -31,12 +31,13 @@ class User < ActiveRecord::Base
 	attr_accessible :email, :password, :password_confirmation, :remember_me
 
 
-	has_and_belongs_to_many :areas
+    has_many :areas, through: :area_relationships 
 	has_and_belongs_to_many :roles
 
+    has_many :area_relationships
 	has_many :events
 	has_many :households
-	
+
 	def has_role? role_name
         roles = self.roles.where(name: role_name.to_s)
 		return false if roles.empty?

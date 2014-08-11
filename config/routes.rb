@@ -19,7 +19,7 @@ Sra::Application.routes.draw do
 		delete '/users/:user_id/roles/:role_id', to: 'UserRole#destroy', as: :destroy_user_role
 
 		# Create or destroy association between areas and users
-		post '/areas/:area_id/users/:user_id', to: 'AreasUsers#create', as: :new_area_user
+        post '/areas/:area_id/users/:user_id/:relationship', to: 'AreasUsers#create', as: :new_area_user
 		delete '/areas/:area_id/users/:user_id', to: 'AreasUsers#destroy', as: :destroy_area_user
 
 		# Create or destroy association between 
