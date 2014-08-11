@@ -11,10 +11,10 @@
 
 %h2
   Assigned
-
+- assign = false
 #assigned.row
   - @user.roles.each do |role|
-    = role_panel role, false
+    = render 'role_panel', role: role, assign: false
 
 %h2
   Assignable
@@ -22,5 +22,4 @@
 #unassigned.row
   - @roles.each do |role|
     - unless @user.roles.include? role
-      = role_panel role
-  
+      = render 'role_panel', role: role, assign: true
