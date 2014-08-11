@@ -13,7 +13,7 @@ class Household < ActiveRecord::Base
 	attr_accessible :name
 	has_many :people
 	has_one :interview
-	belongs_to :user
+	belongs_to :user # Interviewer
 
 	accepts_nested_attributes_for :people
 

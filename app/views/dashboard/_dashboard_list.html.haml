@@ -20,11 +20,8 @@
               %td
                 = link_to person.given_name, person 
                 %td
-                  -interview = Interview.where({household_id: household.id})
-                  - if interview.blank?
-                    = "None"
+                  -interview = household.interview
+                  - if interview
+                    = link_to "None", new_household_interview_path(household), class: ['btn', 'btn-info']
                   -else
-                    = link_to 'Show in Progress', interview[0], id: "#{interview[0].id}_show"
-              
-
-                
+                    = link_to 'Nutrition', interview, id: "#{interview.id}_show", class: ['btn', 'btn-info']
