@@ -2,15 +2,20 @@ class AreasUsersController < ApplicationController
 	def create
 		@area = Area.find(params[:area_id])
 		@user = User.find(params[:user_id])
+        @relationship = params[:relationship]
+        @area_user = AreaRelationship.new
+        
+        @area_user.area = @area
+        @area_user.user = @user
+        @area_user.relationship = @relationship
 
 		unless can? :create, :area_user
 			redirect_to @area, alert: "You don't have rights to assign field workers"
 		else
-			@area.users << @user
 
 			respond_to do |format|
-				if @area.save!
-					format.html {redirect_to @area, notice: "#{@user.email} successfully assigned to #{@area.name}"}
+                if @area_user.save
+					format.html {redirect_to @area, notice: "#{@user.email} successfully assigned to #{@area.name} as a #{@relationship}"}
 				else
 					format.html {redirect_to @area, alert: "Assignment failed"}
 				end
