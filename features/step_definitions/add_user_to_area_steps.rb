@@ -17,15 +17,25 @@ end
 	
 
 When(/^I assign "(.*?)" to the area with a relationship of "(.*?)"$/) do |email, relationship|
+    case relationship
+    when "Field Worker"
+        relationship_string = "field_worker"
+    when "Manager"
+        relationship_string = "manager"
+    end
 	user = User.find_by_email(email)
-    click_on relationship
-	click_on "#{user.id}_assign"
+        click_on "#{user.id}_assign_#{relationship_string}"
 end
 
 When(/^"(.*?)" is assigned to the area with a relationship of "(.*?)"$/) do |email, relationship|
+    case relationship
+    when "Field Worker"
+        relationship_string = "field_worker"
+    when "Manager"
+        relationship_string = "manager"
+    end
 	user = User.find_by_email(email)
-    click_on relationship
-	click_on "#{user.id}_assign"
+	click_on "#{user.id}_assign_#{relationship_string}"
 end
 
 When(/^I unassign "(.*?)" from the area$/) do |email|
@@ -41,21 +51,21 @@ end
 Then(/^"(.*?)" should be assigned to "(.*?)" with a relationship of "(.*?)"$/) do |email, area_name, relationship|
 	user = User.find_by_email(email)
 	area = Area.find_by_name(area_name)
-    relation = AreaUser.where(user_id: user.id, area_id: area.id, relationship: relationship).first
-	
+    relation = AreaRelationship.where(user_id: user.id, area_id: area.id, relationship: relationship).first
+
     user.areas.include?(area).should == true
 	area.users.include?(user).should == true
-    user.relation.include?(relationship).should == true
-    area.relation.include?(relationship).should == true
+    user.area_relationships.include?(relation).should == true
+    area.area_relationships.include?(relation).should == true
 end
 
 Then(/^"(.*?)" should not be assigned to "(.*?)" with a relationship of "(.*?)"$/) do |email, area_name, relationship|
 	user = User.find_by_email(email)
 	area = Area.find_by_name(area_name)
-    relation = AreaUser.where(user_id: user.id, area_id: area.id, relationship: relationship).first
+    relation = AreaRelationship.where(user_id: user.id, area_id: area.id, relationship: relationship).first
 
 	user.areas.include?(area).should == false
 	area.users.include?(user).should == false
-    user.relation.include?(relationship).should == false
-    area.relation.include?(relationship).should == false
+    user.area_relationships.include?(relation).should == false
+    area.area_relationships.include?(relation).should == false
 end
