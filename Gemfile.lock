@@ -82,6 +82,7 @@ GEM
       railties (>= 3.0.0)
     faker (1.4.1)
       i18n (~> 0.5)
+    ffi (1.9.3)
     gherkin (2.12.2)
       multi_json (~> 1.3)
     haml (4.0.5)
@@ -154,11 +155,17 @@ GEM
       rspec-core (~> 2.14.0)
       rspec-expectations (~> 2.14.0)
       rspec-mocks (~> 2.14.0)
+    rubyzip (1.1.6)
     sass (3.3.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
+    selenium-webdriver (2.42.0)
+      childprocess (>= 0.5.0)
+      multi_json (~> 1.0)
+      rubyzip (~> 1.0)
+      websocket (~> 1.0.4)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -195,6 +202,7 @@ DEPENDENCIES
   bootstrap-sass
   cancan
   capybara
+  capybara-webkit
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
@@ -210,6 +218,7 @@ DEPENDENCIES
   rails (= 3.2.16)
   rspec-rails (~> 2.14.2)
   sass-rails (~> 3.2.3)
+  selenium-webdriver
   therubyracer
   thin
   uglifier (>= 1.0.3)
