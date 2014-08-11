@@ -20,6 +20,8 @@
           %h3.panel-title
             = fw.email
         .panel-body
+          = "User Role in Area"
+          = # fw.relationship
           = link_to  'Unassign', destroy_area_user_path(@area, fw), method: :delete, id: "#{fw.id}_unassign", class: "btn btn-success"
 
 %h2
@@ -38,4 +40,14 @@
               %h3.panel-title
                 = fw.email
             .panel-body
+              = "Select Role"
+              %ul
+                %li
+                  %label.btn.btn-success
+                    %input{:type => "radio",:name => "role"}
+                    Manager
+                %li
+                  %label.btn.btn-success
+                    %input{:type => "radio",:name => "role"}
+                    Field Worker
               = link_to  'Assign', new_area_user_path(@area, fw), method: :post, id: "#{fw.id}_assign", class: "btn btn-success"
