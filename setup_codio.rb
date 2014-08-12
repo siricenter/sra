@@ -41,6 +41,7 @@ def get_vimrc
 		`cd ~`
 		puts `git clone https://github.com/CJPoll/devenvset`
 		puts `mv devenvset/files/default/.vimrc ~`
+        puts `mv devenvset/files/default/.tmux.conf ~`
 		puts `rm -rf devenvset`
 		`cd ~/workspace`
 	end
