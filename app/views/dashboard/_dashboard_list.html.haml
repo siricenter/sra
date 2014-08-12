@@ -21,7 +21,7 @@
                 = link_to person.given_name, person 
                 %td
                   -interview = household.interview
-                  - if interview
+                  - if interview.nil?
                     = link_to "None", new_household_interview_path(household), class: ['btn', 'btn-info']
                   -else
                     = link_to 'Nutrition', interview, id: "#{interview.id}_show", class: ['btn', 'btn-info']
