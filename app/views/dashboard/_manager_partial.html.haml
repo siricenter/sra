@@ -11,4 +11,9 @@
             %ul
               %li
                 = person.email
+                %ul
+                  %li
+                    - if person.households.empty?
+                      = "No households"
+                    - else person.households.name
               
