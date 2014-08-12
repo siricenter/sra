@@ -1,0 +1,14 @@
+
+.row
+  - @areas.each do |area|
+    .col-sm-6.col-md-4
+      .panel.panel-primary
+        .panel-heading
+          %h3.panel-title
+            = area.name
+        .panel-body.index
+          -@field_workers.each do |person|
+            %ul
+              %li
+                = person.email
+              

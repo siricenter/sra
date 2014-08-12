@@ -2,11 +2,11 @@ class DashboardController < ApplicationController
 	def show
         @households = Household.all
         
-		@user=current_user
+		@user = current_user
         if @user.has_role? "admin"
             admin
         elsif @user.has_role? "manager"
-            manager
+            field_worker
         elsif @user.has_role? "field worker"
             field_worker
         elsif @user.has_role? "public"
@@ -16,7 +16,8 @@ class DashboardController < ApplicationController
 
 	def field_worker
         @households = @user.households
-        
+        @field_workers = @user.area_relationships.select{|r| r.relationship == "Manager"}.map{|r| r.area}.map{|area| area.area_relationships.select{|r|r.relationship == "Field Worker"}.map{|r| r.user}}.flatten
+        @areas = Area.joins(:users).where(area_relationships:{relationship: "Manager"},users:{id: @user.id})
         render :worker
 	end
     
