@@ -42,5 +42,4 @@ RSpec.configure do |config|
 	config.extend ControllerMacros, type: :controller
 end
 
-DatabaseCleaner[:mongoid].strategy = :truncation
 DatabaseCleaner[:active_record].strategy = :transaction

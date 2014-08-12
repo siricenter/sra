@@ -59,7 +59,7 @@ class InterviewsController < ApplicationController
 		#@interview.health = Health.new(params[:health])
 		#@interview.expense = Expense.new(params[:expense])
 		#@interview.morbidity = Morbidity.new(params[:morbidity])
-		@interview.household_id = params[:household_id]
+		@interview.household = @household
 
 		@path = [@household, @interview]
 
