@@ -1,9 +1,8 @@
 %h1 
   Households
   
-.row
-  
-  = link_to 'New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right], id: :top
+.row.btn-toolbar
+  = link_to 'New Household', new_household_path, class: [:'toolbar-button'], id: :top
 
 .row
   = render 'household_list'
