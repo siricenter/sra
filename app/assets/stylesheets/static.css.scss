@@ -1,6 +1,7 @@
 /*
  *= require bootstrap
  *= require_self
+ *= require navbar
  */
 @charset "utf-8";
 /* CSS Document */
@@ -214,5 +215,3 @@ footer a
 {
 	color: inherit;
 }
-
-@import 'navbar.css';
