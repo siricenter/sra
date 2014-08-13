@@ -16,7 +16,8 @@ class AreasController < ApplicationController
   def show
     @area = Area.find(params[:id])
     # Category.joins(:posts)
-      @users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
+    @roles = Role.all
+    @users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
     # roles = Role.where(:name ["Field Worker", "Manager"])
     # users = User.where(name: "Field Worker")
 

@@ -32,6 +32,7 @@
 - else
   .row
     - @users.each do |user|
+      - user_role = user.roles
       - unless @area.users.include? user
         .col-sm-6.col-md-4
           .panel.panel-primary
@@ -40,7 +41,8 @@
                 = user.email
             .panel-body
               Select Role
-              .row
-                = link_to  'Field Worker', new_area_user_path(@area, user, 'Field Worker'), method: :post, id: "#{user.id}_assign_field_worker", class: [:btn, :"btn-success", :"col-xs-12"]
-              .row
-                = link_to  'Manager', new_area_user_path(@area, user, 'Manager'), method: :post, id: "#{user.id}_assign_manager", class: [:btn, :"btn-success", :"col-xs-12"]
+              - @roles.each do |all_role|
+                - user_role.each do |role|
+                  - if role.name == all_role.name
+                    .row
+                      = link_to role.name.titleize, new_area_user_path(@area, user, role.name.titleize), method: :post, id: "#{user.id}_assign_#{role.name.downcase.tr(" ", "_")}", class: [:btn, :"btn-success", :"col-xs-12"]
