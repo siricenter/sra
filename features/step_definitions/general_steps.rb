@@ -43,6 +43,7 @@ Then(/^I should be on the "(.*?)" page$/) do |page|
 		"Users Index" => lambda {users_path},
         "admin dashboard" => lambda {dashboard_path},
 		"Roles Index" => lambda {roles_path},
+        "Areas Index" => lambda {areas_path,}
 	}
 
 	page = pages[page].call if pages.has_key?(page)
