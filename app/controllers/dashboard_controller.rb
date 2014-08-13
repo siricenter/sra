@@ -1,4 +1,5 @@
 class DashboardController < ApplicationController
+	before_filter :authenticate_user!
 	def show
         @households = Household.all
         
@@ -9,7 +10,7 @@ class DashboardController < ApplicationController
             field_worker
         elsif @user.has_role? "field worker"
             field_worker
-        elsif @user.has_role? "public"
+		else
             redirect_to households_path
         end
 	end
