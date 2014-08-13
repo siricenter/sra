@@ -12,11 +12,17 @@ Feature: Admin visit the admin dashboard
     Scenario: Admin Getting to  user index in the matter of one click from the dashboard
     	Given I am a "Admin"
         When I go to the "admin dashboard" page
-        And I press "Users Index"
+        And I press "Users"
         Then I should be on the "Users Index" page
         
 	Scenario: Admin goes to roles index in one click from the dashboard
 		Given I am a "Admin"
         When I go to the "admin dashboard" page
-        And I press "Roles Index"
+        And I press "Roles"
         Then I should be on the "Roles Index" page
+
+Scenario: Admin Getting to  user index in the matter of one click from the dashboard
+    	Given I am a "Admin"
+        When I go to the "admin dashboard" page
+        And I press "Areas"
+        Then I should be on the "Areas Index" page
