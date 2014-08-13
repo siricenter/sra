@@ -29,5 +29,5 @@
 								= person.gender
 							%li.alabel 
 								= "Born #{person.birthday}"
-						= link_to 'Show', person_path(person), class: [:btn, "btn-success", "btn-lg", "col-md-5", "col-sm-5"]
-						= link_to 'Edit', edit_person_path(person), class: [:btn, "btn-success", "btn-lg", "col-sm-5", "col-md-5", "col-md-offset-2", "col-sm-offset-2"], id: "#{person.id}_edit"
+						= link_to 'View', person_path(person), class: [:button, :'col-sm-5']
+						= link_to 'Edit', edit_person_path(person), class: [:button, :'col-sm-5', :'col-sm-offset-2'], id: "#{person.id}_edit"
