@@ -29,16 +29,15 @@ class UsersController < ApplicationController
 			render "edit"
 		end
 	end
+
 	def create
-        @user = User.new({:email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation]})
-        if @user.save
-            @message="success"
-            redirect_to dashboard_path
+		@user = User.new({:email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation]})
+		if @user.save
+			flash[:notice] = "#{@user.email} successfully created."
+			redirect_to dashboard_path
 		else
-            @email = params[:user_email]
-            @message="failure"
-            render "dashboard/admin"         
+			flash[:notice] = "#{@user.email} not saved."
+			render "dashboard/admin"         
 		end
-    end
-    
+	end
 end

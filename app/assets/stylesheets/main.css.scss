@@ -253,4 +253,9 @@ input[type=checkbox]
 	@extend .right
 }
 
+.notice
+{
+	color: green;
+}
+
 @import 'navbar.css';

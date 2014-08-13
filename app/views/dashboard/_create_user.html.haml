@@ -1,4 +1,7 @@
 .container-admin.col-md-3.col-sm-6
+  - if notice
+    %p.notice
+      = notice
   %h2 Create User
   = form_for(@user) do |f|
     .row
