@@ -20,9 +20,8 @@
 				.panel.panel-primary
 					.panel-heading
 						%h3.panel-title
-							= person.given_name
-							= person.family_name
-						= link_to 'X', person, method: :delete, class: :right, id: "#{person.id}_remove"
+							= "#{person.given_name} #{person.family_name}"
+						= link_to 'X', person, method: :delete, id: "#{person.id}_remove"
 					.panel-body
 						%ul
 							%li.alabel
