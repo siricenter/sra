@@ -1,20 +1,19 @@
-.row
-  .table-responsive
-    %table.table.table-hover
-      %thead
+.table-responsive.col-md-9
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          User Email
+        %th
+          Role
+    %tbody
+      - @users.each do |user|
         %tr
-          %th
-            User Email
-          %th
-            Role
-      %tbody
-        - @users.each do |user|
+          %td{rowspan: user.email.count + 1}
+            = link_to user.name, user, class: ['btn', 'btn-info']
+        - household.people.each do |person|
           %tr
-            %td{rowspan: user.email.count + 1}
-              = link_to user.name, user, class: ['btn', 'btn-info']
-          - household.people.each do |person|
-            %tr
-              %td
-                = link_to person.given_name, person
+            %td
+              = link_to person.given_name, person
 
                 

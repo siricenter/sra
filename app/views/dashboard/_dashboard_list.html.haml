@@ -1,27 +1,26 @@
-.row
-  .table-responsive
-    %table.table.table-hover
-      %thead
+.table-responsive.col-md-9
+  %table.table.table-hover
+    %thead
+      %tr
+        %th
+          Household Name
+        %th
+          Family Members
+        %th
+          Interview
+          
+    %tbody
+      - @households.each do |household|
         %tr
-          %th
-            Household Name
-          %th
-            Family Members
-          %th
-            Interview
-            
-      %tbody
-        - @households.each do |household|
+          %td{rowspan: household.people.count + 1}
+            = link_to household.name, household, class: ['btn', 'btn-info']
+        - household.people.each do |person|
           %tr
-            %td{rowspan: household.people.count + 1}
-              = link_to household.name, household, class: ['btn', 'btn-info']
-          - household.people.each do |person|
-            %tr
+            %td
+              = link_to person.given_name, person 
               %td
-                = link_to person.given_name, person 
-                %td
-                  -interview = household.interview
-                  - if interview.nil?
-                    = link_to "None", new_household_interview_path(household), class: ['btn', 'btn-info']
-                  -else
-                    = link_to 'Nutrition', interview, id: "#{interview.id}_show", class: ['btn', 'btn-info']
+                -interview = household.interview
+                - if interview.nil?
+                  = link_to "None", new_household_interview_path(household), class: ['btn', 'btn-info']
+                -else
+                  = link_to 'Nutrition', interview, id: "#{interview.id}_show", class: ['btn', 'btn-info']
