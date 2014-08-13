@@ -15,3 +15,8 @@ Feature: Admin visit the admin dashboard
         And I press "Users Index"
         Then I should be on the "Users Index" page
         
+	Scenario: Admin goes to roles index in one click from the dashboard
+		Given I am a "Admin"
+        When I go to the "admin dashboard" page
+        And I press "Roles Index"
+        Then I should be on the "Roles Index" page
