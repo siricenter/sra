@@ -1,8 +1,10 @@
 // Place all the styles related to the people controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import 'bootstrap';
 
 @charset "utf-8";
+
 .main
 {
 	background-image: linear-gradient(to bottom, #f9fbfa 0%, #f9fbfa 100%);
@@ -253,3 +255,19 @@ input[type=checkbox]
 	border-color: #6b7770;
 }
 
+.button
+{
+	@extend .btn;
+	@extend .btn-lg;
+	@extend .btn-success;
+}
+
+.toolbar-button
+{
+	@extend .button;
+	@extend .col-sm-offset-8;
+	@extend .col-md-offset-10;
+	@extend .col-sm-3;
+	@extend .col-md-2;
+	@extend .right
+}
