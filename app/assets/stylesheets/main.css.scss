@@ -3,6 +3,11 @@
 	border-radius: 0;
 }
 
+h1
+{
+	@extend .col-xs-12;
+}
+
 #banner-wrapper
 {
 	@extend .jumbotron;
@@ -103,4 +108,11 @@ label
 	{
 		color: $theme-pink;
 	}
+}
+
+.toolbar
+{
+	@extend .btn-toolbar;
+	@extend .col-xs-12;
+	@extend .col-sm-6;
 }

@@ -1,12 +1,13 @@
-- if @interview.errors.any?
-  %ul
-  - @interview.errors.full_messages.each do |error|
-    %li
-      = error
-    
-%h1
-  New Interview
+.container
+  - if @interview.errors.any?
+    %ul.col-xs-12.col-md-6
+    - @interview.errors.full_messages.each do |error|
+      %li
+        = error
+      
+  %h1
+    New Interview
 
-= render 'form'
+  = render 'form'
 
-= link_to 'Back', household_interviews_path(@household)
+  = link_to 'Back', household_interviews_path(@household)

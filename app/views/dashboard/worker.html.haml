@@ -1,10 +1,12 @@
 .container
-  %h1
-    Dashboard
+  .row
+    %h1
+      Dashboard
 
-  .btn-toolbar
-    = link_to 'New Household', new_household_path, class: [:'toolbar-button']
-    = link_to 'New Meeting', new_event_path, class: [:'toolbar-button']
+  .row
+    .toolbar
+      = link_to 'New Household', new_household_path, class: [:'toolbar-button']
+      = link_to 'New Meeting', new_event_path, class: [:'toolbar-button']
   %br
 
   .row
