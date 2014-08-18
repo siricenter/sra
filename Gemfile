@@ -73,3 +73,4 @@ group :development do
 end
 ruby '2.0.0'
 gem 'thin'
+gem 'newrelic_rpm'
