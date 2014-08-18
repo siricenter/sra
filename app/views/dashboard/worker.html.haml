@@ -1,12 +1,15 @@
-%h1
-  Dashboard
+.container
+  %h1
+    Dashboard
 
-.row
   .btn-toolbar
-    = link_to 'New Household', new_household_path, class: [:btn, "btn-large", "btn-success", :right], id: :top 
-    = link_to 'New Meeting', new_event_path, class: [:btn, "btn-large", "btn-success", :right], id: :top 
-.row
-  = render 'manager_partial'
-.row
-  = render 'dashboard_list'
-  = render 'meetings_list'
+    = link_to 'New Household', new_household_path, class: [:btn, "btn-large", "btn-primary", :right], id: :top 
+    = link_to 'New Meeting', new_event_path, class: [:btn, "btn-large", "btn-primary", :right], id: :top 
+  %br
+
+  .row
+    = render 'manager_partial'
+
+  .row
+    = render 'dashboard_list'
+    = render 'meetings_list'
