@@ -1,32 +1,19 @@
-= flash[:alert] if flash[:alert]
 = form_for(@path) do |f|
-  %h2
-    Foods Eaten
+  .row
+    %h2
+      Foods Eaten
 
-    %h4
+    %h4.explain
       Don't push enter to search - it will cause problems
 
-  .row{id: "add_food_eaten"}
+  .row{id: 'add_food_eaten'}
     = render partial: 'consumed_food', collection: @interview.consumed_foods
-    #consumed_foods
-      %input{type: "search", placeholder: "Search for food", id: "consumed_food_search", class: ['textfield', "col-sm-5"]}
-      %input{type: "button", value: "Search!", class: [:btn, "btn-large", "btn-success", "col-sm-2"]}
+  .row
+    .text-control
+      %input{type: :'search', placeholder: :'Search for food', id: :'consumed_food_search', class: [:'text-field']}
+    %input{type: 'button', value: 'Search!', class: [:'button-emphasis', :'col-sm-2']}
   .row
     #display
 
-  - if false
-    %h2
-      Foods Stored
-
-    .row{id: "add_food_stored"}
-      %input{type: "button", value: "Add New Food Stored"}
-      
-
-    %h2
-      Foods Purchased
-
-    .row{id: "add_food_purchase"}
-      %input{type: "button", value: "Add Food Purchased"}
-
   .row
-    = f.submit
+    = f.submit 'Submit', class: [:'submit']

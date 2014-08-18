@@ -3,7 +3,7 @@
 	border-radius: 0;
 }
 
-h1
+h1, h2
 {
 	@extend .col-xs-12;
 }
@@ -115,4 +115,14 @@ label
 	@extend .btn-toolbar;
 	@extend .col-xs-12;
 	@extend .col-sm-6;
+}
+
+.explain
+{
+	@extend .col-xs-12;
+}
+
+#consumed_foods, #display
+{
+	@extend .col-xs-12;
 }
