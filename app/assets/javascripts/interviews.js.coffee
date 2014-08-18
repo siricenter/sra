@@ -52,7 +52,11 @@ newFoodPurchased = () ->
 
 addRow = (row, before) ->
 	row.insertBefore(before)
-
+    
+removeFood = (foodId) ->
+    $( "#" + foodId ).remove()
+	
+    
 addOptions = (select, options) ->
 	for element in options
 		option = createElement "option"
@@ -61,6 +65,7 @@ addOptions = (select, options) ->
 
 foodRow = (name, count, result) ->
 	newRow = $('<div>').addClass('row')
+	newRow.attr("id", "food_div_#{result.fields.item_id}")
 
 	hiddenId = $('<input>').val(result._id)
 	hiddenId.attr('name', "consumed_foods[consumed_food_#{count}[n_id]]")
@@ -97,6 +102,14 @@ foodRow = (name, count, result) ->
 	for time in frequencyOptions
 		option = $('<option>').val(time).text(time)
 		frequencySelect.append(option)
+        
+	removeButton = $('<button>')
+	removeButton.attr("type", "button")
+	removeButton.attr("name", "remove_consumed_foods[consumed_food_#{count}[name]]")
+	removeButton.attr("id", "remove_consumed_foods_#{result.fields.item_id}")
+	removeButton.bind('click', () -> removeFood("food_div_#{result.fields.item_id}"))
+	removeButton.html("Remove")
+	removeButton.addClass("button")
 
 	newRow.append(hiddenId)
 	newRow.append(nameLabel)
@@ -105,6 +118,7 @@ foodRow = (name, count, result) ->
 	newRow.append(servingsSelect)
 	#newRow.append(frequencyLabel)
 	newRow.append(frequencySelect)
+	newRow.append(removeButton)
 	
 	return newRow
 
@@ -172,6 +186,11 @@ purchasedFoodRow = () ->
 	newRow.appendChild timeSelect
 
 	return newRow
+
+root = exports ? this
+
+root.removeFood = (foodId) ->
+    $( "#" + foodId ).remove()
 
 $(document).ready () ->
 	#$('#add_food_eaten').bind('click', () -> newFoodStored()) 
