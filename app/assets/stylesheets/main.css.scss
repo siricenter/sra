@@ -12,3 +12,13 @@
 {
 	text-align: center;
 }
+
+.button
+{
+	@extend .btn;
+	@extend .btn-primary;
+	@extend .btn-lg;
+	@extend .col-xs-4;
+	@extend .col-sm-3;
+	@extend .col-md-2;
+}
