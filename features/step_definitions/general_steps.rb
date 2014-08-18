@@ -56,7 +56,6 @@ When(/^I fill out the new user form with email "(.*?)" and password "(.*?)"$/) d
     fill_in 'user_password', with: password
     fill_in 'user_password_confirmation', with: password
     click_on 'Create User'
-    
 end                                                                                                                                                  
                                                                                                                                                      
 Then(/^there should be a user with email "(.*?)"$/) do |email|         
