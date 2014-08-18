@@ -22,18 +22,18 @@
 .button
 {
 	@include button;
-	@extend .btn-primary;
+	@extend .btn-default;
 }
 
-.button-default
+.button-emphasis
 {
 	@include button;
-	@extend .btn-default;
+	@extend .btn-primary;
 }
 
 .button-large
 {
-	@extend .button;
+	@extend .button-emphasis;
 	@extend .btn-lg;
 }
 
@@ -44,6 +44,8 @@
 	@extend .col-xs-4;
 	@extend .col-sm-3;
 	@extend .col-md-2;
+
+	margin-top: 10px;
 }
 
 .call-to-action

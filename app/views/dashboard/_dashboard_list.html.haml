@@ -22,12 +22,12 @@
                 %td
                   - interview = household.interview
                   - if interview.nil?
-                    = link_to "Interview Family", new_household_interview_path(household), class: [:'button']
+                    = link_to "Interview Family", new_household_interview_path(household), class: [:'button-emphasis']
                   -else
                     = link_to 'View Nutrition', interview, id: "#{interview.id}_show"
           %tr
             %td
-              = link_to 'Add Person', new_household_person_path(household), class: [(:'button' if household.people.count == 0), (:'button-default' unless household.people.count == 0)]
+              = link_to 'Add Person', new_household_person_path(household), class: [(:'button-emphasis' if household.people.count == 0), (:'button' unless household.people.count == 0)]
 
 .table-responsive.col-xs-12.hidden-sm.hidden-md.hidden-lg
   %table.table.table-hover
