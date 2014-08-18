@@ -13,12 +13,40 @@
 	text-align: center;
 }
 
-.button
+@mixin button
 {
 	@extend .btn;
+	border-radius: 0;
+}
+
+.button
+{
+	@include button;
 	@extend .btn-primary;
+}
+
+.button-default
+{
+	@include button;
+	@extend .btn-default;
+}
+
+.button-large
+{
+	@extend .button;
 	@extend .btn-lg;
+}
+
+.submit
+{
+	@extend .button-large;
+
 	@extend .col-xs-4;
 	@extend .col-sm-3;
 	@extend .col-md-2;
+}
+
+.call-to-action
+{
+	@extend .button-large;
 }
