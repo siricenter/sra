@@ -1,0 +1,14 @@
+#banner-wrapper
+{
+	@extend .jumbotron;
+}
+
+.main
+{
+	@extend .container;
+}
+
+.footer
+{
+	text-align: center;
+}
