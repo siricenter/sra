@@ -1,6 +1,7 @@
 = form_for(@household) do |f|
-  .row
-    = f.label :name, class: :'col-sm-2'
-    = f.text_field :name, class: [:textfield, :'col-sm-8', :'col-md-9']
+  .row.form-group
+    = f.label :name
+    .text-control
+      = f.text_field :name, class: :'text-field'
   .row
     = f.submit 'Submit', class: [:'submit']

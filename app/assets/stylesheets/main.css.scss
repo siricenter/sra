@@ -52,3 +52,21 @@
 {
 	@extend .button-large;
 }
+
+.text-control
+{
+	@extend .col-xs-9;
+	@extend .col-sm-10;
+}
+
+.text-field
+{
+	@extend .form-control
+}
+
+label
+{
+	@extend .text-right;
+	@extend .col-xs-3;
+	@extend .col-sm-2;
+}

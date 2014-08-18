@@ -3,7 +3,7 @@
     .col-xs-12
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
         .row.form-group
-          = f.label :email, class: [:'col-xs-3', :'col-sm-2', :'label-control', :'text-right']
+          = f.label :email
           .col-xs-9.col-sm-10
             = f.email_field :email, :autofocus => true, class: [:'form-control']
         .row.form-group
