@@ -1,32 +1,38 @@
-.row
-	= link_to 'Households', households_path, class: [:btn, "btn-large", "btn-success", "col-sm-2"], id: :back
+.container
+  .row
+    %h1.col-xs-12
+      = @household.name + " Household"
 
-.row
-	%h1= @household.name + " Household"
+  - interviewed =  Interview.where({household_id: @household}).last
+  .row
+    .btn-toolbar.col-xs-12.col-sm-6
+      = link_to 'Add Person', new_household_person_path(@household), class: [:'toolbar-button'], id: "add_person_top"
+      = link_to 'Rename', edit_household_path(@household), class: [:'toolbar-button'], id: "rename_top"
+      - if interviewed
+        = link_to 'Nutrition', interview_path(Interview.where({household_id: @household}).last), class: [:'toolbar-button'], id: "nutrition"
+      - if @household.people.count > 0 and not interviewed
+        = link_to 'Interview', new_household_interview_path(@household), class: [:'toolbar-button'], id: :interview_household
 
-- interviewed =	Interview.where({household_id: @household}).last
-.row.btn-toolbar
-	= link_to 'Add Person', new_household_person_path(@household), class: [:'toolbar-button'], id: "add_person_top"
-	= link_to 'Rename', edit_household_path(@household), class: [:'toolbar-button'], id: "rename_top"
-	- if interviewed
-		= link_to 'Nutrition', interview_path(Interview.where({household_id: @household}).last), class: [:'toolbar-button'], id: "nutrition"
-	- if @household.people.count > 0 and not interviewed
-		= link_to 'Interview', new_household_interview_path(@household), class: [:'toolbar-button'], id: :interview_household
-
-- if @people.size > 0
-	.row
-		- @people.each do |person|
-			.col-sm-6.col-md-4
-				.panel.panel-primary
-					.panel-heading
-						%h3.panel-title
-							= "#{person.given_name} #{person.family_name}"
-						= link_to 'X', person, method: :delete, id: "#{person.id}_remove"
-					.panel-body
-						%ul
-							%li.alabel
-								= person.gender
-							%li.alabel 
-								= "Born #{person.birthday}"
-						= link_to 'View', person_path(person), class: [:button, :'col-sm-5']
-						= link_to 'Edit', edit_person_path(person), class: [:button, :'col-sm-5', :'col-sm-offset-2'], id: "#{person.id}_edit"
+  - if @people.size > 0
+    #people
+      - @people.each do |person|
+        .col-xs-12.col-sm-6.col-md-4
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                %span.delete
+                  = link_to 'x', person, method: :delete, id: "#{person.id}_remove"
+                &nbsp;
+                = "#{person.given_name} #{person.family_name}"
+            .panel-body
+              %ul
+                %li.alabel
+                  = person.gender
+                %li.alabel 
+                  = "Born #{person.birthday}"
+              = link_to 'View', person_path(person), class: [:button, :'col-sm-5']
+              = link_to 'Edit', edit_person_path(person), class: [:button, :'col-sm-5', :'col-sm-offset-2'], id: "#{person.id}_edit"
+  - else
+    .row
+      %p.text-center.text-info
+        Sorry, doesn't look like you've put any people in here yet.

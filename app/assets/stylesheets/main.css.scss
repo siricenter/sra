@@ -1,3 +1,8 @@
+*, .panel
+{
+	border-radius: 0;
+}
+
 #banner-wrapper
 {
 	@extend .jumbotron;
@@ -35,6 +40,11 @@
 {
 	@extend .button-emphasis;
 	@extend .btn-lg;
+}
+
+.toolbar-button
+{
+	@extend .button;
 }
 
 .submit
@@ -75,4 +85,22 @@ label
 	@extend .text-right;
 	@extend .col-xs-3;
 	@extend .col-sm-2;
+}
+
+#people
+{
+	@extend .row;
+	margin-top: 10px;
+}
+
+.delete > a
+{
+	float: right;
+	color: black;
+	text-decoration: none;
+
+	&:hover
+	{
+		color: $theme-pink;
+	}
 }
