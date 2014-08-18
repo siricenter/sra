@@ -2,20 +2,16 @@ $nav-height: 60px;
 nav
 {
 	background: #FFFFFF;
-	//padding-left: 10%;
 	font-size: large;
 	line-height: 40px;
 	top: 0;
 	width: 100%;
-	height: $nav-height;
+	min-height: $nav-height;
 	z-index: 1;
 
 	a
 	{
-		//padding: 2% 2% 3% 2%;
-		//margin-top: -1%;
 		border-radius: 0px;
-		//display: block;
 		color: #555454;
 		text-decoration: none;
 		cursor: pointer;
