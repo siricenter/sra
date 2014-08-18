@@ -53,6 +53,12 @@
 	@extend .button-large;
 }
 
+.form-row
+{
+	@extend .row;
+	@extend .form-group;
+}
+
 .text-control
 {
 	@extend .col-xs-9;

@@ -2,17 +2,17 @@
   .row
     .col-xs-12
       = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-        .row.form-group
+        .form-row
           = f.label :email
-          .col-xs-9.col-sm-10
-            = f.email_field :email, :autofocus => true, class: [:'form-control']
-        .row.form-group
+          .text-control
+            = f.email_field :email, :autofocus => true, class: [:'text-field']
+        .form-row
           = f.label :password, class: [:'col-xs-3', :'col-sm-2', :'text-right']
-          .col-xs-9.col-sm-10
-            = f.password_field :password, class: [:'form-control', :'col-xs-7', :'col-md-8']
+          .text-control
+            = f.password_field :password, class: [:'text-field']
 
         - if devise_mapping.rememberable?
-          .row.form-group
+          .form-row
             = f.label :remember_me, class: [:'col-xs-3', :'col-sm-2', :'text-right']
             .col-xs-9.col-sm-10
               = f.check_box :remember_me
