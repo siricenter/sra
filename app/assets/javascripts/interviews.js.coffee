@@ -95,7 +95,7 @@ foodRow = (name, count, result) ->
 
 	frequencyLabel = $('<label>').text('Per:').addClass('col-sm-1 col-md-1')
 
-	frequencySelect = $('<select>').addClass('col-sm-2 col-md-2')
+	frequencySelect = $('<select>').addClass('col-sm-1 col-md-1')
 	frequencySelect.attr('name', "consumed_foods[consumed_food_#{count}[frequency]]")
 
 	frequencyOptions = ['daily', 'weekly', 'monthly']
@@ -109,7 +109,7 @@ foodRow = (name, count, result) ->
 	removeButton.attr("id", "remove_consumed_foods_#{result.fields.item_id}")
 	removeButton.bind('click', () -> removeFood("food_div_#{result.fields.item_id}"))
 	removeButton.html("Remove")
-	removeButton.addClass("button")
+	removeButton.addClass("button col-sm-1 col-md-1")
 
 	newRow.append(hiddenId)
 	newRow.append(nameLabel)
