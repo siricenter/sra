@@ -4,8 +4,8 @@ class AreasController < ApplicationController
   # GET /areas.json
   def index
     #@areas = Area.all
-      @areas = RestClient.get 'https://sra-api.com/areas', {:accept => :json}
-      @areas = JSON.parse(@areas)
+      request = RestClient.get 'https://sra-api.com/areas', {:accept => :json}
+      @areas = JSON.parse(request)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @areas }
@@ -16,11 +16,12 @@ class AreasController < ApplicationController
   # GET /areas/1.json
   def show
     #@area = Area.find(params[:id])
-      @area = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
+      request = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
+      @area = JSON.parse(request)
     # Category.joins(:posts)
     #@roles = Role.all
-      @roles = RestClient.get 'https://sra-api.com/roles', {:accept => :json}
-      @roles = JSON.parse(@roles)
+      request = RestClient.get 'https://sra-api.com/roles', {:accept => :json}
+      @roles = JSON.parse(request)
     @users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
     # roles = Role.where(:name ["Field Worker", "Manager"])
     # users = User.where(name: "Field Worker")
@@ -35,7 +36,7 @@ class AreasController < ApplicationController
   # GET /areas/new.json
   def new
     #@area = Area.new
-      @area = RestClient.post 'http://sra-api.com/areas/:id', :param1 => 'one', :nested => { :param2 => 'two' }
+      request = RestClient.post 'http://sra-api.com/areas/:id', :param1 => 'one', :nested => { :param2 => 'two' }
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @area }
@@ -44,14 +45,16 @@ class AreasController < ApplicationController
 
   # GET /areas/1/edit
   def edit
-    @area = Area.find(params[:id])
+    #@area = Area.find(params[:id])
+    request = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
+      @area = JSON.parse(request) 
   end
 
   # POST /areas
   # POST /areas.json
   def create
    #@area = Area.new(params[:area])
-      @area = RestClient.post 'http://sra-api.com/areas/:id', {:params => {:area => params[:area]}}
+      request = RestClient.post 'http://sra-api.com/areas/:id', {:params => {:area => params[:area]}}
     respond_to do |format|
       if @area.save
         format.html { redirect_to @area, notice: 'Area was successfully created.' }
@@ -67,7 +70,8 @@ class AreasController < ApplicationController
   # PUT /areas/1.json
   def update
     #@area = Area.find(params[:id])
-	@area = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
+      request = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
+      @area = JSON.parse(request)
     respond_to do |format|
       if @area.update_attributes(params[:area])
         format.html { redirect_to @area, notice: 'Area was successfully updated.' }
@@ -83,9 +87,7 @@ class AreasController < ApplicationController
   # DELETE /areas/1.json
   def destroy
     #@area = Area.find(params[:id])
-    @area = RestClient.get 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
-    @area.destroy
-
+     request = RestClient.delete 'http://sra-api.com/areas/:id', {:params => {:id => params[:id]}}
     respond_to do |format|
       format.html { redirect_to areas_url }
       format.json { head :no_content }

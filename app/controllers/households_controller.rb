@@ -4,8 +4,9 @@ class HouseholdsController < ApplicationController
 	# GET /households
 	# GET /households.json
 	def index
-		@households = current_user.households
-
+		#@households = current_user.households
+        request = RestClient.get 'http://sra-api.com/users/:id/households', {:params => {:id => params[:id]}}
+        @households = JSON.parse(request)
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @households }
@@ -15,9 +16,12 @@ class HouseholdsController < ApplicationController
 	# GET /households/1
 	# GET /households/1.json
 	def show
-		@household = Household.find(params[:id])
-		@people = @household.people
-
+		#@household = Household.find(params[:id])
+        request = RestClient.get 'http://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
+		#@people = @household.people
+        request = RestClient.get 'http://sra-api.com/households/:id/people', {:params => {:id => params[:id]}}
+        @people = JSON.parse(request)
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @household }
@@ -27,25 +31,28 @@ class HouseholdsController < ApplicationController
 	# GET /households/new
 	# GET /households/new.json
 	def new
-		@household = Household.new
-
+		#@household = Household.new
+        request = RestClient.post 'http://sra-api.com/households/', {:params => {:area => params[:area]}}
 		respond_to do |format|
-			format.html # new.html.erb
+            format.html # new.html.erb
 			format.json { render json: @household }
 		end
 	end
 
 	# GET /households/1/edit
 	def edit
-		@household = Household.find(params[:id])
+		#@household = Household.find(params[:id])
+        request = RestClient.get 'http://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
 	end
 
 	# POST /households
 	# POST /households.json
 	def create
-		@household = Household.new(params[:household])
+        request = RestClient.get 'http://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
+		#@household = Household.new(params[:household])
 		@household.user = current_user 
-
 		respond_to do |format|
 			if @household.save
 				format.html { redirect_to @household, notice: 'Household was successfully created.' }
@@ -60,8 +67,9 @@ class HouseholdsController < ApplicationController
 	# PUT /households/1
 	# PUT /households/1.json
 	def update
-		@household = Household.find(params[:id])
-
+		#@household = Household.find(params[:id])
+         request = RestClient.get 'http://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
 		respond_to do |format|
 			if @household.update_attributes(params[:household])
 				format.html { redirect_to @household, notice: 'Household was successfully updated.' }
@@ -76,12 +84,16 @@ class HouseholdsController < ApplicationController
 	# DELETE /households/1
 	# DELETE /households/1.json
 	def destroy
-		@household = Household.find(params[:id])
-		@interviews = Interview.where({household_id: @household.id})
+		#@household = Household.find(params[:id])
+         request = RestClient.get 'http://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
+		#@interviews = Interview.where({household_id: @household.id})
+        request = RestClient.get 'http://sra-api.com/households/:id/interviews', {:params => {:id => params[:id]}}
+        @interviews = JSON.parse(request)
 		@interviews.each do |interview|
-			interview.destroy
+            RestClient.delete 'http://sra-api.com/households/:id/interviews', {:params => {:id => params[:id]}}
 		end
-		@household.destroy
+        RestClient.delete 'http://sra-api.com/households/:id/', {:params => {:id => params[:id]}}
 
 		respond_to do |format|
 			format.html { redirect_to households_url }
