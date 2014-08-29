@@ -3,8 +3,8 @@ class AreasController < ApplicationController
   # GET /areas
   # GET /areas.json
   def index
-    @areas = Area.all
-
+    #@areas = Area.all
+      @areas = RestClient.get
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @areas }
