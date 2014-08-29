@@ -1,25 +1,24 @@
+require 'rest_client'
 class AreasController < ApplicationController
 	before_filter :authenticate_user!
   # GET /areas
   # GET /areas.json
   def index
     @areas = Area.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @areas }
-    end
+     
   end
 
   # GET /areas/1
   # GET /areas/1.json
   def show
+   
     @area = Area.find(params[:id])
-    # Category.joins(:posts)
     @roles = Role.all
+    @roles = RestClient.get 'http://sra-api.com/roles' {:accept => :json}
+    @roles = JSON.parse(@roles)  
     @users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
-    # roles = Role.where(:name ["Field Worker", "Manager"])
-    # users = User.where(name: "Field Worker")
+    #roles = Role.where(:name ["Field Worker", "Manager"])
+    #users = User.where(name: "Field Worker")
 
     respond_to do |format|
       format.html # show.html.erb
