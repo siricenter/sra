@@ -32,7 +32,7 @@ class HouseholdsController < ApplicationController
 	# GET /households/new.json
 	def new
 		#@household = Household.new
-        request = RestClient.post 'http://sra-api.com/households/', {:params => {:area => params[:area]}}
+        request = RestClient.post 'http://sra-api.com/households/new', {:params => {:area => params[:area]}}
 		respond_to do |format|
             format.html # new.html.erb
 			format.json { render json: @household }
