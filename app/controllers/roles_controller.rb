@@ -4,7 +4,8 @@ class RolesController < ApplicationController
 
 	def index
 		@roles = Role.all
-		
+        request = RestClient.get 'https://sra-api.com/roles' {:accept => :json}
+        @roles = JSON.parse(request)
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @roles }
@@ -12,8 +13,9 @@ class RolesController < ApplicationController
 	end
 
 	def show
-		@role = Role.find(params[:id])
-
+		#@role = Role.find(params[:id])
+        request = RestClient.get 'https://sra-api.com/roles/:id' {:params => {:id => params[:id]}}
+        @role = JSON.parse(request)
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @role }

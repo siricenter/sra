@@ -2,9 +2,11 @@ class InterviewsController < ApplicationController
 	# GET /interviews
 	# GET /interviews.json
 	def index
-		@household = Household.find(params[:household_id])
-		@interviews = Interview.where({household_id: @household.id})
-
+		#@household = Household.find(params[:household_id])
+		#@interviews = Interview.where({household_id: @household.id})
+        request = RestClient.get 'https://sra-api.com/households/:id' {:params => {:id => params{:id}}
+        @household = JSON.parse(request)
+        @interviews = RestClient.get 'https://sra-api.com/households/:id/interviews', {:params => {:id => params[:id]}}
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @interviews }
@@ -14,9 +16,12 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1
 	# GET /interviews/1.json
 	def show
-		@interview = Interview.find(params[:id])
-		#render inline: @interview.to_json
-		@household = Household.find(@interview.household_id)
+		#@interview = Interview.find(params[:id])
+        request = RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        @interviews = JSON.parse(request)
+		#@household = Household.find(@interview.household_id)
+        request = RestClient.get 'https://sra-api.com/interviews/household', {:params => {:id => params[:id]}}
+        @household  = JSON.parse(request)
 		raise "No such household" unless @household 
 
 		respond_to do |format|
@@ -28,8 +33,14 @@ class InterviewsController < ApplicationController
 	# GET /interviews/new
 	# GET /interviews/new.json
 	def new
-		@household = Household.find(params[:household_id])
-		@interview = Interview.new
+		#@household = Household.find(params[:household_id])
+        request = RestClient.get 'https://sra-api.com/households/:id', {:params => {:id => params[:id]}}
+        @interviews = JSON.parse(request)
+		#@interview = Interview.new
+        request = RestClient.post 'https://sra-api.com/interviews.new'
+        request = RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        @interview = JSON.parse(request)
+        
 		# @interview.health = Health.new
 		# @interview.expense = Expense.new
 		# @interview.morbidity = Morbidity.new
@@ -44,8 +55,12 @@ class InterviewsController < ApplicationController
 
 	# GET /interviews/1/edit
 	def edit
-		@interview = Interview.find(params[:id])
-		@household = Household.find(@interview.household_id)
+		#@interview = Interview.find(params[:id])
+        request = RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        @interview = JSON.parse(request)
+		#@household = Household.find(@interview.household_id)
+        request = RestClient.get 'https://sra-api.com/households/:id', {:params => {:id => params[:interview_id]}}
+        @household = JSON.parse(request)
 		@path = @interview
 	end
 
@@ -53,9 +68,14 @@ class InterviewsController < ApplicationController
 	# POST /interviews.json
 	def create
 		#render inline: params.inspect
-		@household = Household.find(params[:household_id])
-
-		@interview = Interview.new(params[:interview])
+		#@household = Household.find(params[:household_id])
+        request = RestClient.get 'https://sra-api.com/households:id', {:params => {:id => params[:id]}}
+        @household = JSON.parse(request)
+        
+		#@interview = Interview.new(params[:interview])
+        RestClient.post 'https://sra-api.com/interviews', {:params {:interview => params[:interview]}}
+        request =  RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        @interview = JSON.parse(request)
 		#@interview.health = Health.new(params[:health])
 		#@interview.expense = Expense.new(params[:expense])
 		#@interview.morbidity = Morbidity.new(params[:morbidity])
@@ -95,8 +115,9 @@ class InterviewsController < ApplicationController
 	# PUT /interviews/1
 	# PUT /interviews/1.json
 	def update
-		#render inline: params.inspect
-		@interview = Interview.find(params[:id])
+		#@interview = Interview.find(params[:id])
+        request = RestClient.get 'https://sra-api.com/interviews/id', {:params => {:id => params[:id]}}
+        @interview = JSON.parse(request)
 		@interview.consumed_foods = []
 
 		if params[:consumed_foods]
@@ -119,7 +140,9 @@ class InterviewsController < ApplicationController
 	# DELETE /interviews/1
 	# DELETE /interviews/1.json
 	def destroy
-		@interview = Interview.find(params[:id])
+		#@interview = Interview.find(params[:id])
+		request = RestClient.get 'https://sra-api.com/interviews/id', {:params => {:id => params[:id]}}
+        @interview = JSON.parse(request)
 		@household = Household.first
 		@interview.destroy
 
