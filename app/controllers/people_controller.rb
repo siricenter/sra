@@ -2,10 +2,10 @@ class PeopleController < ApplicationController
 	#before_filter :authenticate_user!
 	def new
 		#@household = Household.find(params[:household_id])
-        request = RestClient.get 'https://sra-api/com/households/:id' {:params => {:id => params[:household_id]}}
+        request = RestClient.get "https://sra-api/com/households/#{params[:id]}/people" 
         @household = JSON.parse(request)
 		#@person = Person.new(family_name: @household.name)
-        RestClient.post 'https://sra-api/com/households/persons' {:params => {:family_name => @household.name}
+        RestClient.post 'https://sra-api/com/households/persons' {:family_name => @household.name}
 		@path = [@household, @person]
 		@relationships = FamilyRelationship.all.map do |relationship|
 			relationship.name
@@ -14,17 +14,16 @@ class PeopleController < ApplicationController
 
 	def create
 		#@household = Household.find(params[:household_id])
-        request = RestClient.get 'https://sra-api.com/households/:id' {:params => {:id => params[:household_id]}}
-        @household = JSON.parse(request)
+        
 		#relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
-        relationship = RestClient.get 'https://sra-api.com/households/relationships/:name' {:params => {:relationship => params[:person][:family_relationship]}}
+		relationship = RestClient.get "https://sra-api.com/households/relationships/#{params[:id]}" {:relationship => params[:person][:family_relationship]}}
 		#@person = Person.new(params[:person].except(:family_relationship))
-        RestClient.post 'https://sra-api.com/households/people'
+		RestClient.post 'https://sra-api.com/households/people' {:person => params[:person]}
 		@person.family_relationship = relationship
 		@household.people << @person
-        RestClient.post 'https://sra-api.com/households/people' {:params => {:person => @person}}
+        RestClient.post 'https://sra-api.com/households/people' {:person => @person}}
 		respond_to do |format|
-            if @person.save
+            if response.status == 200
 				format.html {redirect_to @household}
 				format.json {render json: @household, status: :created, location: @household}
 			else
@@ -36,7 +35,7 @@ class PeopleController < ApplicationController
 
 	def edit
 		#@person = Person.find(params[:id])
-        request = RestClient.get 'https://sra-api.com/households/people/:id' {:params => {:id => params[:id]}}
+        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}" 
         @person = JSON.parse(request)
 		@household = @person.household
 		@relationships = FamilyRelationship.all.map do |relationship|
@@ -47,31 +46,28 @@ class PeopleController < ApplicationController
 
 	def show
 		#@person = Person.find(params[:id])
-		request = RestClient.get 'https://sra-api.com/households/people/:id' {:params => {:id => params[:id]}}
+        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}"
         @person = JSON.parse(request)
 	end
 
 	def index
 		#@household = Household.find(params[:household_id])
-        request = RestClient.get 'https://sra-api.com/households/:id' {:params => {:id => params[:household_id]}}
+        request = RestClient.get "https://sra-api.com/households/#{params[:id]}"
         @household = JSON.parse(request)
 		redirect_to @household
 	end
 
 	def update
 		#@person = Person.find(params[:id])
-        request = RestClient.get 'https://sra-api.com/households/people/:id' {:params => {:id => params[:id]}}
+        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}" 
         @person = JSON.parse(request)
-        
 		@person.attributes = params[:person].except("family_relationship")
 		#relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
         relationship = RestClient.get 'https://sra-api.com/households/relationships/:name' {:params => {:relationship => params[:person][:family_relationship]}}
 		@person.family_relationship = relationship
         RestClient.put 'https://sra-api.com/households/people/:id' {:params => {:person => @person}}
-        request = RestClient.get 'https://sra-api.com/households/people/:id' {:params => {:id => params[:id]}}		
-        @person = JSON.parse(request)
         respond_to do |format|
-			if @person
+            if response.status == 200 
 				format.html {redirect_to @person}
 				format.json {render json: @person, status: :created, location: @household}
 			else
@@ -82,13 +78,9 @@ class PeopleController < ApplicationController
 	end
 
 	def destroy
-		#@person = Person.find(params[:id])
-        request = RestClient.get 'https://sra-api.com/households/people/:id' {:params => {:id => params[:id]}}		
-        @person = JSON.parse(request)
-        @household = RestClient.get 'https://sra-api.com/people/:id/household/' {:params => {:id => params[:id]}}
-        RestClient.delete 'https://sra-api.com/households/:id' {:params => {:id => params[:id]}}
+		#@person = Person.find(params[:id]) 
+        RestClient.delete "https://sra-api.com/households//people/#{params[:id]}" 
 		#@person.destroy
-
 		redirect_to household_path(@household)
 	end
 end
