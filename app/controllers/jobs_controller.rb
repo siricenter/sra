@@ -39,8 +39,6 @@ class JobsController < ApplicationController
 
 	def edit
 		#@job = Job.find(params[:id])
-        request = RestClient.get "https://sra-api.com/households/people/jobs/#{params[:id]}/person"
-        @jobs = JSON.parse(request)
         RestClient.put "https://sra-api.com/households/people/jobs/#{params[:id]}/person", {:job => params[:job]}
 		@path = @job
 	end
