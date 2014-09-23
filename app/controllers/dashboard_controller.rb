@@ -4,13 +4,13 @@ class DashboardController < ApplicationController
         #@households = Household.all
         request = RestClient.get 'https://sra-api.com/households', {:accept => :json}
         @households = JSON.parse(request)
+		request = RestClient.get "https://sra-api.com/user/#{params[:id]}"
+		@user = JSON.parse(request)
     	respond_to do |format|
       		format.html # index.html.erb
       		format.json { render json: @areas }
         end
-        request = RestClient.get "https://sra-api.com/users/#{params[:id]}"
-        @user = JSON.parse(request)
-        if @user.has_role? "admin"
+		if @user.has_role? "admin"
             admin
         elsif @user.has_role? "manager"
             field_worker

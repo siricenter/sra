@@ -19,9 +19,7 @@ class HouseholdsController < ApplicationController
 		#@household = Household.find(params[:id])
         request = RestClient.get "http://sra-api.com/households/#{params[:id]}"
         @household = JSON.parse(request)
-		#@people = @household.people
-		request = RestClient.get "http://sra-api.com/households/#{params[:id]}/people"
-        @people = JSON.parse(request)
+		@people = @household.people
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @household }
@@ -85,11 +83,10 @@ class HouseholdsController < ApplicationController
 		#@household = Household.find(params[:id])
       
 		#@interviews = Interview.where({household_id: @household.id})
-        request = RestClient.get "http://sra-api.com/households/#{params[:id]}/interviews"
-        @interviews = JSON.parse(request)
-		@interviews.each do |interview|
-            RestClient.delete "http://sra-api.com/households/#{params[:id]}/interviews"
-		end
+        request = RestClient.get "http://sra-api.com/households/#{params[:id]}"
+		@household = JSON.parse(request)
+		@interview = @household.interview
+        RestClient.delete "http://sra-api.com/households/#{params[:household_id]}/interviews/#{params[:interview_id]}"
 		RestClient.delete "http://sra-api.com/households/#{params[:id]}"
 
 		respond_to do |format|
