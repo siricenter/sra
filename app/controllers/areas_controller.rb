@@ -12,7 +12,7 @@ class AreasController < ApplicationController
   # GET /areas/1.json
   def show
    
-    @area = Area.find(params[:id])
+    #@area = Area.find(params[:id])
     @roles = Role.all
     @roles = RestClient.get 'http://sra-api.com/roles' {:accept => :json}
     @roles = JSON.parse(@roles)  
