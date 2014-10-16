@@ -206,12 +206,16 @@ DEPENDENCIES
   faker
   haml
   jquery-rails
+  mime-types
   mysql2
+  netrc
   newrelic_rpm
   nutritionix
   pg
   poltergeist
   rails (= 3.2.16)
+  rdoc
+  rest-client
   rspec-rails (~> 2.14.2)
   sass-rails (~> 3.2.3)
   therubyracer

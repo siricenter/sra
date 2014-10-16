@@ -1,6 +1,6 @@
 class AreasUsersController < ApplicationController
 	def create
-        RestClient.post "https://sra-api.com/areas/#{params[:area_id]}/users/#{params[:user_id]}", {:relationship => params[:id]}
+        RestClient.post "https://sra-api.herokuapp.com/areas/#{params[:area_id]}/users/#{params[:user_id]}", {:relationship => params[:id]}
 		
 		unless can? :create, :area_user
 			redirect_to @area, alert: "You don't have rights to assign field workers"
@@ -18,7 +18,7 @@ class AreasUsersController < ApplicationController
 
 	def destroy
 		if can? :delete, :area_user			
-            Restclient.delete "https://sra-api.com/areas/#{params[:area_id]}/users/#{params[user_id]}"
+            Restclient.delete "https://sra-api.herokuapp.com/areas/#{params[:area_id]}/users/#{params[user_id]}"
 		end
 
 		redirect_to @area

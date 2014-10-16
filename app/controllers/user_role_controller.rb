@@ -3,11 +3,11 @@ class UserRoleController < ApplicationController
 
 	def create
 		#@user = User.find(params[:user_id])
-        request = RestClient.get 'https://sra-api.com/users/:id', {:params => {:id => params[:user_id]}}
+        request = RestClient.get 'https://sra-api.herokuapp.com/users/:id', {:params => {:id => params[:user_id]}}
         @user = JSON.parse(request)
         
 		#@role = Role.find(params[:role_id])
-        request = RestClient.get 'https://sra-api.com/roles/:id', {:params => {:id => params[:role_id]}}
+        request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:params => {:id => params[:role_id]}}
         @role = JSON.parse(request)
 
 		unless can? :create, :user_role
@@ -28,10 +28,10 @@ class UserRoleController < ApplicationController
 	def destroy
 		if can? :delete, :user_role
 			#@user = User.find(params[:user_id])
-            request = RestClient.get 'https://sra-api.com/users/:id', {:params => {:id => params[:user_id]}}
+            request = RestClient.get 'https://sra-api.herokuapp.com/users/:id', {:params => {:id => params[:user_id]}}
        		@user = JSON.parse(request)
 			#@role = Role.find(params[:role_id])
-            request = RestClient.get 'https://sra-api.com/roles/:id', {:params => {:id => params[:role_id]}}
+            request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:params => {:id => params[:role_id]}}
         	@role = JSON.parse(request)
 			@user.roles.delete(@role) if @user.roles.include?(@role)
 		end

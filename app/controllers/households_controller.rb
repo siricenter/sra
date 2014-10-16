@@ -5,7 +5,7 @@ class HouseholdsController < ApplicationController
 	# GET /households.json
 	def index
 		#@households = current_user.households
-        request = RestClient.get "http://sra-api.com/users/#{params[:user_id]}/households"
+        request = RestClient.get "http://sra-api.herokuapp.com/users/#{params[:user_id]}/households"
         @households = JSON.parse(request)
 		respond_to do |format|
 			format.html # index.html.erb
@@ -17,7 +17,7 @@ class HouseholdsController < ApplicationController
 	# GET /households/1.json
 	def show
 		#@household = Household.find(params[:id])
-        request = RestClient.get "http://sra-api.com/households/#{params[:id]}"
+        request = RestClient.get "http://sra-api.herokuapp.com/households/#{params[:id]}"
         @household = JSON.parse(request)
 		@people = @household.people
 		respond_to do |format|
@@ -30,7 +30,7 @@ class HouseholdsController < ApplicationController
 	# GET /households/new.json
 	def new
 		@household = Household.new
-        request = RestClient.post 'http://sra-api.com/households/new', {:area => params[:area]}
+        request = RestClient.post 'http://sra-api.herokuapp.com/households/new', {:area => params[:area]}
 		respond_to do |format|
             format.html # new.html.erb
 			format.json { render json: @household }
@@ -40,7 +40,7 @@ class HouseholdsController < ApplicationController
 	# GET /households/1/edit
 	def edit
 		#@household = Household.find(params[:id])
-        request = RestClient.get "http://sra-api.com/households/#{params[:id]}"
+        request = RestClient.get "http://sra-api.herokuapp.com/households/#{params[:id]}"
         @household = JSON.parse(request)
 	end
 
@@ -48,7 +48,7 @@ class HouseholdsController < ApplicationController
 	# POST /households.json
 	def create
 		#@household = Household.new(params[:household])
-        RestClient.post "https://sra-api.com/households" {:household => params[:household]} 
+        RestClient.post "https://sra-api.herokuapp.com/households" {:household => params[:household]} 
 		respond_to do |format|
             if response.status == 200
 				format.html { redirect_to @household, notice: 'Household was successfully created.' }
@@ -64,7 +64,7 @@ class HouseholdsController < ApplicationController
 	# PUT /households/1.json
 	def update
 		#@household = Household.find(params[:id])
-        request = RestClient.post "http://sra-api.com/households/#{params[:id]}", {:household => params[:household]}}
+        request = RestClient.post "http://sra-api.herokuapp.com/households/#{params[:id]}", {:household => params[:household]}}
         @household = JSON.parse(request)
 		respond_to do |format|
             if response.status
@@ -83,11 +83,11 @@ class HouseholdsController < ApplicationController
 		#@household = Household.find(params[:id])
       
 		#@interviews = Interview.where({household_id: @household.id})
-        request = RestClient.get "http://sra-api.com/households/#{params[:id]}"
+        request = RestClient.get "http://sra-api.herokuapp.com/households/#{params[:id]}"
 		@household = JSON.parse(request)
 		@interview = @household.interview
-        RestClient.delete "http://sra-api.com/households/#{params[:household_id]}/interviews/#{params[:interview_id]}"
-		RestClient.delete "http://sra-api.com/households/#{params[:id]}"
+        RestClient.delete "http://sra-api.herokuapp.com/households/#{params[:household_id]}/interviews/#{params[:interview_id]}"
+		RestClient.delete "http://sra-api.herokuapp.com/households/#{params[:id]}"
 
 		respond_to do |format|
 			format.html { redirect_to households_url }

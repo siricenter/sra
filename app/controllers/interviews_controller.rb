@@ -4,9 +4,9 @@ class InterviewsController < ApplicationController
 	def index
 		#@household = Household.find(params[:household_id])
 		#@interviews = Interview.where({household_id: @household.id})
-        request = RestClient.get "https://sra-api.com/households/#{params[:id]}/interviews" 
+        request = RestClient.get "https://sra-api.herokuapp.com/households/#{params[:id]}/interviews" 
         @household = JSON.parse(request)
-        #@interviews = RestClient.get 'https://sra-api.com/households/:id/interviews', {:params => {:id => params[:id]}}
+        #@interviews = RestClient.get 'https://sra-api.herokuapp.com/households/:id/interviews', {:params => {:id => params[:id]}}
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @interviews }
@@ -17,10 +17,10 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1.json
 	def show
 		#@interview = Interview.find(params[:id])
-        request = RestClient.get "https://sra-api.com/interviews/#{params[:id]}/households"
+        request = RestClient.get "https://sra-api.herokuapp.com/interviews/#{params[:id]}/households"
         @interviews = JSON.parse(request)
 		#@household = Household.find(@interview.household_id)
-        #request = RestClient.get 'https://sra-api.com/interviews/household', {:params => {:id => params[:id]}}
+        #request = RestClient.get 'https://sra-api.herokuapp.com/interviews/household', {:params => {:id => params[:id]}}
         #@household  = JSON.parse(request)
 		raise "No such household" unless @household 
 
@@ -53,7 +53,7 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1/edit
 	def edit
 		#@interview = Interview.find(params[:id])
-        request = RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        request = RestClient.get 'https://sra-api.herokuapp.com/interviews/:id', {:params => {:id => params[:id]}}
         @interview = JSON.parse(request)
 		#@household = Household.find(@interview.household_id)
 		@path = @interview
@@ -66,8 +66,8 @@ class InterviewsController < ApplicationController
 		#@household = Household.find(params[:household_id])
         
 		#@interview = Interview.new(params[:interview])
-        RestClient.post 'https://sra-api.com/interviews', {:params {:interview => params[:interview]}}
-        request =  RestClient.get 'https://sra-api.com/interviews/:id', {:params => {:id => params[:id]}}
+        RestClient.post 'https://sra-api.herokuapp.com/interviews', {:params {:interview => params[:interview]}}
+        request =  RestClient.get 'https://sra-api.herokuapp.com/interviews/:id', {:params => {:id => params[:id]}}
         @interview = JSON.parse(request)
 		#@interview.health = Health.new(params[:health])
 		#@interview.expense = Expense.new(params[:expense])
@@ -109,14 +109,14 @@ class InterviewsController < ApplicationController
 	# PUT /interviews/1.json
 	def update
 		#@interview = Interview.find(params[:id])
-        request = RestClient.get "https://sra-api.com/interviews/#{params[:id]}"
+        request = RestClient.get "https://sra-api.herokuapp.com/interviews/#{params[:id]}"
         @interview = JSON.parse(request)
 		@interview.consumed_foods = []
 
 		if params[:consumed_foods]
 			params[:consumed_foods].each do |key, food|
 				#@interview.consumed_foods.build(food)
-                RestClient.put "https://sra-api.com/interviews/#{params[:id]}/consumed_foods" {:interview =>{:comsumed_foods => food}
+                RestClient.put "https://sra-api.herokuapp.com/interviews/#{params[:id]}/consumed_foods" {:interview =>{:comsumed_foods => food}
 			end
 		end
 
@@ -135,7 +135,7 @@ class InterviewsController < ApplicationController
 	# DELETE /interviews/1.json
 	def destroy
 		#@interview = Interview.find(params[:id])
-        RestClient.delete "https://sra-api.com/interviews/#{params[:id]}"
+        RestClient.delete "https://sra-api.herokuapp.com/interviews/#{params[:id]}"
 		respond_to do |format|
 			format.html { redirect_to household_interviews_path(@household) }
 			format.json { head :no_content }

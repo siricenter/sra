@@ -2,10 +2,10 @@ class PeopleController < ApplicationController
 	#before_filter :authenticate_user!
 	def new
 		#@household = Household.find(params[:household_id])
-        request = RestClient.get "https://sra-api/com/households/#{params[:id]}/people" 
+        request = RestClient.get "https://sra-api.herokuapp.com/households/#{params[:id]}/people" 
         @household = JSON.parse(request)
 		#@person = Person.new(family_name: @household.name)
-        RestClient.post 'https://sra-api/com/households/persons' {:family_name => @household.name}
+        RestClient.post 'https://sra-api.herokuapp.com/households/persons' {:family_name => @household.name}
 		@path = [@household, @person]
 		@relationships = FamilyRelationship.all.map do |relationship|
 			relationship.name
@@ -16,12 +16,12 @@ class PeopleController < ApplicationController
 		#@household = Household.find(params[:household_id])
         
 		#relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
-		relationship = RestClient.get "https://sra-api.com/households/relationships/#{params[:id]}" {:relationship => params[:person][:family_relationship]}}
+		relationship = RestClient.get "https://sra-api.herokuapp.com/households/relationships/#{params[:id]}" {:relationship => params[:person][:family_relationship]}}
 		#@person = Person.new(params[:person].except(:family_relationship))
-		RestClient.post 'https://sra-api.com/households/people' {:person => params[:person]}
+		RestClient.post 'https://sra-api.herokuapp.com/households/people' {:person => params[:person]}
 		@person.family_relationship = relationship
 		@household.people << @person
-        RestClient.post 'https://sra-api.com/households/people' {:person => @person}}
+        RestClient.post 'https://sra-api.herokuapp.com/households/people' {:person => @person}}
 		respond_to do |format|
             if response.status == 200
 				format.html {redirect_to @household}
@@ -35,7 +35,7 @@ class PeopleController < ApplicationController
 
 	def edit
 		#@person = Person.find(params[:id])
-        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}" 
+        request = RestClient.get "https://sra-api.herokuapp.com/households/people/#{params[:id]}" 
         @person = JSON.parse(request)
 		@household = @person.household
 		@relationships = FamilyRelationship.all.map do |relationship|
@@ -46,26 +46,26 @@ class PeopleController < ApplicationController
 
 	def show
 		#@person = Person.find(params[:id])
-        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}"
+        request = RestClient.get "https://sra-api.herokuapp.com/households/people/#{params[:id]}"
         @person = JSON.parse(request)
 	end
 
 	def index
 		#@household = Household.find(params[:household_id])
-        request = RestClient.get "https://sra-api.com/households/#{params[:id]}"
+        request = RestClient.get "https://sra-api.herokuapp.com/households/#{params[:id]}"
         @household = JSON.parse(request)
 		redirect_to @household
 	end
 
 	def update
 		#@person = Person.find(params[:id])
-        request = RestClient.get "https://sra-api.com/households/people/#{params[:id]}" 
+        request = RestClient.get "https://sra-api.herokuapp.com/households/people/#{params[:id]}" 
         @person = JSON.parse(request)
 		@person.attributes = params[:person].except("family_relationship")
 		#relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
-        relationship = RestClient.get 'https://sra-api.com/households/relationships/:name' {:params => {:relationship => params[:person][:family_relationship]}}
+        relationship = RestClient.get 'https://sra-api.herokuapp.com/households/relationships/:name' {:params => {:relationship => params[:person][:family_relationship]}}
 		@person.family_relationship = relationship
-        RestClient.put 'https://sra-api.com/households/people/:id' {:params => {:person => @person}}
+        RestClient.put 'https://sra-api.herokuapp.com/households/people/:id' {:params => {:person => @person}}
         respond_to do |format|
             if response.status == 200 
 				format.html {redirect_to @person}
@@ -79,7 +79,7 @@ class PeopleController < ApplicationController
 
 	def destroy
 		#@person = Person.find(params[:id]) 
-        RestClient.delete "https://sra-api.com/households//people/#{params[:id]}" 
+        RestClient.delete "https://sra-api.herokuapp.com/households//people/#{params[:id]}" 
 		#@person.destroy
 		redirect_to household_path(@household)
 	end
