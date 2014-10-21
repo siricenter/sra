@@ -4,8 +4,8 @@ class EventsController < ApplicationController
 	# GET /events.json
 	def index
 		#@events = current_user.events
-        request = RestClient.get "https://sra-api.herokuapp.com/users/#{params[:user_id]}/events"
-        @events = JSON.parse(requests)
+		request = RestClient.get "https://sra-api.herokuapp.com/users/#{params[:user_id]}/events"
+		@events = JSON.parse(requests)
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @events }
@@ -16,8 +16,8 @@ class EventsController < ApplicationController
 	# GET /events/1.json
 	def show
 		#@event = Event.find(params[:id])
-        request = RestClient.get "https://sra-api.herokuapp.com/users/events/#{params[:id]}" 
-        @event = JSON.parse(request)
+		request = RestClient.get "https://sra-api.herokuapp.com/users/events/#{params[:id]}" 
+		@event = JSON.parse(request)
 		unless @event.user == current_user
 			raise CanCan::AccessDenied
 		end
@@ -32,9 +32,9 @@ class EventsController < ApplicationController
 	# GET /events/new.json
 	def new
 		@event = Event.new
-        #RestClient.post 'https://sra-api.herokuapp.com/users/events'
-        #request = RestClient.get 'https://sra-api.herokuapp.com/users/events/last'
-        #@event = JSON.parse(json)
+		#RestClient.post 'https://sra-api.herokuapp.com/users/events'
+		#request = RestClient.get 'https://sra-api.herokuapp.com/users/events/last'
+		#@event = JSON.parse(json)
 		respond_to do |format|
 			format.html # new.html.erb
 			format.json { render json: @event }
@@ -44,22 +44,22 @@ class EventsController < ApplicationController
 	# GET /events/1/edit
 	def edit
 		#@event = Event.find(params[:id])
-        request = RestClient.get "https://sra-api.herokuapp.com/users/events/#{params[:id]}" 
-        @event = JSON.parse(request)
+		request = RestClient.get "https://sra-api.herokuapp.com/users/events/#{params[:id]}" 
+		@event = JSON.parse(request)
 	end
 
 	# POST /events
 	# POST /events.json
 	def create
 		#user = current_user
-        request = RestClient.get 'https//sra-api.herokuapp.com/users/current' {:accept => :json}
-        user = JSON.parse(request)
-        #@event = Event.create(params[:event])
-        request = RestClient.post "https://sra-api.herokuapp.com/users/events/#{params[:event]}" 
+		request = RestClient.get 'https//sra-api.herokuapp.com/users/current', {:accept => :json}
+		user = JSON.parse(request)
+		#@event = Event.create(params[:event])
+		request = RestClient.post "https://sra-api.herokuapp.com/users/events/#{params[:event]}" 
 		user.events << @event
-        RestClient.put 'https://sra-api.herokuapp.com/users/current'
+		RestClient.put 'https://sra-api.herokuapp.com/users/current'
 		respond_to do |format|
-            if response.status == 200
+			if response.status == 200
 				format.html { redirect_to :dashboard}
 				format.json { render json: @event, status: :created, location: @event }
 			else
@@ -73,10 +73,10 @@ class EventsController < ApplicationController
 	# PUT /events/1.json
 	def update
 		#@event = Event.find(params[:id])
-        request = RestClient.post "https://sra-api.herokuapp.com/users/events/#{params[:id]}" {:event => params[:event]
-        
+		request = RestClient.post "https://sra-api.herokuapp.com/users/events/#{params[:id]}", {:event => params[:event]}
+
 		respond_to do |format|
-            if response.status == 200
+			if response.status == 200
 				format.html { redirect_to @event, notice: 'Event was successfully updated.' }
 				format.json { head :no_content }
 			else
@@ -90,7 +90,7 @@ class EventsController < ApplicationController
 	# DELETE /events/1.json
 	def destroy
 		#@event = Event.find(params[:id])
-        RestClient.delete "https://sra-api.herokuapp.com/users/events/#{params[:id]}"
+		RestClient.delete "https://sra-api.herokuapp.com/users/events/#{params[:id]}"
 		#@event.destroy
 
 		respond_to do |format|

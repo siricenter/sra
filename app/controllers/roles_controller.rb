@@ -4,8 +4,8 @@ class RolesController < ApplicationController
 
 	def index
 		@roles = Role.all
-        request = RestClient.get 'https://sra-api.herokuapp.com/roles' {:accept => :json}
-        @roles = JSON.parse(request)
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles', {:accept => :json}
+		@roles = JSON.parse(request)
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @roles }
@@ -14,8 +14,8 @@ class RolesController < ApplicationController
 
 	def show
 		#@role = Role.find(params[:id])
-        request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
-        @role = JSON.parse(request)
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
+		@role = JSON.parse(request)
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @role }
@@ -24,8 +24,8 @@ class RolesController < ApplicationController
 
 	def edit
 		#@role = Role.find(params[:id])
-		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
-        @role = JSON.parse(request)
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
+		@role = JSON.parse(request)
 		respond_to do |format|
 			format.html # new.html.erb
 			format.json { render json: @role }
@@ -34,16 +34,16 @@ class RolesController < ApplicationController
 
 	def new
 		#@role = Role.new
-        RestClient.post 'https://sra-api.herokuapp.com/roles/new' 
+		RestClient.post 'https://sra-api.herokuapp.com/roles/new' 
 	end
 
 	def create
 		#@role = Role.new(params[:role])
-        RestClient.post 'https://sra-api.herokuapp.com/roles', {:params => {:role => params[:role]}}
-        request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
-        @role = JSON.parse(request)
+		RestClient.post 'https://sra-api.herokuapp.com/roles', {:params => {:role => params[:role]}}
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
+		@role = JSON.parse(request)
 		respond_to do |format|
-            if @role
+			if @role
 				format.html { redirect_to roles_path, notice: "Role successfully created" }
 				format.json {render json: @role, status: :created, location: role_path(@role)}
 			else
@@ -55,9 +55,9 @@ class RolesController < ApplicationController
 
 	def update
 		#@role = Role.find(params[:id])
-		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
-        @role = JSON.parse(request)
-        RestClient.put 'https://sra-api.herokuapp.com/roles/:id' {:params => {@role => params[:role]}}
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
+		@role = JSON.parse(request)
+		RestClient.put 'https://sra-api.herokuapp.com/roles/:id', {@role => params[:role]}
 		respond_to do |format|
 			if @role
 				format.html { redirect_to roles_path, notice: "Role was successfully updated" }
@@ -71,9 +71,9 @@ class RolesController < ApplicationController
 
 	def destroy
 		#@role = Role.find(params[:id])
-        request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
-        @role = JSON.parse(request)
-        RestClient.delete 'https://sra-api.herokuapp.com/roles/:id' {:params => {:id => params[:id]}}
+		request = RestClient.get 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
+		@role = JSON.parse(request)
+		RestClient.delete 'https://sra-api.herokuapp.com/roles/:id', {:id => params[:id]}
 
 		respond_to do |format|
 			format.html { redirect_to roles_path }

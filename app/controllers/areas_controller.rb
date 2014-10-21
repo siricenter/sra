@@ -94,27 +94,3 @@ class AreasController < ApplicationController
 		end
 	end
 end
-equest = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-@area = JSON.parse(request)
-respond_to do |format|
-	if @area.update_attributes(params[:area])
-		format.html { redirect_to @area, notice: 'Area was successfully updated.' }
-		format.json { head :no_content }
-	else
-		format.html { render action: "edit" }
-		format.json { render json: @area.errors, status: :unprocessable_entity }
-	end
-end
-  end
-
-  # DELETE /areas/1
-  # DELETE /areas/1.json
-  def destroy
-	  #@area = Area.find(params[:id])
-	  request = RestClient.delete "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-	  respond_to do |format|
-		  format.html { redirect_to areas_url }
-		  format.json { head :no_content }
-	  end
-  end
-end
