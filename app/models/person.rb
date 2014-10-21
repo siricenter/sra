@@ -16,21 +16,17 @@
 #  household_id           :integer
 #
 
-class Person < ActiveRecord::Base
-	attr_accessible :birthday,
-		:education_level,
-		:family_name,
-		:gender,
+class Person < SraModel
+	json_attributes :id,
 		:given_name,
-		:in_school
-	belongs_to :household
-	belongs_to :family_relationship
-
-	has_many :jobs
-
-	validates :birthday, presence: true
-	validates :education_level, presence: true
-	validates :family_name, presence: true
-	validates :gender, presence: true
-	validates :given_name, presence: true
+		:family_name,
+		:family_relationship_id,
+		:birthday,
+		:education_level,
+		:gender,
+		:in_school,
+		:is_alive,
+		:created_at,
+		:updated_at,
+		:household_id
 end
