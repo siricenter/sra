@@ -8,11 +8,15 @@
 #  updated_at :datetime         not null
 #
 
-class Area < ActiveRecord::Base
-  attr_accessible :name
-  has_many :users, through: :area_relationships
-  has_many :area_relationships
-  has_and_belongs_to_many :regions
+class Area
+	attr_accessor :id, :name, :created_at, :updated_at
 
-  validates :name, presence: true
+	def initialize json = {}
+		json = json['area'] if json.include?('area')
+
+		@id = json['id'] if json.include?('id')
+		@name = json['name'] if json.include?('name')
+		@created_at = json['created_at'] if json.include?('created_at')
+		@updated_at = json['updated_at'] if json.include?('updated_at')
+	end
 end
