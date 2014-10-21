@@ -13,15 +13,30 @@ require 'factory_girl'
 
 describe Area do
 	before :each do
-		@area = FactoryGirl.build(:area)
+		@json = { 'area' => {
+			'id' => 1,
+			'name' => 'Kyiv'
+		} }
 	end
 
-	it "has a valid factory" do
-		@area.should be_valid
+	it 'creates an empty area' do
+		area = Area.new
+		expect(area.id).to be_nil
+		expect(area.name).to be_nil
 	end
 
-	it "requires a name" do
-		@area.name = nil
-		@area.should_not be_valid
+	it 'turns an area json structure into an object' do
+		area = Area.new @json
+		expect(area.id).to eq(@json['area']['id'])
+		expect(area.name).to eq(@json['area']['name'])
+	end
+
+	it 'lets us change the values' do
+		area = Area.new
+		area.id = 'id'
+		area.name = 'name'
+
+		expect(area.id).to eq('id')
+		expect(area.name).to eq('name')
 	end
 end
