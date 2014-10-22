@@ -9,10 +9,11 @@
 #  updated_at :datetime         not null
 #
 
-class Occupation < ActiveRecord::Base
-  attr_accessible :name
-  has_many :jobs
-
-  validates :name, presence: true
+class Occupation < SraModel
+  json_attributes :id,
+		:name
+		:created_at,
+		:updated_at
+		
 end
 # //@annotation:/tour model-active-record-1

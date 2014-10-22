@@ -8,10 +8,10 @@
 #  updated_at :datetime         not null
 #
 
-class Region < ActiveRecord::Base
-  attr_accessible :name
-
-  validates :name, presence: true, uniqueness: true
-
-  has_and_belongs_to_many :areas
+class Region < SraModel
+  json_attributes :id,
+		:name
+		:created_at,
+		:updated_at
+		
 end

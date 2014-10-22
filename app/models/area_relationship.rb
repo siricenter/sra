@@ -8,7 +8,9 @@
 #  relationship :string(255)
 #
 
-class AreaRelationship < ActiveRecord::Base
-    belongs_to :area
-    belongs_to :user
+class AreaRelationship < SraModel
+    json_attributes :id,
+	:area_id,
+	:user_id,
+	:relationship
 end

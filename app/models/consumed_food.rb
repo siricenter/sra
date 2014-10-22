@@ -15,23 +15,20 @@
 #  index_consumed_foods_on_interview_id  (interview_id)
 #
 
-class ConsumedFood < ActiveRecord::Base
-	include ConsumedFoodDSL
-	belongs_to :interview
+class ConsumedFood
 	attr_accessible :frequency, :n_id, :servings
-	nutrients calories: "nf_calories", 
-		sugars_grams: "nf_sugars", 
-		fat_grams: "nf_total_fat", 
-		sodium_grams: "nf_sodium", 
-		protein_grams: "nf_protein", 
-		cholesterol_grams: "nf_cholesterol", 
-		vitamin_a_dv: "nf_vitamin_a_dv",
-		vitamin_c_dv: "nf_vitamin_c_dv"
-
-	validates :n_id, presence: true
-	validates :servings, presence: true, numericality: {greater_than: 0}
-	validates :frequency, inclusion: {in: %w{daily weekly monthly}}
-
+	def initialize json = {}
+		json = json['area'] if json.include?('area')
+		@id = json['id'] if json.include?('id')
+		@interview_id = json['interview_id'] if json.include?('interview_id')
+		@n_id = json['n_id'] if json.include?('n_id')
+		@servings = json['servings'] if json.include?('servings')
+		@frequency = json['frequency'] if json.include?('frequency')
+		@created_at = json['created_at'] if json.include?('created_at')
+		@updated_at = json['updated_at'] if json.include?('updated_at')
+		
+	end
+	
 	def name
 		get_data["item_name"]
 	end

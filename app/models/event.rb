@@ -10,10 +10,12 @@
 #  updated_at :datetime         not null
 #
 
-class Event < ActiveRecord::Base
-	belongs_to :user
-	attr_accessible :start, :title
-
-	validates :start, presence: true
-	validates :title, presence: true
+class Event < SraModel
+	json_attributes :id,
+		:title,
+		:start,
+		:user_id,
+		:created_at,
+		:updated_at
+	
 end

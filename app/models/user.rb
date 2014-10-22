@@ -22,25 +22,19 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
-class User < ActiveRecord::Base
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
-	devise :database_authenticatable, :registerable,
-		:recoverable, :rememberable, :trackable, :validatable
-
-	attr_accessible :email, :password, :password_confirmation, :remember_me
-
-
-    has_many :areas, through: :area_relationships 
-	has_and_belongs_to_many :roles
-
-    has_many :area_relationships
-	has_many :events
-	has_many :households
-
-	def has_role? role_name
-        roles = self.roles.where(name: role_name.to_s)
-		return false if roles.empty?
-		return true
-	end
+class User < SraModel
+	json_attributes :id,
+		:email,
+		:encrypted_password,
+		:reset_password_token,
+		:reset_password_sent_at,
+		:remember_created_at,
+		:sign_in_count,
+		:current_sign_in_at,
+		:last_sign_in_at,
+		:current_sign_in_ip,
+		:updated_at,
+		:created_at,
+		:last_sign_in_ip
+	
 end

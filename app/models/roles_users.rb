@@ -7,7 +7,8 @@
 #  user_id :integer
 #
 
-class RolesUsers < ActiveRecord::Base
-    belongs_to :users
-    belongs_to :roles
+class RolesUsers < SraModel
+   json_attributes :id,
+		:role_id
+		:user_id
 end

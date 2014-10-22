@@ -8,8 +8,10 @@
 #  updated_at :datetime         not null
 #
 
-class FamilyRelationship < ActiveRecord::Base
-  attr_accessible :name
-  has_many :people
-  validates :name, presence: true
+class FamilyRelationship < SraModel
+  json_attributes :id,
+		:name,
+		:created_at,
+		:updated_at
+		
 end

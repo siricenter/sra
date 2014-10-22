@@ -12,11 +12,14 @@
 #  updated_at    :datetime         not null
 #
 
-class Job < ActiveRecord::Base
-	attr_accessible :description, :seasonal, :title, :occupation
-	belongs_to :person
-	belongs_to :occupation
-
-	validates_presence_of :person
-	validates_presence_of :occupation
+class Job < SraModel
+	json_attributes :id,
+		:title
+		:seasonal
+		:description
+		:person_id
+		:occupation_id
+		:created_at,
+		:updated_at
+		
 end
