@@ -21,4 +21,57 @@ class SraModel
 			end
 		end
 	end
+	
+	def self.find id
+		example = User.new({'id' => id})
+		raise 'no id' unless example.id
+		url = BraineryLib::resource_url(example)
+		json = BraineryLib::get url
+		instantiate(json)
+	end
+	
+	def destroy
+		url = BraineryLib::resource_url(self)
+		api_response = BraineryLib::delete url
+		json_structure = JSON.parse(api_response.body)
+		success = json_structure['success'] if json_structure.include?('success')
+		if success
+			self.id = nil
+			return :success
+		end
+
+		return :failure
+	end
+
+	def self.create json
+		model = self.new(json)
+		model.create
+		return model
+	end
+	
+	def create
+		data = {}
+		self.instance_variables.each do |variable|
+			key = variable.to_s.delete(':@')
+			data[key] = self.instance_variable_get(variable)
+		end
+		url = BraineryLib::resource_url(self)
+		api_response = BraineryLib::post url, data
+		json_structure = JSON.parse(api_response)
+		self.id = json_structure['id'] if json_structure.include?('id')
+		return self
+	end
+	
+	def self.model_name
+		self.class.name
+	end
+	
+	private
+	def self.instantiate json
+		json_structure = JSON.parse(json)
+		self.new(json_structure)
+	end
+end
+
+	
 end

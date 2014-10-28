@@ -54,7 +54,7 @@ class AreasController < ApplicationController
 	# POST /areas.json
 	def create
 		#@area = Area.new(params[:area])
-		request = RestClient.post "http://sra-api.herokuapp.com/areas/#{params[:area]}"
+		request = RestClient.post "http://sra-api.herokuapp.com/areas",  params: {area: params[:area]}
 		respond_to do |format|
 			if response.status == 200
 				format.html { redirect_to @area, notice: 'Area was successfully created.' }
