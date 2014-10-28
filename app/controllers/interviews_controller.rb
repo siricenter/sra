@@ -2,7 +2,7 @@ class InterviewsController < ApplicationController
 	# GET /interviews
 	# GET /interviews.json
 	def index
-		#@household = Household.find(params[:household_id])
+		household = Household.find(params[:household_id])
 		#@interviews = Interview.where({household_id: @household.id})
 		request = RestClient.get "https://sra-api.herokuapp.com/households/#{params[:id]}/interviews" 
 		@household = JSON.parse(request)
@@ -16,9 +16,7 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1
 	# GET /interviews/1.json
 	def show
-		#@interview = Interview.find(params[:id])
-		request = RestClient.get "https://sra-api.herokuapp.com/interviews/#{params[:id]}/households"
-		@interviews = JSON.parse(request)
+		@interview = Interview.find(params[:id])	
 		#@household = Household.find(@interview.household_id)
 		#request = RestClient.get 'https://sra-api.herokuapp.com/interviews/household', {:params => {:id => params[:id]}}
 		#@household  = JSON.parse(request)
