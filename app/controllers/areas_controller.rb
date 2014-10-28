@@ -15,12 +15,12 @@ class AreasController < ApplicationController
 	# GET /areas/1
 	# GET /areas/1.json
 	def show
-		#@area = Area.find(params[:id])
-		request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
+		@area = Area.find(params[:id])
+		
 		@area = JSON.parse(request)
-		# Category.joins(:posts)
+		#Category.joins(:posts)
 		#@roles = Role.all
-		# request = RestClient.get 'https://sra-api.herokuapp.com/roles', {:accept => :json}
+		#equest = RestClient.get 'https://sra-api.herokuapp.com/roles', {:accept => :json}
 		#@roles = JSON.parse(request)
 		#@users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
 		# roles = Role.where(:name ["Field Worker", "Manager"])
