@@ -1,11 +1,8 @@
 class DashboardController < ApplicationController
 	before_filter :authenticate_user!
 	def show
-        #@households = Household.all
-        request = RestClient.get 'https://sra-api.herokuapp.com/households', {:accept => :json}
-        @households = JSON.parse(request)
-		request = RestClient.get "https://sra-api.herokuapp.com/user/#{params[:id]}"
-		@user = JSON.parse(request)
+        @households = Household.all
+		@user = User.find(params[:id])
     	respond_to do |format|
       		format.html # index.html.erb
       		format.json { render json: @areas }
@@ -22,19 +19,18 @@ class DashboardController < ApplicationController
 	end
 
 	def field_worker
-        #@households = @user.households
+        @households = @user.households
         #@field_workers = @user.area_relationships.select{|r| r.relationship == "Manager"}.map{|r| r.area}.map{|area| area.area_relationships.select{|r|r.relationship == "Field Worker"}.map{|r| r.user}}.flatten
         #@areas = Area.joins(:users).where(area_relationships:{relationship: "Manager"},users:{id: @user.id})
-        request = RestClient.get "https://sra-api.herokuapp.com/user/#{params[:id]}/households" 
-        @households = JSON.parse(request)
+       # request = RestClient.get "https://sra-api.herokuapp.com/user/#{params[:id]}/households" 
+        #@households = JSON.parse(request)
         render :worker
 	end
     
     def admin
         request = RestClient.post 'https://sra-api.herokuapp.com/users/new' 
-        @user = JSON.parse(request)
-        request = RestClient.get 'https://sra-api.herokuapp.com/users' 
-        @users = JSON.parse(request)
+		@user = User.new
+		@users = Users.all
         render :admin
     end
     
