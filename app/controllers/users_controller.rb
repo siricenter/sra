@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
-	before_filter :authenticate_user!
-	load_and_authorize_resource
+	before_filter :check_login
 
 	def sign_up
 		RestClient.post 'https://sra-api.herokuapp.com/session', {:user => params[:user]}
@@ -10,21 +9,19 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		#@users = User.all
-		request = RestClient.get 'https://sra-api.herokuapp.com/users', {:accept => :json}
-		@users = JSON.parse(request)
+		@users = User.all
+
 
 	end
 
 	def show
-		#@user = User.find(params[:id])
-		request = RestClient.get 'https://sra-api.herokuapp.com/users/:id', {:id => params[:id]}
-		@user = JSON.parse(request)
+		@user = User.find(params[:id])	
+		
 	end
 
 	def destroy
-		#@user = User.find(params[:id])
-		RestClient.delete 'https://sra-api.herokuapp.com/users/:id', {:id => params[:id]} 
+		@user = User.find(params[:id])
+		
 		if response.status = 200
 			redirect_to users_path, notice: "User #{params[:id]} was successfully removed"
 		else
@@ -33,7 +30,7 @@ class UsersController < ApplicationController
 	end
 
 	def update_password
-		#@user = User.find(current_user.id)
+		user = User.find(current_user.id)
 		RestClient.put 'https://sra-api.herokuapp.com/users/:id', {:password => params[:user][:password]}
 		if response.status == 200
 			redirect_to root_path
