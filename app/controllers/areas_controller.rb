@@ -4,15 +4,8 @@ class AreasController < ApplicationController
 	# GET /areas
 	# GET /areas.json
 	def index
-		request = RestClient.get 'https://sra-api.herokuapp.com/areas', {:accept => :json}
-		@areas = JSON.parse(request)
-		respond_to do |format|
-			format.html # index.html.erb
-			format.json { render json: @areas }
-		end
-	end
-
-	# GET /areas/1
+		@areas = Area.all
+		ET /areas/1
 	# GET /areas/1.json
 	def show
 		@area = Area.find(params[:id])
