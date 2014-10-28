@@ -3,6 +3,15 @@ class SraModel
 	def initialize json = {}
 		json_attributes @@attrs, json
 	end
+	
+	def self.all
+		base = SraLib::base_url(self)
+		json = SraLib::get base
+		instantiate(json)
+	end
+		
+		
+		
 
 	def self.json_attributes *attributes
 		@@attrs = attributes
