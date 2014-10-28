@@ -14,7 +14,7 @@ module SraLib
 
 	# http://url.com/
 	def self.api_url
-		"http://brainery-api.herokuapp.com"
+		"http://sra-api.herokuapp.com"
 	end
 
 	# http://url.com/resources

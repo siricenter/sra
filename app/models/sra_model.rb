@@ -25,14 +25,14 @@ class SraModel
 	def self.find id
 		example = User.new({'id' => id})
 		raise 'no id' unless example.id
-		url = BraineryLib::resource_url(example)
-		json = BraineryLib::get url
+		url = SraLib::resource_url(example)
+		json = SraLib::get url
 		instantiate(json)
 	end
 	
 	def destroy
-		url = BraineryLib::resource_url(self)
-		api_response = BraineryLib::delete url
+		url = SraLib::resource_url(self)
+		api_response = SraLib::delete url
 		json_structure = JSON.parse(api_response.body)
 		success = json_structure['success'] if json_structure.include?('success')
 		if success
@@ -55,8 +55,8 @@ class SraModel
 			key = variable.to_s.delete(':@')
 			data[key] = self.instance_variable_get(variable)
 		end
-		url = BraineryLib::resource_url(self)
-		api_response = BraineryLib::post url, data
+		url = SraLib::resource_url(self)
+		api_response = SraLib::post url, data
 		json_structure = JSON.parse(api_response)
 		self.id = json_structure['id'] if json_structure.include?('id')
 		return self
