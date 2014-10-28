@@ -23,6 +23,8 @@ module SraLib
 		return "#{api_url}/#{Pluralizer.new.pluralize(2, resource).delete('2 ')}"
 	end
 
+
+
 	#http://url.com/resources
 	#http://url.com/resources/id
 	def self.resource_url object
@@ -32,6 +34,8 @@ module SraLib
 			base_url object
 		end
 	end
+
+	
 
 	def self.get url
 		RestClient.get url
