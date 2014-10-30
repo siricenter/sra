@@ -3,6 +3,8 @@ Sra::Application.routes.draw do
 	get "search", to: "Search#search"
 
 	root to: 'static#landing'
+	
+	get '/sessions/new', as: :new_user_session
 
 	resources :events
 
@@ -27,7 +29,7 @@ Sra::Application.routes.draw do
 		delete '/areas/:area_id/regions/:region_id', to: 'AreasRegions#destroy', as: :destroy_area_region
 	end
 
-	devise_for :users, controllers: { registrations: "registrations" }
+
     
     
 

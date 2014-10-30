@@ -4,10 +4,10 @@
     %h2
       Self Reliance + Sustainable Farming + Lasting impact
     %p &nbsp;
-    - if user_signed_in?
-      = link_to 'Dashboard', dashboard_path, class: :button
-    - else
+    - if session.include?(:token)
       = link_to 'Login', new_user_session_path, class: :button
+    - else
+      = link_to 'Dashboard', dashboard_path, class: :button
 .main
   %h1
     About us
