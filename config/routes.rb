@@ -1,10 +1,14 @@
 Sra::Application.routes.draw do
 
 	get "search", to: "Search#search"
-
+	
+	post '/households', controller: :households, action: :index, as: :households
+	
 	root to: 'static#landing'
 	
 	get '/sessions/new', as: :new_user_session
+	
+	post '/sessions/create', controller: :sessions, action: :create, as: :login
 
 	resources :events
 
