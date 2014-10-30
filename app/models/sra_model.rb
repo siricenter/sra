@@ -1,4 +1,22 @@
+require 'sra_lib'
+
 class SraModel
+	
+	def self.login user
+		response = RestClient.post "#{api_url}/sessions", params: user
+
+		if response.include?('token')
+			session[:token] = response['token']
+			return :success
+		end
+
+		return :failure
+	end
+
+	# http://url.com/
+	def self.api_url
+		"http://sra-api.herokuapp.com"
+	end
 
 	def initialize json = {}
 		json_attributes @@attrs, json
@@ -9,9 +27,6 @@ class SraModel
 		json = SraLib::get base
 		instantiate(json)
 	end
-		
-		
-		
 
 	def self.json_attributes *attributes
 		@@attrs = attributes
