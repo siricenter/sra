@@ -5,7 +5,7 @@
         %h3.panel-title
           Sign in
       .panel-body
-        = form_for(:user, url: households_path, method: :post) do |f|
+        = form_for(:user, url: login_path, method: :post) do |f|
           .row.form-group
             = f.label :email, class: ["col-sm-3", 'label-control']
             .col-sm-9

@@ -2,10 +2,10 @@ require 'pluralizer'
 module SraLib
 
 	def self.login user
-		api_response = RestClient.post "#{api_url}/sessions", params: user
+		response = RestClient.post "#{api_url}/sessions", params: user
 
-		if token_hash.include?('token')
-			session[:token] = token_hash['token']
+		if response.include?('token')
+			session[:token] = response['token']
 			return :success
 		end
 
