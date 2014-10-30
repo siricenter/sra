@@ -1,12 +1,10 @@
 class HouseholdsController < ApplicationController
-	before_filter :authenticate_user!
+	#before_filter :authenticate_user!
 
 	# GET /households
 	# GET /households.json
 	def index
-		#@households = current_user.households
-		request = RestClient.get "http://sra-api.herokuapp.com/users/#{params[:user_id]}/households"
-		@households = JSON.parse(request)
+		@households = Household.all
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @households }
