@@ -62,11 +62,11 @@ def install_packages
 	end
 end
 
-install_mysql
+#install_mysql
 #install_mongo
-install_phantomjs
+#install_phantomjs
 bundle_install
-setup_database
+#setup_database
 start_server
 get_vimrc
 install_vundle

@@ -6,20 +6,20 @@ gem 'rails', '3.2.16'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-group :production do
-	gem 'pg'
-end
-group :development, :test do
-	gem 'mysql2'								# Allows Rails to interact with MySQL
-end
-gem 'devise'								# Manages authentication (loggin in) for us
-gem 'cancan'								# Manages authorization (permissions) for us
+#group :production do
+#	gem 'pg'
+#end
+#group :development, :test do
+#	gem 'mysql2'								# Allows Rails to interact with MySQL
+#end
+#gem 'devise'								# Manages authentication (loggin in) for us
+#gem 'cancan'								# Manages authorization (permissions) for us
 
 gem 'haml'									# HTML done right
 gem 'therubyracer'							# JavaScript runtime so CoffeeScript can compile to JavaScript
 gem 'bootstrap-sass'						# Installs bootstrap for us. We're transitioning away from bootstrap
 
-gem 'nutritionix'						# Allows us to access an open nutritional API
+#gem 'nutritionix'						# Allows us to access an open nutritional API
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -68,9 +68,9 @@ gem 'jquery-rails'							# Installs JQuery for us
 # gem 'capistrano'
 
 # To use debugger
-group :development do
+#group :development do
 	#gem 'debugger'
-end
+#end
 ruby '2.0.0'
 gem 'thin'
 gem 'rest-client'
