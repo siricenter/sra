@@ -4,8 +4,7 @@ class InterviewsController < ApplicationController
 	def index
 		household = Household.find(params[:household_id])
 		#@interviews = Interview.where({household_id: @household.id})
-		request = RestClient.get "https://sra-api.herokuapp.com/households/#{params[:id]}/interviews" 
-		@household = JSON.parse(request)
+		
 		#@interviews = RestClient.get 'https://sra-api.herokuapp.com/households/:id/interviews', {:params => {:id => params[:id]}}
 		respond_to do |format|
 			format.html # index.html.erb
@@ -17,7 +16,7 @@ class InterviewsController < ApplicationController
 	# GET /interviews/1.json
 	def show
 		@interview = Interview.find(params[:id])	
-		#@household = Household.find(@interview.household_id)
+		@household = Household.find(@interview.household_id)
 		#request = RestClient.get 'https://sra-api.herokuapp.com/interviews/household', {:params => {:id => params[:id]}}
 		#@household  = JSON.parse(request)
 		raise "No such household" unless @household 
@@ -31,7 +30,7 @@ class InterviewsController < ApplicationController
 	# GET /interviews/new
 	# GET /interviews/new.json
 	def new
-		#@household = Household.find(params[:household_id])
+		@household = Household.find(params[:household_id])
 
 		@interview = Interview.new
 
@@ -50,10 +49,8 @@ class InterviewsController < ApplicationController
 
 	# GET /interviews/1/edit
 	def edit
-		#@interview = Interview.find(params[:id])
-		request = RestClient.get 'https://sra-api.herokuapp.com/interviews/:id', {:params => {:id => params[:id]}}
-		@interview = JSON.parse(request)
-		#@household = Household.find(@interview.household_id)
+		@interview = Interview.find(params[:id])
+		@household = Household.find(@interview.household_id)
 		@path = @interview
 	end
 
@@ -61,9 +58,9 @@ class InterviewsController < ApplicationController
 	# POST /interviews.json
 	def create
 		#render inline: params.inspect
-		#@household = Household.find(params[:household_id])
+		@household = Household.find(params[:household_id])
 
-		#@interview = Interview.new(params[:interview])
+		@interview = Interview.new(params[:interview])
 		RestClient.post 'https://sra-api.herokuapp.com/interviews', {:interview => params[:interview]}
 		request =  RestClient.get 'https://sra-api.herokuapp.com/interviews/:id', {:id => params[:id]}
 		@interview = JSON.parse(request)
@@ -106,9 +103,8 @@ class InterviewsController < ApplicationController
 	# PUT /interviews/1
 	# PUT /interviews/1.json
 	def update
-		#@interview = Interview.find(params[:id])
-		request = RestClient.get "https://sra-api.herokuapp.com/interviews/#{params[:id]}"
-		@interview = JSON.parse(request)
+		@interview = Interview.find(params[:id])
+	
 		@interview.consumed_foods = []
 
 		if params[:consumed_foods]
@@ -132,7 +128,7 @@ class InterviewsController < ApplicationController
 	# DELETE /interviews/1
 	# DELETE /interviews/1.json
 	def destroy
-		#@interview = Interview.find(params[:id])
+		@interview = Interview.find(params[:id])
 		RestClient.delete "https://sra-api.herokuapp.com/interviews/#{params[:id]}"
 		respond_to do |format|
 			format.html { redirect_to household_interviews_path(@household) }
