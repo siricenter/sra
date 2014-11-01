@@ -1,8 +1,8 @@
 class AreasRegionsController < ApplicationController
 	def create
-		#@area = Area.find(params[:area_id])
-        request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-        @area = JSON.parse(request)
+		@area = Area.find(params[:area_id])
+        #request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
+        #@area = JSON.parse(request)
    		request = RestClient.get "http://sra-api.herokuapp.com/region/#{params[:id]}"
 		@region = JSON.parse(request)
 		
