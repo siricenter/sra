@@ -9,16 +9,6 @@ class AreasController < ApplicationController
 	# GET /areas/1.json
 	def show
 		@area = Area.find(params[:id])
-		
-		@area = JSON.parse(request)
-		#Category.joins(:posts)
-		#@roles = Role.all
-		#equest = RestClient.get 'https://sra-api.herokuapp.com/roles', {:accept => :json}
-		#@roles = JSON.parse(request)
-		#@users = User.joins(:roles).where(roles: {name: ["Field Worker", "Manager"]})
-		# roles = Role.where(:name ["Field Worker", "Manager"])
-		# users = User.where(name: "Field Worker")
-
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @area }
@@ -29,7 +19,6 @@ class AreasController < ApplicationController
 	# GET /areas/new.json
 	def new
 		@area = Area.new
-		#request = RestClient.post 'http://sra-api.herokuapp.com/areas/'
 		respond_to do |format|
 			format.html # new.html.erb
 			format.json { render json: @area }
@@ -38,16 +27,14 @@ class AreasController < ApplicationController
 
 	# GET /areas/1/edit
 	def edit
-		#@area = Area.find(params[:id])
-		request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}",
-		@area = JSON.parse(request) 
+		@area = Area.find(params[:id])
+		 
 	end
 
 	# POST /areas
 	# POST /areas.json
 	def create
-		#@area = Area.new(params[:area])
-		request = RestClient.post "http://sra-api.herokuapp.com/areas",  params: {area: params[:area]}
+		@area = Area.new(params[:area])
 		respond_to do |format|
 			if response.status == 200
 				format.html { redirect_to @area, notice: 'Area was successfully created.' }
@@ -62,9 +49,8 @@ class AreasController < ApplicationController
 	# PUT /areas/1
 	# PUT /areas/1.json
 	def update
-		#@area = Area.find(params[:id])
-		request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-		@area = JSON.parse(request)
+		@area = Area.find(params[:id])
+		
 		respond_to do |format|
 			if @area.update_attributes(params[:area])
 				format.html { redirect_to @area, notice: 'Area was successfully updated.' }
@@ -79,8 +65,8 @@ class AreasController < ApplicationController
 	# DELETE /areas/1
 	# DELETE /areas/1.json
 	def destroy
-		#@area = Area.find(params[:id])
-		request = RestClient.delete "http://sra-api.herokuapp.com/areas/#{params[:id]}"
+		@area = Area.find(params[:id])
+		
 		respond_to do |format|
 			format.html { redirect_to areas_url }
 			format.json { head :no_content }
