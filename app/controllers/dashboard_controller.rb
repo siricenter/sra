@@ -28,7 +28,6 @@ class DashboardController < ApplicationController
 	end
     
     def admin
-        request = RestClient.post 'https://sra-api.herokuapp.com/users/new' 
 		@user = User.new
 		@users = Users.all
         render :admin

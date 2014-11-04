@@ -1,5 +1,6 @@
 class AreasUsersController < ApplicationController
 	def create
+	
         RestClient.post "https://sra-api.herokuapp.com/areas/#{params[:area_id]}/users/#{params[:user_id]}", {:relationship => params[:id]}
 		
 		unless can? :create, :area_user

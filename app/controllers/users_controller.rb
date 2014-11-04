@@ -10,19 +10,17 @@ class UsersController < ApplicationController
 
 	def index
 		@users = User.all
-
-
 	end
 
 	def show
 		@user = User.find(params[:id])	
-		
 	end
 
 	def destroy
 		@user = User.find(params[:id])
 		
 		if response.status = 200
+			
 			redirect_to users_path, notice: "User #{params[:id]} was successfully removed"
 		else
 			redirect_to users_path, notice: "User wasn't destroyed"
@@ -30,6 +28,7 @@ class UsersController < ApplicationController
 	end
 
 	def update_password
+		
 		user = User.find(current_user.id)
 		RestClient.put 'https://sra-api.herokuapp.com/users/:id', {:password => params[:user][:password]}
 		if response.status == 200

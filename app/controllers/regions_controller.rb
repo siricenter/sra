@@ -6,7 +6,6 @@ class RegionsController < ApplicationController
 	# GET /regions.json
 	def index
 		@regions = Region.all
-
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @regions }
@@ -18,7 +17,6 @@ class RegionsController < ApplicationController
 	def show
 		@region = Region.find(params[:id])
 		@areas = Area.all
-
 		respond_to do |format|
 			format.html # show.html.erb
 			format.json { render json: @region }
@@ -29,7 +27,6 @@ class RegionsController < ApplicationController
 	# GET /regions/new.json
 	def new
 		@region = Region.new
-
 		respond_to do |format|
 			format.html # new.html.erb
 			format.json { render json: @region }
@@ -45,7 +42,6 @@ class RegionsController < ApplicationController
 	# POST /regions.json
 	def create
 		@region = Region.new(params[:region])
-
 		respond_to do |format|
 			if @region.save
 				format.html { redirect_to @region, notice: 'Region was successfully created.' }
@@ -61,7 +57,6 @@ class RegionsController < ApplicationController
 	# PUT /regions/1.json
 	def update
 		@region = Region.find(params[:id])
-
 		respond_to do |format|
 			if @region.update_attributes(params[:region])
 				format.html { redirect_to @region, notice: 'Region was successfully updated.' }
@@ -78,7 +73,6 @@ class RegionsController < ApplicationController
 	def destroy
 		@region = Region.find(params[:id])
 		@region.destroy
-
 		respond_to do |format|
 			format.html { redirect_to regions_url }
 			format.json { head :no_content }
