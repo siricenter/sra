@@ -1,10 +1,9 @@
 class AreasRegionsController < ApplicationController
 	def create
 		@area = Area.find(params[:area_id])
-        #request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-        #@area = JSON.parse(request)
-   		request = RestClient.get "http://sra-api.herokuapp.com/region/#{params[:id]}"
-		@region = JSON.parse(request)
+        
+		@region = Region.find(params[:id])
+   		
 		
 		unless can? :create, :area_region
 			redirect_to @region, alert: "You don't have rights to assign areas"
@@ -22,11 +21,11 @@ class AreasRegionsController < ApplicationController
 	end
 
 	def destroy
-        request = RestClient.get "http://sra-api.herokuapp.com/areas/#{params[:id]}"
-		#@region = Region.find(params[:region_id])
-		@area = JSON.parse(request)
-		request = RestClient.get "http://sra-api.herokuapp.com/region/#{params[:id]}" 
-		@region = JSON.parse(request)
+		
+       
+		@region = Region.find(params[:region_id])
+		
+
 		unless can? :delete, :area_region
 			redirect_to @region, alert: "You don't have rights to assign areas"
 		else
