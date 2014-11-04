@@ -3,6 +3,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.16'
 
+group :development, :test do
+	gem 'mysql2'								# Allows Rails to interact with MySQL
+end
+
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 

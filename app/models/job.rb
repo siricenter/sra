@@ -14,11 +14,11 @@
 
 class Job < SraModel
 	json_attributes :id,
-		:title
-		:seasonal
-		:description
-		:person_id
-		:occupation_id
+		:title,
+		:seasonal,
+		:description,
+		:person_id,
+		:occupation_id,
 		:created_at,
 		:updated_at
 		

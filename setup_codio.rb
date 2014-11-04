@@ -62,7 +62,7 @@ def install_packages
 	end
 end
 
-#install_mysql
+install_mysql
 #install_mongo
 #install_phantomjs
 bundle_install

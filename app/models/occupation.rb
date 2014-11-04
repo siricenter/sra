@@ -11,7 +11,7 @@
 
 class Occupation < SraModel
   json_attributes :id,
-		:name
+		:name,
 		:created_at,
 		:updated_at
 		

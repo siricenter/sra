@@ -5,7 +5,8 @@ class AreasController < ApplicationController
 	# GET /areas.json
 	def index
 		@areas = Area.all
-		ET /areas/1
+		
+	end
 	# GET /areas/1.json
 	def show
 		@area = Area.find(params[:id])
